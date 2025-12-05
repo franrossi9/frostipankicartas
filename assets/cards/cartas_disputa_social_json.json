@@ -1,0 +1,366 @@
+﻿[
+  {
+    "id": "SD01",
+    "type": "disputa_social",
+    "etiqueta": "DISPUTA SOCIAL",
+    "titulo": "INCERTIDUMBRE",
+    "textoAmbientacion": "No creo que debamos decirles lo que vamos a hacer por adelantado. Déjalos pensar. Y preocuparse.",
+    "efecto": "**Si tienes alguna Esperanza o Descontento activo:** Por tu ficha activa más común (o por todas las empatadas como más comunes), realiza el efecto(s) correspondiente(s): Codicia: Por cada Codicia activa, aumenta el Hambre en 3. Apatía: Por cada Apatía activa, voltea 1 marcador de Enfermedad. Ira: Por cada Ira activa, gana 2 Ciudadanos enfermos. Motivación: Toma 1 Recurso del Mapa y colócalo en el suministro. Luego, por cada Motivación activa, toma otro 1 Recurso del Mapa y colócalo en el suministro. Por cada Recurso que no puedas tomar, gana 1 Carbón. Cuidado: Por cada Cuidado activo, Cura 2. Justicia: Por cada Justicia activa, agota 1 Descontento o activa 1 Esperanza.",
+    "efectoEstructurado": {
+      "type": "custom",
+      "description": "Evalúa tu ficha activa más común y aplica el efecto correspondiente",
+      "branches": [
+        {
+          "condition": { "type": "custom", "description": "Si Codicia es la más común" },
+          "effect": { "type": "change_hunger", "description": "Aumenta el Hambre en 3 por cada Codicia activa" }
+        },
+        {
+          "condition": { "type": "custom", "description": "Si Apatía es la más común" },
+          "effect": { "target": "apatia_activa", "effect": { "type": "flip_disease", "description": "Voltea 1 marcador de Enfermedad" }, "description": "Por cada Apatía activa" }
+        },
+        {
+          "condition": { "type": "custom", "description": "Si Ira es la más común" },
+          "effect": { "target": "ira_activa", "effect": { "type": "gain_sick", "description": "Gana 2 Ciudadanos enfermos" }, "description": "Por cada Ira activa" }
+        },
+        {
+          "condition": { "type": "custom", "description": "Si Motivación es la más común" },
+          "effect": { "type": "custom", "description": "Toma recursos del mapa por cada Motivación (ver texto)" }
+        },
+        {
+          "condition": { "type": "custom", "description": "Si Cuidado es la más común" },
+          "effect": { "target": "cuidado_activa", "effect": { "type": "heal", "description": "Cura 2" }, "description": "Por cada Cuidado activo" }
+        },
+        {
+          "condition": { "type": "custom", "description": "Si Justicia es la más común" },
+          "effect": { "target": "justicia_activa", "effect": { "type": "custom", "description": "Agota 1 Descontento o activa 1 Esperanza" }, "description": "Por cada Justicia activa" }
+        }
+      ]
+    }
+  },
+  {
+    "id": "SD02",
+    "type": "disputa_social",
+    "etiqueta": "DISPUTA SOCIAL",
+    "titulo": "INDECISIÓN",
+    "textoAmbientacion": "El riesgo de una mala decisión es preferible al terror de la indecisión.",
+    "efecto": "**Si tienes alguna Esperanza o Descontento activo:** Por tu ficha activa más común (o por todas las empatadas como más comunes), realiza el efecto(s) correspondiente(s): Codicia: Por cada Codicia activa, aumenta el Hambre en 3. Apatía: Por cada Apatía activa, voltea 1 marcador de Enfermedad. Ira: Por cada Ira activa, gana 2 Ciudadanos enfermos. Motivación: Toma 1 Recurso del Mapa y colócalo en el suministro. Luego, por cada Motivación activa, toma otro 1 Recurso del Mapa y colócalo en el suministro. Por cada Recurso que no puedas tomar, gana 1 Carbón. Cuidado: Por cada Cuidado activo, Cura 2. Justicia: Por cada Justicia activa, agota 1 Descontento o activa 1 Esperanza.",
+    "efectoEstructurado": {
+      "type": "custom",
+      "description": "Evalúa tu ficha activa más común y aplica el efecto correspondiente (Idéntico a SD01)",
+      "branches": [
+        {
+          "condition": { "type": "custom", "description": "Si Codicia es la más común" },
+          "effect": { "type": "change_hunger", "description": "Aumenta el Hambre en 3 por cada Codicia activa" }
+        },
+        {
+          "condition": { "type": "custom", "description": "Si Apatía es la más común" },
+          "effect": { "target": "apatia_activa", "effect": { "type": "flip_disease", "description": "Voltea 1 marcador de Enfermedad" }, "description": "Por cada Apatía activa" }
+        },
+        {
+          "condition": { "type": "custom", "description": "Si Ira es la más común" },
+          "effect": { "target": "ira_activa", "effect": { "type": "gain_sick", "description": "Gana 2 Ciudadanos enfermos" }, "description": "Por cada Ira activa" }
+        },
+        {
+          "condition": { "type": "custom", "description": "Si Motivación es la más común" },
+          "effect": { "type": "custom", "description": "Toma recursos del mapa por cada Motivación (ver texto)" }
+        },
+        {
+          "condition": { "type": "custom", "description": "Si Cuidado es la más común" },
+          "effect": { "target": "cuidado_activa", "effect": { "type": "heal", "description": "Cura 2" }, "description": "Por cada Cuidado activo" }
+        },
+        {
+          "condition": { "type": "custom", "description": "Si Justicia es la más común" },
+          "effect": { "target": "justicia_activa", "effect": { "type": "custom", "description": "Agota 1 Descontento o activa 1 Esperanza" }, "description": "Por cada Justicia activa" }
+        }
+      ]
+    }
+  },
+  {
+    "id": "SD03",
+    "type": "disputa_social",
+    "etiqueta": "DISPUTA SOCIAL",
+    "titulo": "CONFUSIÓN",
+    "textoAmbientacion": "Si no podemos convencerlos, los confundiremos.",
+    "efecto": "**Si tienes más fichas de Esperanza que de Descontento:** Puedes agotar 1 Esperanza para realizar el efecto correspondiente: Justicia: Descarta 1 ficha de Descontento. Cuidado: Cura 3 o Trata 3. Motivación: Reutiliza un Trabajador. **Si tienes menos fichas de Esperanza que de Descontento:** Por tu ficha de Descontento activa más común... Codicia: Pierde 3 Recursos... Ira: 1 Ciudadano muere. Apatía: Coloca 1 ficha de Trabajador Agotado... **Si tienes el mismo número:** Activa 1 Esperanza. Activa 1 Descontento.",
+    "efectoEstructurado": {
+      "branches": [
+        {
+          "condition": { "type": "compare_hope_discontent", "operator": "greater_than", "description": "Si tienes más Esperanza que Descontento" },
+          "effect": {
+            "description": "Elige una opción agotando 1 Esperanza correspondiente:",
+            "minChoices": 1,
+            "maxChoices": 1,
+            "options": [
+              { "type": "composite", "description": "Justicia: Descarta 1 Descontento", "effects": [{ "type": "exhaust_hope", "description": "Agota Justicia" }, { "type": "change_discontent", "description": "-1 Descontento" }] },
+              { "type": "composite", "description": "Cuidado: Cura 3 o Trata 3", "effects": [{ "type": "exhaust_hope", "description": "Agota Cuidado" }, { "type": "custom", "description": "Cura 3 o Trata 3" }] },
+              { "type": "composite", "description": "Motivación: Reutiliza un Trabajador", "effects": [{ "type": "exhaust_hope", "description": "Agota Motivación" }, { "type": "reuse_worker", "description": "Reutiliza 1 Trabajador" }] }
+            ]
+          }
+        },
+        {
+          "condition": { "type": "compare_hope_discontent", "operator": "less_than", "description": "Si tienes menos Esperanza que Descontento" },
+          "effect": {
+            "type": "custom",
+            "description": "Aplica efecto según Descontento más común (Codicia: Pierde recursos/Hambre; Ira: Muere 1; Apatía: Agota Trabajador)"
+          }
+        },
+        {
+          "condition": { "type": "compare_hope_discontent", "operator": "equal", "description": "Si tienes el mismo número" },
+          "effect": {
+            "effects": [
+              { "type": "activate_hope", "description": "Activa 1 Esperanza" },
+              { "type": "activate_discontent", "description": "Activa 1 Descontento" }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "SD04",
+    "type": "disputa_social",
+    "etiqueta": "DISPUTA SOCIAL",
+    "titulo": "DESCONFIANZA",
+    "textoAmbientacion": "La confianza muere pero la desconfianza florece.",
+    "efecto": "**Si tienes más fichas de Esperanza que de Descontento:** ...Justicia: Introduce una nueva Ley... Cuidado: Cura 3 o Trata 3. Motivación: Reutiliza un Trabajador. **Si tienes menos fichas de Esperanza que de Descontento:** ...Apatía: Agota toda la Esperanza. Codicia: Pierde 3 Recursos... Ira: 1 Ciudadano muere. **Si tienes el mismo número:** Activa 1 Esperanza. Activa 1 Descontento.",
+    "efectoEstructurado": {
+      "branches": [
+        {
+          "condition": { "type": "compare_hope_discontent", "operator": "greater_than", "description": "Si tienes más Esperanza que Descontento" },
+          "effect": {
+            "description": "Elige una opción agotando 1 Esperanza correspondiente:",
+            "minChoices": 1,
+            "maxChoices": 1,
+            "options": [
+              { "type": "composite", "description": "Justicia: Introduce Ley (o agota Descontento)", "effects": [{ "type": "exhaust_hope", "description": "Agota Justicia" }, { "type": "introduce_law", "description": "Introduce 1 Ley" }] },
+              { "type": "composite", "description": "Cuidado: Cura 3 o Trata 3", "effects": [{ "type": "exhaust_hope", "description": "Agota Cuidado" }, { "type": "custom", "description": "Cura 3 o Trata 3" }] },
+              { "type": "composite", "description": "Motivación: Reutiliza un Trabajador", "effects": [{ "type": "exhaust_hope", "description": "Agota Motivación" }, { "type": "reuse_worker", "description": "Reutiliza 1 Trabajador" }] }
+            ]
+          }
+        },
+        {
+          "condition": { "type": "compare_hope_discontent", "operator": "less_than", "description": "Si tienes menos Esperanza que Descontento" },
+          "effect": { "type": "custom", "description": "Aplica efecto según Descontento más común (Apatía: Agota Esperanza; Codicia: Pierde recursos; Ira: Muere 1)" }
+        },
+        {
+          "condition": { "type": "compare_hope_discontent", "operator": "equal", "description": "Si tienes el mismo número" },
+          "effect": {
+            "effects": [
+              { "type": "activate_hope", "description": "Activa 1 Esperanza" },
+              { "type": "activate_discontent", "description": "Activa 1 Descontento" }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "SD05",
+    "type": "disputa_social",
+    "etiqueta": "DISPUTA SOCIAL",
+    "titulo": "SOSPECHA",
+    "textoAmbientacion": "La sospecha siempre persigue a las mentes culpables.",
+    "efecto": "**Si tienes más fichas de Esperanza que de Descontento:** ...Justicia: Descarta 1 ficha de Descontento. Cuidado: Cura 3 o Trata 3. Motivación: Construye un Edificio... **Si tienes menos fichas de Esperanza que de Descontento:** ...Ira: Destruye un Edificio... Apatía: Coloca 1 ficha de Trabajador Agotado... Codicia: Pierde 3 Recursos... **Si tienes el mismo número:** Activa 1 Esperanza. Activa 1 Descontento.",
+    "efectoEstructurado": {
+      "branches": [
+        {
+          "condition": { "type": "compare_hope_discontent", "operator": "greater_than", "description": "Si tienes más Esperanza que Descontento" },
+          "effect": {
+            "description": "Elige una opción agotando 1 Esperanza correspondiente:",
+            "minChoices": 1,
+            "maxChoices": 1,
+            "options": [
+              { "type": "composite", "description": "Justicia: Descarta 1 Descontento", "effects": [{ "type": "exhaust_hope", "description": "Agota Justicia" }, { "type": "change_discontent", "description": "-1 Descontento" }] },
+              { "type": "composite", "description": "Cuidado: Cura 3 o Trata 3", "effects": [{ "type": "exhaust_hope", "description": "Agota Cuidado" }, { "type": "custom", "description": "Cura 3 o Trata 3" }] },
+              { "type": "composite", "description": "Motivación: Construye Edificio gratis", "effects": [{ "type": "exhaust_hope", "description": "Agota Motivación" }, { "type": "build_building", "description": "Construye Edificio (coste hasta 2 madera) gratis" }] }
+            ]
+          }
+        },
+        {
+          "condition": { "type": "compare_hope_discontent", "operator": "less_than", "description": "Si tienes menos Esperanza que Descontento" },
+          "effect": { "type": "custom", "description": "Aplica efecto según Descontento más común (Ira: Destruye Edificio; Apatía: Agota Trabajador; Codicia: Pierde recursos)" }
+        },
+        {
+          "condition": { "type": "compare_hope_discontent", "operator": "equal", "description": "Si tienes el mismo número" },
+          "effect": {
+            "effects": [
+              { "type": "activate_hope", "description": "Activa 1 Esperanza" },
+              { "type": "activate_discontent", "description": "Activa 1 Descontento" }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "SD06",
+    "type": "disputa_social",
+    "etiqueta": "DISPUTA SOCIAL",
+    "titulo": "RECELO",
+    "textoAmbientacion": "Tenemos que desconfiar los unos de los otros. Es nuestra única defensa contra la traición.",
+    "efecto": "**Si tienes más fichas de Esperanza que de Descontento:** ...Justicia: Descarta 1 ficha de Descontento. Cuidado: Construye un Puesto Médico mejorado gratis. Motivación: Reutiliza un Trabajador. **Si tienes menos fichas de Esperanza que de Descontento:** ...Codicia: Elimina 4 Carbón y/o Madera del Mapa... Ira: 1 Ciudadano muere. Apatía: Coloca 1 ficha de Trabajador Agotado... **Si tienes el mismo número:** Activa 1 Esperanza. Activa 1 Descontento.",
+    "efectoEstructurado": {
+      "branches": [
+        {
+          "condition": { "type": "compare_hope_discontent", "operator": "greater_than", "description": "Si tienes más Esperanza que Descontento" },
+          "effect": {
+            "description": "Elige una opción agotando 1 Esperanza correspondiente:",
+            "minChoices": 1,
+            "maxChoices": 1,
+            "options": [
+              { "type": "composite", "description": "Justicia: Descarta 1 Descontento", "effects": [{ "type": "exhaust_hope", "description": "Agota Justicia" }, { "type": "change_discontent", "description": "-1 Descontento" }] },
+              { "type": "composite", "description": "Cuidado: Puesto Médico Mejorado", "effects": [{ "type": "exhaust_hope", "description": "Agota Cuidado" }, { "type": "build_building", "description": "Construye Puesto Médico mejorado gratis" }] },
+              { "type": "composite", "description": "Motivación: Reutiliza un Trabajador", "effects": [{ "type": "exhaust_hope", "description": "Agota Motivación" }, { "type": "reuse_worker", "description": "Reutiliza 1 Trabajador" }] }
+            ]
+          }
+        },
+        {
+          "condition": { "type": "compare_hope_discontent", "operator": "less_than", "description": "Si tienes menos Esperanza que Descontento" },
+          "effect": { "type": "custom", "description": "Aplica efecto según Descontento más común (Codicia: Elimina recursos mapa; Ira: Muere 1; Apatía: Agota Trabajador)" }
+        },
+        {
+          "condition": { "type": "compare_hope_discontent", "operator": "equal", "description": "Si tienes el mismo número" },
+          "effect": {
+            "effects": [
+              { "type": "activate_hope", "description": "Activa 1 Esperanza" },
+              { "type": "activate_discontent", "description": "Activa 1 Descontento" }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "SD07",
+    "type": "disputa_social",
+    "etiqueta": "DISPUTA SOCIAL",
+    "titulo": "DUDA",
+    "textoAmbientacion": "La inacción genera duda. La acción genera confianza y coraje.",
+    "efecto": "**Si tienes más Esperanza activa que Descontento activo, elige uno:** A) Elimina hasta 4 cubos de Estrés... B) Mejora 1 Edificio Pequeño gratis. **En caso contrario, elige uno:** A) Pierde 2 Trabajadores, 2 Ingenieros y 1 Niño. B) Coloca 3 cubos de Estrés...",
+    "efectoEstructurado": {
+      "condition": {
+        "type": "compare_hope_discontent",
+        "operator": "greater_than",
+        "description": "Si tienes más Esperanza activa que Descontento activo"
+      },
+      "ifTrue": {
+        "description": "Elige uno:",
+        "minChoices": 1,
+        "maxChoices": 1,
+        "options": [
+          { "type": "change_stress", "description": "Elimina hasta 4 cubos de Estrés" },
+          { "type": "upgrade_building", "description": "Mejora 1 Edificio Pequeño gratis" }
+        ]
+      },
+      "ifFalse": {
+        "description": "Elige uno (Caso contrario):",
+        "minChoices": 1,
+        "maxChoices": 1,
+        "options": [
+          { "type": "composite", "description": "Pierde 2 Trabajadores, 2 Ingenieros, 1 Niño", "effects": [
+            { "type": "lose_citizen", "description": "Pierde 2 Trabajadores" },
+            { "type": "lose_citizen", "description": "Pierde 2 Ingenieros" },
+            { "type": "lose_citizen", "description": "Pierde 1 Niño" }
+          ]},
+          { "type": "change_stress", "description": "Coloca 3 cubos de Estrés" }
+        ]
+      }
+    }
+  },
+  {
+    "id": "SD08",
+    "type": "disputa_social",
+    "etiqueta": "DISPUTA SOCIAL",
+    "titulo": "MIEDO",
+    "textoAmbientacion": "El miedo lleva a la ira, la ira lleva al odio, el odio lleva al sufrimiento.",
+    "efecto": "**Si tienes más Esperanza activa que Descontento activo, elige uno:** A) Elimina hasta 4 cubos de Estrés... B) Gana Comida igual al número de Ronda. **En caso contrario, elige uno:** A) Por cada Meeple de Niño, gana 1 Niño enfermo. B) Destruye 2 Edificios...",
+    "efectoEstructurado": {
+      "condition": {
+        "type": "compare_hope_discontent",
+        "operator": "greater_than",
+        "description": "Si tienes más Esperanza activa que Descontento activo"
+      },
+      "ifTrue": {
+        "description": "Elige uno:",
+        "minChoices": 1,
+        "maxChoices": 1,
+        "options": [
+          { "type": "change_stress", "description": "Elimina hasta 4 cubos de Estrés" },
+          { "type": "gain_resource", "description": "Gana Comida igual al número de Ronda" }
+        ]
+      },
+      "ifFalse": {
+        "description": "Elige uno (Caso contrario):",
+        "minChoices": 1,
+        "maxChoices": 1,
+        "options": [
+          { "target": "niño_usado_esta_ronda", "effect": { "type": "gain_sick", "description": "Gana 1 Niño enfermo" }, "description": "Por cada Meeple de Niño" },
+          { "type": "destroy_building", "description": "Destruye 2 Edificios ocupados por Meeples de Ciudadano" }
+        ]
+      }
+    }
+  },
+  {
+    "id": "SD09",
+    "type": "disputa_social",
+    "etiqueta": "DISPUTA SOCIAL",
+    "titulo": "DISCUSIÓN",
+    "textoAmbientacion": "La conversación es un intercambio de conocimiento; una discusión un intercambio de ignorancia.",
+    "efecto": "**Si no tienes Descontento activo, elige uno:** A) -1 Descontento. B) Coloca 1 loseta... C) Realiza 2 efectos de Taller. **En caso contrario:** Por cada tipo de Descontento activo que tengas... Codicia: Aumenta Hambre en 3. Apatía: Coloca 1 Trabajador Agotado. Ira: Gana 2 Ciudadanos enfermos.",
+    "efectoEstructurado": {
+      "condition": {
+        "type": "custom",
+        "description": "Si no tienes Descontento activo"
+      },
+      "ifTrue": {
+        "description": "Elige uno:",
+        "minChoices": 1,
+        "maxChoices": 1,
+        "options": [
+          { "type": "change_discontent", "description": "-1 Descontento" },
+          { "type": "place_tile", "description": "Coloca 1 loseta Cercana o 1 loseta Lejana" },
+          { "type": "workshop_effect", "description": "Realiza 2 efectos de Taller" }
+        ]
+      },
+      "ifFalse": {
+        "effects": [
+          { "target": "codicia_activa", "effect": { "type": "change_hunger", "description": "Aumenta el Hambre en 3" }, "description": "Si tienes Codicia activa" },
+          { "target": "apatia_activa", "effect": { "type": "exhaust_worker", "description": "Coloca 1 Trabajador Agotado" }, "description": "Si tienes Apatía activa" },
+          { "target": "ira_activa", "effect": { "type": "gain_sick", "description": "Gana 2 Ciudadanos enfermos" }, "description": "Si tienes Ira activa" }
+        ]
+      }
+    }
+  },
+  {
+    "id": "SD10",
+    "type": "disputa_social",
+    "etiqueta": "DISPUTA SOCIAL",
+    "titulo": "DESESPERACIÓN",
+    "textoAmbientacion": "Si los tiempos desesperados requieren medidas desesperadas, entonces somos libres de actuar tan desesperadamente como deseemos.",
+    "efecto": "**Si tienes fichas de Esperanza activas de cada tipo, elige uno:** A) -1 Descontento. B) Coloca 1 loseta... C) Realiza 2 efectos de Taller. **En caso contrario:** Por cada tipo de Esperanza activa que NO tengas... Cuidado: Voltea 1 marcador Enfermedad. Motivación: Coloca 1 Trabajador Agotado. Justicia: Agota 1 Esperanza (o +1 Descontento).",
+    "efectoEstructurado": {
+      "condition": {
+        "type": "custom",
+        "description": "Si tienes fichas de Esperanza activas de cada tipo (Justicia, Cuidado, Motivación)"
+      },
+      "ifTrue": {
+        "description": "Elige uno:",
+        "minChoices": 1,
+        "maxChoices": 1,
+        "options": [
+          { "type": "change_discontent", "description": "-1 Descontento" },
+          { "type": "place_tile", "description": "Coloca 1 loseta Cercana o 1 loseta Lejana" },
+          { "type": "workshop_effect", "description": "Realiza 2 efectos de Taller" }
+        ]
+      },
+      "ifFalse": {
+        "description": "Por cada tipo de Esperanza que NO tengas:",
+        "effects": [
+          { "type": "custom", "description": "Si NO tienes Cuidado: Voltea 1 marcador de Enfermedad" },
+          { "type": "custom", "description": "Si NO tienes Motivación: Coloca 1 ficha de Trabajador Agotado" },
+          { "type": "custom", "description": "Si NO tienes Justicia: Agota 1 Esperanza. Si no puedes, +1 Descontento" }
+        ]
+      }
+    }
+  }
+]
