@@ -1,0 +1,530 @@
+{
+  "ejemplos_efectos": {
+    "efecto_simple": {
+      "descripcion": "Efecto básico sin condiciones",
+      "ejemplo": "Gana 2 carbón",
+      "estructura": {
+        "type": "gain_resource",
+        "description": "Gana 2 carbón",
+        "discardAfter": false,
+        "removeAfter": false
+      }
+    },
+
+    "efecto_simple_con_descarte": {
+      "descripcion": "Efecto básico que descarta la carta",
+      "ejemplo": "Gana 3 carbón. Descarta esta carta.",
+      "estructura": {
+        "type": "gain_resource",
+        "description": "Gana 3 carbón",
+        "discardAfter": true,
+        "removeAfter": false
+      }
+    },
+
+    "efecto_simple_con_eliminacion": {
+      "descripcion": "Efecto básico que elimina la carta del mazo",
+      "ejemplo": "Gana 5 carbón. Elimina esta carta del juego.",
+      "estructura": {
+        "type": "gain_resource",
+        "description": "Gana 5 carbón",
+        "discardAfter": false,
+        "removeAfter": true
+      }
+    },
+
+    "bifurcacion_simple": {
+      "descripcion": "Si tienes X, haz Y, de lo contrario haz Z",
+      "ejemplo": "Si tienes Justicia activa: -1 Descontento. En caso contrario: +1 Descontento. Descarta esta carta.",
+      "estructura": {
+        "condition": {
+          "type": "has_hope",
+          "value": "justicia",
+          "description": "Si tienes Justicia activa"
+        },
+        "ifTrue": {
+          "type": "change_discontent",
+          "description": "-1 Descontento"
+        },
+        "ifFalse": {
+          "type": "change_discontent",
+          "description": "+1 Descontento"
+        },
+        "discardAfter": true
+      }
+    },
+
+    "eleccion_simple": {
+      "descripcion": "El jugador elige entre opciones",
+      "ejemplo": "Elige uno: A) Gana 3 carbón B) Gana 2 madera. Luego descarta esta carta.",
+      "estructura": {
+        "description": "Elige uno:",
+        "minChoices": 1,
+        "maxChoices": 1,
+        "options": [
+          {
+            "type": "gain_resource",
+            "description": "Gana 3 carbón"
+          },
+          {
+            "type": "gain_resource",
+            "description": "Gana 2 madera"
+          }
+        ],
+        "discardAfter": true,
+        "removeAfter": false
+      }
+    },
+
+    "eleccion_con_flags_individuales": {
+      "descripcion": "Elección donde cada opción tiene su propio comportamiento de descarte",
+      "ejemplo": "Elige uno: A) Gana 3 carbón (elimina carta) B) Gana 1 carbón (descarta carta)",
+      "estructura": {
+        "description": "Elige uno:",
+        "minChoices": 1,
+        "maxChoices": 1,
+        "options": [
+          {
+            "type": "gain_resource",
+            "description": "Gana 3 carbón",
+            "removeAfter": true
+          },
+          {
+            "type": "gain_resource",
+            "description": "Gana 1 carbón",
+            "discardAfter": true
+          }
+        ]
+      }
+    },
+
+    "multi_condicional": {
+      "descripcion": "Comparación con múltiples resultados (más/menos/empate)",
+      "ejemplo": "Si tienes más Esperanza que Descontento: Gana 2 carbón. Si tienes menos: Pierde 1 carbón. Si están empatados: No pasa nada",
+      "estructura": {
+        "branches": [
+          {
+            "condition": {
+              "type": "compare_hope_discontent",
+              "operator": "greater_than",
+              "description": "Si tienes más Esperanza que Descontento"
+            },
+            "effect": {
+              "type": "gain_resource",
+              "description": "Gana 2 carbón"
+            }
+          },
+          {
+            "condition": {
+              "type": "compare_hope_discontent",
+              "operator": "less_than",
+              "description": "Si tienes menos Esperanza que Descontento"
+            },
+            "effect": {
+              "type": "lose_resource",
+              "description": "Pierde 1 carbón"
+            }
+          }
+        ],
+        "default": {
+          "type": "custom",
+          "description": "No pasa nada"
+        }
+      }
+    },
+
+    "combinacion_compleja": {
+      "descripcion": "Condición con elección dentro",
+      "ejemplo": "Si tienes Justicia activa: Elige uno: A) Gana 2 carbón B) Cura 3. De lo contrario: Pierde 1 trabajador",
+      "estructura": {
+        "condition": {
+          "type": "has_hope",
+          "value": "justicia",
+          "description": "Si tienes Justicia activa"
+        },
+        "ifTrue": {
+          "description": "Elige uno:",
+          "minChoices": 1,
+          "maxChoices": 1,
+          "options": [
+            {
+              "type": "gain_resource",
+              "description": "Gana 2 carbón"
+            },
+            {
+              "type": "heal",
+              "description": "Cura 3"
+            }
+          ]
+        },
+        "ifFalse": {
+          "type": "lose_citizen",
+          "description": "Pierde 1 trabajador"
+        }
+      }
+    },
+
+    "eleccion_con_condiciones": {
+      "descripcion": "Elección donde cada opción tiene condiciones internas",
+      "ejemplo": "Elige uno: A) Si tienes Cuidado: Cura 5, de lo contrario Cura 2. B) Gana 3 carbón",
+      "estructura": {
+        "description": "Elige uno:",
+        "minChoices": 1,
+        "maxChoices": 1,
+        "options": [
+          {
+            "condition": {
+              "type": "has_hope",
+              "value": "cuidado",
+              "description": "Si tienes Cuidado activo"
+            },
+            "ifTrue": {
+              "type": "heal",
+              "description": "Cura 5"
+            },
+            "ifFalse": {
+              "type": "heal",
+              "description": "Cura 2"
+            }
+          },
+          {
+            "type": "gain_resource",
+            "description": "Gana 3 carbón"
+          }
+        ]
+      }
+    },
+
+    "efectos_multiples": {
+      "descripcion": "Varios efectos en secuencia",
+      "ejemplo": "Gana 2 carbón. Luego cura 1. Luego -1 descontento. Elimina esta carta.",
+      "estructura": {
+        "effects": [
+          {
+            "type": "gain_resource",
+            "description": "Gana 2 carbón"
+          },
+          {
+            "type": "heal",
+            "description": "Cura 1"
+          },
+          {
+            "type": "change_discontent",
+            "description": "-1 Descontento"
+          }
+        ],
+        "description": "Efectos múltiples en secuencia",
+        "removeAfter": true
+      }
+    },
+
+    "por_cada": {
+      "descripcion": "Efecto que se repite por cada elemento",
+      "ejemplo": "Por cada Justicia activa: Gana 1 carbón",
+      "estructura": {
+        "target": "justicia_activa",
+        "effect": {
+          "type": "gain_resource",
+          "description": "Gana 1 carbón"
+        },
+        "description": "Por cada Justicia activa"
+      }
+    },
+
+    "ejemplo_carta_L01A": {
+      "descripcion": "Carta L01 Variante A del juego real",
+      "texto_original": "Si tienes Cuidado activo: Por cada Meeple de Niño usado para realizar una acción esta Ronda, gana 1 Niño enfermo. En caso contrario: Por cada Meeple de Niño usado para realizar una acción esta Ronda, gana 2 Niños enfermos.",
+      "estructura": {
+        "condition": {
+          "type": "has_hope",
+          "value": "cuidado",
+          "description": "Si tienes Cuidado activo"
+        },
+        "ifTrue": {
+          "target": "niño_usado_esta_ronda",
+          "effect": {
+            "type": "gain_sick",
+            "description": "Gana 1 Niño enfermo"
+          },
+          "description": "Por cada Meeple de Niño usado esta Ronda"
+        },
+        "ifFalse": {
+          "target": "niño_usado_esta_ronda",
+          "effect": {
+            "type": "gain_sick",
+            "description": "Gana 2 Niños enfermos"
+          },
+          "description": "Por cada Meeple de Niño usado esta Ronda"
+        }
+      }
+    },
+
+    "ejemplo_carta_SD03": {
+      "descripcion": "Carta SD03 Disputa Social - Confusión (3 ramas)",
+      "texto_original": "Si tienes más fichas de Esperanza que de Descontento: Puedes agotar 1 Esperanza para realizar efecto. Si tienes menos: Por tu ficha más común realiza efecto. Si tienes el mismo número: Activa 1 Esperanza y 1 Descontento.",
+      "estructura": {
+        "branches": [
+          {
+            "condition": {
+              "type": "compare_hope_discontent",
+              "operator": "greater_than",
+              "description": "Si tienes más fichas de Esperanza que de Descontento"
+            },
+            "effect": {
+              "description": "Puedes agotar 1 Esperanza para realizar el efecto correspondiente",
+              "minChoices": 0,
+              "maxChoices": 1,
+              "options": [
+                {
+                  "effects": [
+                    {
+                      "type": "exhaust_hope",
+                      "description": "Agota 1 Justicia"
+                    },
+                    {
+                      "type": "exhaust_discontent",
+                      "description": "Descarta 1 ficha de Descontento"
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "condition": {
+              "type": "compare_hope_discontent",
+              "operator": "less_than",
+              "description": "Si tienes menos fichas de Esperanza que de Descontento"
+            },
+            "effect": {
+              "type": "custom",
+              "description": "Por tu ficha de Descontento activa más común, realiza el efecto correspondiente"
+            }
+          }
+        ],
+        "default": {
+          "effects": [
+            {
+              "type": "activate_hope",
+              "description": "Activa 1 Esperanza"
+            },
+            {
+              "type": "activate_discontent",
+              "description": "Activa 1 Descontento"
+            }
+          ]
+        }
+      }
+    },
+
+    "manipulacion_mazo_simple": {
+      "descripcion": "Agregar una carta específica al mazo",
+      "ejemplo": "Agrega la carta L05A al mazo",
+      "estructura": {
+        "type": "add_card_to_deck",
+        "cardId": "L05A",
+        "description": "Agrega la carta L05A al mazo"
+      }
+    },
+
+    "barajar_carta": {
+      "descripcion": "Barajar esta carta de nuevo en el mazo",
+      "ejemplo": "Baraja esta carta de nuevo en el mazo de Anochecer",
+      "estructura": {
+        "type": "shuffle_card_into_deck",
+        "description": "Baraja esta carta de nuevo en el mazo de Anochecer"
+      }
+    },
+
+    "descartar_carta": {
+      "descripcion": "Colocar esta carta en la pila de descartes",
+      "ejemplo": "Coloca esta carta en la pila de descartes",
+      "estructura": {
+        "type": "discard_card",
+        "description": "Coloca esta carta en la pila de descartes"
+      }
+    },
+
+    "eliminar_carta": {
+      "descripcion": "Eliminar permanentemente esta carta del mazo",
+      "ejemplo": "Elimina esta carta del juego",
+      "estructura": {
+        "type": "remove_card_from_deck",
+        "description": "Elimina esta carta del juego"
+      }
+    },
+
+    "eleccion_con_eliminacion": {
+      "descripcion": "Elección donde una opción elimina la carta (usando flags)",
+      "ejemplo": "Elige uno: A) Gana 3 carbón (elimina carta) B) Gana 1 carbón (descarta carta)",
+      "estructura": {
+        "description": "Elige uno:",
+        "minChoices": 1,
+        "maxChoices": 1,
+        "options": [
+          {
+            "type": "gain_resource",
+            "description": "Gana 3 carbón",
+            "removeAfter": true
+          },
+          {
+            "type": "gain_resource",
+            "description": "Gana 1 carbón",
+            "discardAfter": true
+          }
+        ]
+      }
+    },
+
+    "eleccion_con_manipulacion_mazo": {
+      "descripcion": "Elección con efectos explícitos de manipulación del mazo",
+      "ejemplo": "Elige uno: A) Gana 3 carbón y elimina esta carta. B) Gana 1 carbón y barájala de nuevo",
+      "estructura": {
+        "description": "Elige uno:",
+        "minChoices": 1,
+        "maxChoices": 1,
+        "options": [
+          {
+            "effects": [
+              {
+                "type": "gain_resource",
+                "description": "Gana 3 carbón"
+              },
+              {
+                "type": "remove_card_from_deck",
+                "description": "Elimina esta carta del mazo"
+              }
+            ]
+          },
+          {
+            "effects": [
+              {
+                "type": "gain_resource",
+                "description": "Gana 1 carbón"
+              },
+              {
+                "type": "shuffle_card_into_deck",
+                "description": "Baraja esta carta de nuevo en el mazo"
+              }
+            ]
+          }
+        ]
+      }
+    },
+
+    "condicion_con_descarte": {
+      "descripcion": "Efecto condicional que termina descartando la carta",
+      "ejemplo": "Si tienes Justicia: Gana 2 carbón. De lo contrario: Pierde 1 trabajador. Luego descarta esta carta.",
+      "estructura": {
+        "effects": [
+          {
+            "condition": {
+              "type": "has_hope",
+              "value": "justicia",
+              "description": "Si tienes Justicia activa"
+            },
+            "ifTrue": {
+              "type": "gain_resource",
+              "description": "Gana 2 carbón"
+            },
+            "ifFalse": {
+              "type": "lose_citizen",
+              "description": "Pierde 1 trabajador"
+            }
+          },
+          {
+            "type": "discard_card",
+            "description": "Descarta esta carta"
+          }
+        ]
+      }
+    },
+
+    "ejemplo_completo_flags": {
+      "descripcion": "Ejemplo completo mostrando uso de flags en estructura compleja",
+      "ejemplo": "Si tienes más Esperanza que Descontento: Elige uno (descarta después). Si tienes menos: Pierde 2 trabajadores (elimina carta). Si están empatados: No pasa nada.",
+      "estructura": {
+        "branches": [
+          {
+            "condition": {
+              "type": "compare_hope_discontent",
+              "operator": "greater_than",
+              "description": "Si tienes más Esperanza que Descontento"
+            },
+            "effect": {
+              "description": "Elige uno:",
+              "minChoices": 1,
+              "maxChoices": 1,
+              "options": [
+                {
+                  "type": "gain_resource",
+                  "description": "Gana 3 carbón"
+                },
+                {
+                  "type": "heal",
+                  "description": "Cura 2"
+                }
+              ],
+              "discardAfter": true
+            }
+          },
+          {
+            "condition": {
+              "type": "compare_hope_discontent",
+              "operator": "less_than",
+              "description": "Si tienes menos Esperanza que Descontento"
+            },
+            "effect": {
+              "type": "lose_citizen",
+              "description": "Pierde 2 trabajadores",
+              "removeAfter": true
+            }
+          }
+        ],
+        "default": {
+          "type": "custom",
+          "description": "No pasa nada"
+        }
+      }
+    },
+
+    "ejemplo_carta_L02B": {
+      "descripcion": "Carta L02B con barajado condicional",
+      "texto_original": "Si el Refugio Infantil está construido: Elige uno: A) Mueve desarrollo. B) Mejora edificio. En caso contrario: -2 Esperanza. Baraja esta carta de nuevo en el mazo.",
+      "estructura": {
+        "condition": {
+          "type": "has_building",
+          "value": "refugio_infantil",
+          "description": "Si el Refugio Infantil está construido"
+        },
+        "ifTrue": {
+          "description": "Elige uno:",
+          "minChoices": 1,
+          "maxChoices": 1,
+          "options": [
+            {
+              "type": "move_development",
+              "description": "Mueve la ficha de Desarrollo 1 espacio hacia atrás en el track de Ronda"
+            },
+            {
+              "type": "upgrade_building",
+              "description": "Mejora un Edificio Pequeño pagando su coste de mejora, incluso si ese Edificio ha sido usado en esta Ronda"
+            }
+          ]
+        },
+        "ifFalse": {
+          "effects": [
+            {
+              "type": "change_hope",
+              "description": "-2 Esperanza"
+            },
+            {
+              "type": "shuffle_card_into_deck",
+              "description": "Baraja esta carta de nuevo en el mazo de Anochecer"
+            }
+          ]
+        }
+      }
+    }
+  }
+}
