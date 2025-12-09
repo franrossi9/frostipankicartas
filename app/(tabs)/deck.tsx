@@ -1,7 +1,8 @@
+import { CardEffectRenderer } from "@/components/CardEffectRenderer";
 import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
 import { useDeck } from "@/contexts/DeckContext";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   ActivityIndicator,
   Alert,
@@ -12,6 +13,106 @@ import {
   View,
 } from "react-native";
 
+// Función para extraer cardIds de efectos add_card_to_deck
+const extractAddCardEffects = (effect: any): string[] => {
+  if (!effect) return [];
+
+  const cardIds: string[] = [];
+
+  // Si es un efecto básico con add_card_to_deck
+  if (effect.type === "add_card_to_deck" && effect.cardId) {
+    cardIds.push(effect.cardId);
+  }
+
+  // Revisar efectos anidados recursivamente
+  if (effect.ifTrue) {
+    cardIds.push(...extractAddCardEffects(effect.ifTrue));
+  }
+  if (effect.ifFalse) {
+    cardIds.push(...extractAddCardEffects(effect.ifFalse));
+  }
+  if (effect.branches) {
+    effect.branches.forEach((branch: any) => {
+      if (branch.effect) {
+        cardIds.push(...extractAddCardEffects(branch.effect));
+      }
+    });
+  }
+  if (effect.default) {
+    cardIds.push(...extractAddCardEffects(effect.default));
+  }
+  if (effect.options) {
+    effect.options.forEach((option: any) => {
+      cardIds.push(...extractAddCardEffects(option));
+    });
+  }
+  if (effect.effects) {
+    effect.effects.forEach((subEffect: any) => {
+      cardIds.push(...extractAddCardEffects(subEffect));
+    });
+  }
+  if (effect.effect) {
+    cardIds.push(...extractAddCardEffects(effect.effect));
+  }
+
+  return cardIds;
+};
+
+// Función para verificar si un efecto tiene flags de lifecycle
+const checkLifecycleFlags = (
+  effect: any
+): { discard: boolean; remove: boolean } => {
+  if (!effect) return { discard: false, remove: false };
+
+  let hasDiscard = effect.discardAfter || false;
+  let hasRemove = effect.removeAfter || false;
+
+  // Revisar efectos anidados recursivamente
+  if (effect.ifTrue) {
+    const nested = checkLifecycleFlags(effect.ifTrue);
+    hasDiscard = hasDiscard || nested.discard;
+    hasRemove = hasRemove || nested.remove;
+  }
+  if (effect.ifFalse) {
+    const nested = checkLifecycleFlags(effect.ifFalse);
+    hasDiscard = hasDiscard || nested.discard;
+    hasRemove = hasRemove || nested.remove;
+  }
+  if (effect.branches) {
+    effect.branches.forEach((branch: any) => {
+      const nested = checkLifecycleFlags(branch.effect);
+      hasDiscard = hasDiscard || nested.discard;
+      hasRemove = hasRemove || nested.remove;
+    });
+  }
+  if (effect.default) {
+    const nested = checkLifecycleFlags(effect.default);
+    hasDiscard = hasDiscard || nested.discard;
+    hasRemove = hasRemove || nested.remove;
+  }
+  if (effect.options) {
+    effect.options.forEach((option: any) => {
+      const nested = checkLifecycleFlags(option);
+      hasDiscard = hasDiscard || nested.discard;
+      hasRemove = hasRemove || nested.remove;
+    });
+  }
+  if (effect.effects) {
+    effect.effects.forEach((subEffect: any) => {
+      const nested = checkLifecycleFlags(subEffect);
+      hasDiscard = hasDiscard || nested.discard;
+      hasRemove = hasRemove || nested.remove;
+    });
+  }
+  if (effect.effect) {
+    const nested = checkLifecycleFlags(effect.effect);
+    hasDiscard = hasDiscard || nested.discard;
+    hasRemove = hasRemove || nested.remove;
+  }
+
+  return { discard: hasDiscard, remove: hasRemove };
+};
+
 export default function DeckScreen() {
   const {
     mainDeck,
@@ -20,22 +121,48 @@ export default function DeckScreen() {
     currentDisputaSocial,
     firstDisputaSocial,
     gameStarted,
-    drawCard,
     currentCard,
     moveToDiscard,
     removeCard,
     loading,
     initializeGame,
+    availableCards,
+    addCardToMainDeck,
+    replaceDisputaSocialCard,
   } = useDeck();
   const [showCardModal, setShowCardModal] = useState(false);
   const [showDisputaSocialModal, setShowDisputaSocialModal] = useState(false);
   const [showFirstDisputaSocialModal, setShowFirstDisputaSocialModal] =
     useState(false);
 
+  const scrollViewRef = useRef<ScrollView | null>(null);
+  const scrollViewRefDisputa = useRef<ScrollView | null>(null);
+  const scrollViewRefFirstDisputa = useRef<ScrollView | null>(null);
+  const [shouldDiscard, setShouldDiscard] = useState(false);
+  const [shouldRemove, setShouldRemove] = useState(false);
+  const [selectedEffect, setSelectedEffect] = useState<any>(null);
+  const [cardsToAdd, setCardsToAdd] = useState<string[]>([]);
+  const [selectedEffectDisputa, setSelectedEffectDisputa] = useState<any>(null);
+  const [cardsToAddDisputa, setCardsToAddDisputa] = useState<string[]>([]);
+  const [selectedEffectFirstDisputa, setSelectedEffectFirstDisputa] =
+    useState<any>(null);
+  const [cardsToAddFirstDisputa, setCardsToAddFirstDisputa] = useState<
+    string[]
+  >([]);
+
   // Escuchar cambios en currentCard para mostrar el modal
   useEffect(() => {
     if (currentCard) {
       setShowCardModal(true);
+      // Verificar flags de lifecycle
+      if (currentCard.efectoEstructurado) {
+        const flags = checkLifecycleFlags(currentCard.efectoEstructurado);
+        setShouldDiscard(flags.discard);
+        setShouldRemove(flags.remove);
+      } else {
+        setShouldDiscard(false);
+        setShouldRemove(false);
+      }
     }
   }, [currentCard]);
 
@@ -43,6 +170,8 @@ export default function DeckScreen() {
     if (currentCard) {
       moveToDiscard(currentCard);
       setShowCardModal(false);
+      setShouldDiscard(false);
+      setShouldRemove(false);
       Alert.alert("Carta movida", "La carta se movió al mazo de descarte");
     }
   };
@@ -60,11 +189,54 @@ export default function DeckScreen() {
             onPress: () => {
               removeCard(currentCard);
               setShowCardModal(false);
+              setShouldDiscard(false);
+              setShouldRemove(false);
               Alert.alert("Carta eliminada", "La carta se eliminó del juego");
             },
           },
         ]
       );
+    }
+  };
+
+  const handleCloseModal = () => {
+    if (shouldRemove) {
+      Alert.alert(
+        "🗑️ Eliminar carta",
+        "Esta carta debe ser eliminada del juego según su efecto.",
+        [
+          { text: "Cancelar", style: "cancel" },
+          {
+            text: "Eliminar",
+            style: "destructive",
+            onPress: () => {
+              if (currentCard) removeCard(currentCard);
+              setShowCardModal(false);
+              setShouldDiscard(false);
+              setShouldRemove(false);
+            },
+          },
+        ]
+      );
+    } else if (shouldDiscard) {
+      Alert.alert(
+        "📋 Descartar carta",
+        "Esta carta debe ser descartada según su efecto.",
+        [
+          { text: "Cancelar", style: "cancel" },
+          {
+            text: "Descartar",
+            onPress: () => {
+              if (currentCard) moveToDiscard(currentCard);
+              setShowCardModal(false);
+              setShouldDiscard(false);
+              setShouldRemove(false);
+            },
+          },
+        ]
+      );
+    } else {
+      setShowCardModal(false);
     }
   };
 
@@ -201,6 +373,7 @@ export default function DeckScreen() {
       >
         <ThemedView style={styles.modalContainer}>
           <ScrollView
+            ref={scrollViewRef}
             style={styles.modalScroll}
             contentContainerStyle={styles.modalContent}
           >
@@ -236,10 +409,80 @@ export default function DeckScreen() {
                   <ThemedText style={styles.modalSectionTitle}>
                     Efecto
                   </ThemedText>
-                  <ThemedText style={styles.modalEffect}>
-                    {currentCard.efecto}
-                  </ThemedText>
+                  {currentCard.efectoEstructurado ? (
+                    <CardEffectRenderer
+                      effect={currentCard.efectoEstructurado}
+                      onEffectSelected={(effect) => {
+                        console.log("Efecto seleccionado:", effect);
+                        setSelectedEffect(effect);
+                        const cardIds = extractAddCardEffects(effect);
+                        if (cardIds.length > 0) {
+                          setCardsToAdd(cardIds);
+                        } else {
+                          setCardsToAdd([]);
+                        }
+                      }}
+                      scrollViewRef={scrollViewRef}
+                    />
+                  ) : (
+                    <ThemedText style={styles.modalEffect}>
+                      {currentCard.efecto}
+                    </ThemedText>
+                  )}
                 </View>
+
+                {cardsToAdd.length > 0 && selectedEffect && (
+                  <View style={styles.modalInfo}>
+                    <ThemedText style={styles.modalInfoText}>
+                      🃏 Esta opción agregará carta(s) al mazo:{" "}
+                      {cardsToAdd.join(", ")}
+                    </ThemedText>
+                    <TouchableOpacity
+                      style={[styles.modalButton, styles.modalConfirmButton]}
+                      onPress={() => {
+                        const cardsAdded: string[] = [];
+                        const cardsNotFound: string[] = [];
+
+                        cardsToAdd.forEach((cardId) => {
+                          const cardToAdd = availableCards.find(
+                            (c) => c.id === cardId
+                          );
+                          if (cardToAdd) {
+                            // Si es carta de disputa social, usar replaceDisputaSocialCard
+                            if (cardToAdd.type === "disputa_social") {
+                              replaceDisputaSocialCard(cardToAdd);
+                            } else {
+                              addCardToMainDeck(cardToAdd);
+                            }
+                            cardsAdded.push(cardId);
+                          } else {
+                            cardsNotFound.push(cardId);
+                          }
+                        });
+
+                        let message = "";
+                        if (cardsAdded.length > 0) {
+                          message += `Cartas agregadas al mazo: ${cardsAdded.join(
+                            ", "
+                          )}`;
+                        }
+                        if (cardsNotFound.length > 0) {
+                          message += `\n\nCartas no encontradas: ${cardsNotFound.join(
+                            ", "
+                          )}`;
+                        }
+
+                        Alert.alert("✅ Cartas agregadas", message);
+                        setCardsToAdd([]);
+                        setSelectedEffect(null);
+                      }}
+                    >
+                      <ThemedText style={styles.modalButtonText}>
+                        ✔️ Confirmar Selección
+                      </ThemedText>
+                    </TouchableOpacity>
+                  </View>
+                )}
 
                 {currentCard.type !== "disputa_social" && (
                   <View style={styles.modalActions}>
@@ -270,7 +513,7 @@ export default function DeckScreen() {
                     </View>
                     <TouchableOpacity
                       style={[styles.modalButton, styles.modalCloseButton]}
-                      onPress={() => setShowCardModal(false)}
+                      onPress={handleCloseModal}
                     >
                       <ThemedText style={styles.modalButtonText}>
                         ✕ Cerrar
@@ -293,6 +536,7 @@ export default function DeckScreen() {
       >
         <ThemedView style={styles.modalContainer}>
           <ScrollView
+            ref={scrollViewRefDisputa}
             style={styles.modalScroll}
             contentContainerStyle={styles.modalContent}
           >
@@ -323,14 +567,88 @@ export default function DeckScreen() {
                   <ThemedText style={styles.modalSectionTitle}>
                     Efecto
                   </ThemedText>
-                  <ThemedText style={styles.modalEffect}>
-                    {currentDisputaSocial.efecto}
-                  </ThemedText>
+                  {currentDisputaSocial.efectoEstructurado ? (
+                    <CardEffectRenderer
+                      effect={currentDisputaSocial.efectoEstructurado}
+                      onEffectSelected={(effect) => {
+                        console.log("Efecto seleccionado:", effect);
+                        setSelectedEffectDisputa(effect);
+                        const cardIds = extractAddCardEffects(effect);
+                        if (cardIds.length > 0) {
+                          setCardsToAddDisputa(cardIds);
+                        } else {
+                          setCardsToAddDisputa([]);
+                        }
+                      }}
+                      scrollViewRef={scrollViewRefDisputa}
+                    />
+                  ) : (
+                    <ThemedText style={styles.modalEffect}>
+                      {currentDisputaSocial.efecto}
+                    </ThemedText>
+                  )}
                 </View>
+
+                {cardsToAddDisputa.length > 0 && selectedEffectDisputa && (
+                  <View style={styles.modalInfo}>
+                    <ThemedText style={styles.modalInfoText}>
+                      🃏 Esta opción agregará carta(s) al mazo:{" "}
+                      {cardsToAddDisputa.join(", ")}
+                    </ThemedText>
+                    <TouchableOpacity
+                      style={[styles.modalButton, styles.modalConfirmButton]}
+                      onPress={() => {
+                        const cardsAdded: string[] = [];
+                        const cardsNotFound: string[] = [];
+
+                        cardsToAddDisputa.forEach((cardId) => {
+                          const cardToAdd = availableCards.find(
+                            (c) => c.id === cardId
+                          );
+                          if (cardToAdd) {
+                            // Si es carta de disputa social, usar replaceDisputaSocialCard
+                            if (cardToAdd.type === "disputa_social") {
+                              replaceDisputaSocialCard(cardToAdd);
+                            } else {
+                              addCardToMainDeck(cardToAdd);
+                            }
+                            cardsAdded.push(cardId);
+                          } else {
+                            cardsNotFound.push(cardId);
+                          }
+                        });
+
+                        let message = "";
+                        if (cardsAdded.length > 0) {
+                          message += `Cartas agregadas al mazo: ${cardsAdded.join(
+                            ", "
+                          )}`;
+                        }
+                        if (cardsNotFound.length > 0) {
+                          message += `\n\nCartas no encontradas: ${cardsNotFound.join(
+                            ", "
+                          )}`;
+                        }
+
+                        Alert.alert("✅ Cartas agregadas", message);
+                        setCardsToAddDisputa([]);
+                        setSelectedEffectDisputa(null);
+                      }}
+                    >
+                      <ThemedText style={styles.modalButtonText}>
+                        ✔️ Confirmar Selección
+                      </ThemedText>
+                    </TouchableOpacity>
+                  </View>
+                )}
 
                 <TouchableOpacity
                   style={[styles.modalButton, styles.modalCloseButton]}
-                  onPress={() => setShowDisputaSocialModal(false)}
+                  onPress={() => {
+                    setShowDisputaSocialModal(false);
+                    setCardsToAddDisputa([]);
+                    setSelectedEffectDisputa(null);
+                  }}
                 >
                   <ThemedText style={styles.modalButtonText}>
                     ✕ Cerrar
@@ -351,6 +669,7 @@ export default function DeckScreen() {
       >
         <ThemedView style={styles.modalContainer}>
           <ScrollView
+            ref={scrollViewRefFirstDisputa}
             style={styles.modalScroll}
             contentContainerStyle={styles.modalContent}
           >
@@ -381,14 +700,89 @@ export default function DeckScreen() {
                   <ThemedText style={styles.modalSectionTitle}>
                     Efecto
                   </ThemedText>
-                  <ThemedText style={styles.modalEffect}>
-                    {firstDisputaSocial.efecto}
-                  </ThemedText>
+                  {firstDisputaSocial.efectoEstructurado ? (
+                    <CardEffectRenderer
+                      effect={firstDisputaSocial.efectoEstructurado}
+                      onEffectSelected={(effect) => {
+                        console.log("Efecto seleccionado:", effect);
+                        setSelectedEffectFirstDisputa(effect);
+                        const cardIds = extractAddCardEffects(effect);
+                        if (cardIds.length > 0) {
+                          setCardsToAddFirstDisputa(cardIds);
+                        } else {
+                          setCardsToAddFirstDisputa([]);
+                        }
+                      }}
+                      scrollViewRef={scrollViewRefFirstDisputa}
+                    />
+                  ) : (
+                    <ThemedText style={styles.modalEffect}>
+                      {firstDisputaSocial.efecto}
+                    </ThemedText>
+                  )}
                 </View>
+
+                {cardsToAddFirstDisputa.length > 0 &&
+                  selectedEffectFirstDisputa && (
+                    <View style={styles.modalInfo}>
+                      <ThemedText style={styles.modalInfoText}>
+                        🃏 Esta opción agregará carta(s) al mazo:{" "}
+                        {cardsToAddFirstDisputa.join(", ")}
+                      </ThemedText>
+                      <TouchableOpacity
+                        style={[styles.modalButton, styles.modalConfirmButton]}
+                        onPress={() => {
+                          const cardsAdded: string[] = [];
+                          const cardsNotFound: string[] = [];
+
+                          cardsToAddFirstDisputa.forEach((cardId) => {
+                            const cardToAdd = availableCards.find(
+                              (c) => c.id === cardId
+                            );
+                            if (cardToAdd) {
+                              // Si es carta de disputa social, usar replaceDisputaSocialCard
+                              if (cardToAdd.type === "disputa_social") {
+                                replaceDisputaSocialCard(cardToAdd);
+                              } else {
+                                addCardToMainDeck(cardToAdd);
+                              }
+                              cardsAdded.push(cardId);
+                            } else {
+                              cardsNotFound.push(cardId);
+                            }
+                          });
+
+                          let message = "";
+                          if (cardsAdded.length > 0) {
+                            message += `Cartas agregadas al mazo: ${cardsAdded.join(
+                              ", "
+                            )}`;
+                          }
+                          if (cardsNotFound.length > 0) {
+                            message += `\n\nCartas no encontradas: ${cardsNotFound.join(
+                              ", "
+                            )}`;
+                          }
+
+                          Alert.alert("✅ Cartas agregadas", message);
+                          setCardsToAddFirstDisputa([]);
+                          setSelectedEffectFirstDisputa(null);
+                        }}
+                      >
+                        <ThemedText style={styles.modalButtonText}>
+                          ✔️ Confirmar Selección
+                        </ThemedText>
+                      </TouchableOpacity>
+                    </View>
+                  )}
 
                 <TouchableOpacity
                   style={[styles.modalButton, styles.modalCloseButton]}
-                  onPress={() => setShowFirstDisputaSocialModal(false)}
+                  onPress={() => {
+                    setShowFirstDisputaSocialModal(false);
+                    setCardsToAddFirstDisputa([]);
+                    setSelectedEffectFirstDisputa(null);
+                  }}
                 >
                   <ThemedText style={styles.modalButtonText}>
                     ✕ Cerrar
@@ -690,6 +1084,9 @@ const styles = StyleSheet.create({
   },
   modalCloseButton: {
     backgroundColor: "#8E8E93",
+  },
+  modalConfirmButton: {
+    backgroundColor: "#34C759",
   },
   modalButtonText: {
     color: "white",

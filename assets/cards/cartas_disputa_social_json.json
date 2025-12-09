@@ -7,32 +7,80 @@
     "textoAmbientacion": "No creo que debamos decirles lo que vamos a hacer por adelantado. Déjalos pensar. Y preocuparse.",
     "efecto": "**Si tienes alguna Esperanza o Descontento activo:** Por tu ficha activa más común (o por todas las empatadas como más comunes), realiza el efecto(s) correspondiente(s): Codicia: Por cada Codicia activa, aumenta el Hambre en 3. Apatía: Por cada Apatía activa, voltea 1 marcador de Enfermedad. Ira: Por cada Ira activa, gana 2 Ciudadanos enfermos. Motivación: Toma 1 Recurso del Mapa y colócalo en el suministro. Luego, por cada Motivación activa, toma otro 1 Recurso del Mapa y colócalo en el suministro. Por cada Recurso que no puedas tomar, gana 1 Carbón. Cuidado: Por cada Cuidado activo, Cura 2. Justicia: Por cada Justicia activa, agota 1 Descontento o activa 1 Esperanza.",
     "efectoEstructurado": {
-      "type": "custom",
       "description": "Evalúa tu ficha activa más común y aplica el efecto correspondiente",
       "branches": [
         {
-          "condition": { "type": "custom", "description": "Si Codicia es la más común" },
-          "effect": { "type": "change_hunger", "description": "Aumenta el Hambre en 3 por cada Codicia activa" }
+          "condition": {
+            "type": "custom",
+            "description": "Si Codicia es la más común"
+          },
+          "effect": {
+            "type": "change_hunger",
+            "description": "Aumenta el Hambre en 3 por cada Codicia activa"
+          }
         },
         {
-          "condition": { "type": "custom", "description": "Si Apatía es la más común" },
-          "effect": { "target": "apatia_activa", "effect": { "type": "flip_disease", "description": "Voltea 1 marcador de Enfermedad" }, "description": "Por cada Apatía activa" }
+          "condition": {
+            "type": "custom",
+            "description": "Si Apatía es la más común"
+          },
+          "effect": {
+            "target": "apatia_activa",
+            "effect": {
+              "type": "flip_disease",
+              "description": "Voltea 1 marcador de Enfermedad"
+            },
+            "description": "Por cada Apatía activa"
+          }
         },
         {
-          "condition": { "type": "custom", "description": "Si Ira es la más común" },
-          "effect": { "target": "ira_activa", "effect": { "type": "gain_sick", "description": "Gana 2 Ciudadanos enfermos" }, "description": "Por cada Ira activa" }
+          "condition": {
+            "type": "custom",
+            "description": "Si Ira es la más común"
+          },
+          "effect": {
+            "target": "ira_activa",
+            "effect": {
+              "type": "gain_sick",
+              "description": "Gana 2 Ciudadanos enfermos"
+            },
+            "description": "Por cada Ira activa"
+          }
         },
         {
-          "condition": { "type": "custom", "description": "Si Motivación es la más común" },
-          "effect": { "type": "custom", "description": "Toma recursos del mapa por cada Motivación (ver texto)" }
+          "condition": {
+            "type": "custom",
+            "description": "Si Motivación es la más común"
+          },
+          "effect": {
+            "type": "custom",
+            "description": "Toma recursos del mapa por cada Motivación (ver texto)"
+          }
         },
         {
-          "condition": { "type": "custom", "description": "Si Cuidado es la más común" },
-          "effect": { "target": "cuidado_activa", "effect": { "type": "heal", "description": "Cura 2" }, "description": "Por cada Cuidado activo" }
+          "condition": {
+            "type": "custom",
+            "description": "Si Cuidado es la más común"
+          },
+          "effect": {
+            "target": "cuidado_activa",
+            "effect": { "type": "heal", "description": "Cura 2" },
+            "description": "Por cada Cuidado activo"
+          }
         },
         {
-          "condition": { "type": "custom", "description": "Si Justicia es la más común" },
-          "effect": { "target": "justicia_activa", "effect": { "type": "custom", "description": "Agota 1 Descontento o activa 1 Esperanza" }, "description": "Por cada Justicia activa" }
+          "condition": {
+            "type": "custom",
+            "description": "Si Justicia es la más común"
+          },
+          "effect": {
+            "target": "justicia_activa",
+            "effect": {
+              "type": "custom",
+              "description": "Agota 1 Descontento o activa 1 Esperanza"
+            },
+            "description": "Por cada Justicia activa"
+          }
         }
       ]
     }
@@ -49,28 +97,77 @@
       "description": "Evalúa tu ficha activa más común y aplica el efecto correspondiente (Idéntico a SD01)",
       "branches": [
         {
-          "condition": { "type": "custom", "description": "Si Codicia es la más común" },
-          "effect": { "type": "change_hunger", "description": "Aumenta el Hambre en 3 por cada Codicia activa" }
+          "condition": {
+            "type": "custom",
+            "description": "Si Codicia es la más común"
+          },
+          "effect": {
+            "type": "change_hunger",
+            "description": "Aumenta el Hambre en 3 por cada Codicia activa"
+          }
         },
         {
-          "condition": { "type": "custom", "description": "Si Apatía es la más común" },
-          "effect": { "target": "apatia_activa", "effect": { "type": "flip_disease", "description": "Voltea 1 marcador de Enfermedad" }, "description": "Por cada Apatía activa" }
+          "condition": {
+            "type": "custom",
+            "description": "Si Apatía es la más común"
+          },
+          "effect": {
+            "target": "apatia_activa",
+            "effect": {
+              "type": "flip_disease",
+              "description": "Voltea 1 marcador de Enfermedad"
+            },
+            "description": "Por cada Apatía activa"
+          }
         },
         {
-          "condition": { "type": "custom", "description": "Si Ira es la más común" },
-          "effect": { "target": "ira_activa", "effect": { "type": "gain_sick", "description": "Gana 2 Ciudadanos enfermos" }, "description": "Por cada Ira activa" }
+          "condition": {
+            "type": "custom",
+            "description": "Si Ira es la más común"
+          },
+          "effect": {
+            "target": "ira_activa",
+            "effect": {
+              "type": "gain_sick",
+              "description": "Gana 2 Ciudadanos enfermos"
+            },
+            "description": "Por cada Ira activa"
+          }
         },
         {
-          "condition": { "type": "custom", "description": "Si Motivación es la más común" },
-          "effect": { "type": "custom", "description": "Toma recursos del mapa por cada Motivación (ver texto)" }
+          "condition": {
+            "type": "custom",
+            "description": "Si Motivación es la más común"
+          },
+          "effect": {
+            "type": "custom",
+            "description": "Toma recursos del mapa por cada Motivación (ver texto)"
+          }
         },
         {
-          "condition": { "type": "custom", "description": "Si Cuidado es la más común" },
-          "effect": { "target": "cuidado_activa", "effect": { "type": "heal", "description": "Cura 2" }, "description": "Por cada Cuidado activo" }
+          "condition": {
+            "type": "custom",
+            "description": "Si Cuidado es la más común"
+          },
+          "effect": {
+            "target": "cuidado_activa",
+            "effect": { "type": "heal", "description": "Cura 2" },
+            "description": "Por cada Cuidado activo"
+          }
         },
         {
-          "condition": { "type": "custom", "description": "Si Justicia es la más común" },
-          "effect": { "target": "justicia_activa", "effect": { "type": "custom", "description": "Agota 1 Descontento o activa 1 Esperanza" }, "description": "Por cada Justicia activa" }
+          "condition": {
+            "type": "custom",
+            "description": "Si Justicia es la más común"
+          },
+          "effect": {
+            "target": "justicia_activa",
+            "effect": {
+              "type": "custom",
+              "description": "Agota 1 Descontento o activa 1 Esperanza"
+            },
+            "description": "Por cada Justicia activa"
+          }
         }
       ]
     }
@@ -85,31 +182,73 @@
     "efectoEstructurado": {
       "branches": [
         {
-          "condition": { "type": "compare_hope_discontent", "operator": "greater_than", "description": "Si tienes más Esperanza que Descontento" },
+          "condition": {
+            "type": "compare_hope_discontent",
+            "operator": "greater_than",
+            "description": "Si tienes más Esperanza que Descontento"
+          },
           "effect": {
             "description": "Elige una opción agotando 1 Esperanza correspondiente:",
             "minChoices": 1,
             "maxChoices": 1,
             "options": [
-              { "type": "composite", "description": "Justicia: Descarta 1 Descontento", "effects": [{ "type": "exhaust_hope", "description": "Agota Justicia" }, { "type": "change_discontent", "description": "-1 Descontento" }] },
-              { "type": "composite", "description": "Cuidado: Cura 3 o Trata 3", "effects": [{ "type": "exhaust_hope", "description": "Agota Cuidado" }, { "type": "custom", "description": "Cura 3 o Trata 3" }] },
-              { "type": "composite", "description": "Motivación: Reutiliza un Trabajador", "effects": [{ "type": "exhaust_hope", "description": "Agota Motivación" }, { "type": "reuse_worker", "description": "Reutiliza 1 Trabajador" }] }
+              {
+                "type": "composite",
+                "description": "Justicia: Descarta 1 Descontento",
+                "effects": [
+                  { "type": "exhaust_hope", "description": "Agota Justicia" },
+                  {
+                    "type": "change_discontent",
+                    "description": "-1 Descontento"
+                  }
+                ]
+              },
+              {
+                "type": "composite",
+                "description": "Cuidado: Cura 3 o Trata 3",
+                "effects": [
+                  { "type": "exhaust_hope", "description": "Agota Cuidado" },
+                  { "type": "custom", "description": "Cura 3 o Trata 3" }
+                ]
+              },
+              {
+                "type": "composite",
+                "description": "Motivación: Reutiliza un Trabajador",
+                "effects": [
+                  { "type": "exhaust_hope", "description": "Agota Motivación" },
+                  {
+                    "type": "reuse_worker",
+                    "description": "Reutiliza 1 Trabajador"
+                  }
+                ]
+              }
             ]
           }
         },
         {
-          "condition": { "type": "compare_hope_discontent", "operator": "less_than", "description": "Si tienes menos Esperanza que Descontento" },
+          "condition": {
+            "type": "compare_hope_discontent",
+            "operator": "less_than",
+            "description": "Si tienes menos Esperanza que Descontento"
+          },
           "effect": {
             "type": "custom",
             "description": "Aplica efecto según Descontento más común (Codicia: Pierde recursos/Hambre; Ira: Muere 1; Apatía: Agota Trabajador)"
           }
         },
         {
-          "condition": { "type": "compare_hope_discontent", "operator": "equal", "description": "Si tienes el mismo número" },
+          "condition": {
+            "type": "compare_hope_discontent",
+            "operator": "equal",
+            "description": "Si tienes el mismo número"
+          },
           "effect": {
             "effects": [
               { "type": "activate_hope", "description": "Activa 1 Esperanza" },
-              { "type": "activate_discontent", "description": "Activa 1 Descontento" }
+              {
+                "type": "activate_discontent",
+                "description": "Activa 1 Descontento"
+              }
             ]
           }
         }
@@ -126,28 +265,70 @@
     "efectoEstructurado": {
       "branches": [
         {
-          "condition": { "type": "compare_hope_discontent", "operator": "greater_than", "description": "Si tienes más Esperanza que Descontento" },
+          "condition": {
+            "type": "compare_hope_discontent",
+            "operator": "greater_than",
+            "description": "Si tienes más Esperanza que Descontento"
+          },
           "effect": {
             "description": "Elige una opción agotando 1 Esperanza correspondiente:",
             "minChoices": 1,
             "maxChoices": 1,
             "options": [
-              { "type": "composite", "description": "Justicia: Introduce Ley (o agota Descontento)", "effects": [{ "type": "exhaust_hope", "description": "Agota Justicia" }, { "type": "introduce_law", "description": "Introduce 1 Ley" }] },
-              { "type": "composite", "description": "Cuidado: Cura 3 o Trata 3", "effects": [{ "type": "exhaust_hope", "description": "Agota Cuidado" }, { "type": "custom", "description": "Cura 3 o Trata 3" }] },
-              { "type": "composite", "description": "Motivación: Reutiliza un Trabajador", "effects": [{ "type": "exhaust_hope", "description": "Agota Motivación" }, { "type": "reuse_worker", "description": "Reutiliza 1 Trabajador" }] }
+              {
+                "type": "composite",
+                "description": "Justicia: Introduce Ley (o agota Descontento)",
+                "effects": [
+                  { "type": "exhaust_hope", "description": "Agota Justicia" },
+                  { "type": "introduce_law", "description": "Introduce 1 Ley" }
+                ]
+              },
+              {
+                "type": "composite",
+                "description": "Cuidado: Cura 3 o Trata 3",
+                "effects": [
+                  { "type": "exhaust_hope", "description": "Agota Cuidado" },
+                  { "type": "custom", "description": "Cura 3 o Trata 3" }
+                ]
+              },
+              {
+                "type": "composite",
+                "description": "Motivación: Reutiliza un Trabajador",
+                "effects": [
+                  { "type": "exhaust_hope", "description": "Agota Motivación" },
+                  {
+                    "type": "reuse_worker",
+                    "description": "Reutiliza 1 Trabajador"
+                  }
+                ]
+              }
             ]
           }
         },
         {
-          "condition": { "type": "compare_hope_discontent", "operator": "less_than", "description": "Si tienes menos Esperanza que Descontento" },
-          "effect": { "type": "custom", "description": "Aplica efecto según Descontento más común (Apatía: Agota Esperanza; Codicia: Pierde recursos; Ira: Muere 1)" }
+          "condition": {
+            "type": "compare_hope_discontent",
+            "operator": "less_than",
+            "description": "Si tienes menos Esperanza que Descontento"
+          },
+          "effect": {
+            "type": "custom",
+            "description": "Aplica efecto según Descontento más común (Apatía: Agota Esperanza; Codicia: Pierde recursos; Ira: Muere 1)"
+          }
         },
         {
-          "condition": { "type": "compare_hope_discontent", "operator": "equal", "description": "Si tienes el mismo número" },
+          "condition": {
+            "type": "compare_hope_discontent",
+            "operator": "equal",
+            "description": "Si tienes el mismo número"
+          },
           "effect": {
             "effects": [
               { "type": "activate_hope", "description": "Activa 1 Esperanza" },
-              { "type": "activate_discontent", "description": "Activa 1 Descontento" }
+              {
+                "type": "activate_discontent",
+                "description": "Activa 1 Descontento"
+              }
             ]
           }
         }
@@ -164,28 +345,73 @@
     "efectoEstructurado": {
       "branches": [
         {
-          "condition": { "type": "compare_hope_discontent", "operator": "greater_than", "description": "Si tienes más Esperanza que Descontento" },
+          "condition": {
+            "type": "compare_hope_discontent",
+            "operator": "greater_than",
+            "description": "Si tienes más Esperanza que Descontento"
+          },
           "effect": {
             "description": "Elige una opción agotando 1 Esperanza correspondiente:",
             "minChoices": 1,
             "maxChoices": 1,
             "options": [
-              { "type": "composite", "description": "Justicia: Descarta 1 Descontento", "effects": [{ "type": "exhaust_hope", "description": "Agota Justicia" }, { "type": "change_discontent", "description": "-1 Descontento" }] },
-              { "type": "composite", "description": "Cuidado: Cura 3 o Trata 3", "effects": [{ "type": "exhaust_hope", "description": "Agota Cuidado" }, { "type": "custom", "description": "Cura 3 o Trata 3" }] },
-              { "type": "composite", "description": "Motivación: Construye Edificio gratis", "effects": [{ "type": "exhaust_hope", "description": "Agota Motivación" }, { "type": "build_building", "description": "Construye Edificio (coste hasta 2 madera) gratis" }] }
+              {
+                "type": "composite",
+                "description": "Justicia: Descarta 1 Descontento",
+                "effects": [
+                  { "type": "exhaust_hope", "description": "Agota Justicia" },
+                  {
+                    "type": "change_discontent",
+                    "description": "-1 Descontento"
+                  }
+                ]
+              },
+              {
+                "type": "composite",
+                "description": "Cuidado: Cura 3 o Trata 3",
+                "effects": [
+                  { "type": "exhaust_hope", "description": "Agota Cuidado" },
+                  { "type": "custom", "description": "Cura 3 o Trata 3" }
+                ]
+              },
+              {
+                "type": "composite",
+                "description": "Motivación: Construye Edificio gratis",
+                "effects": [
+                  { "type": "exhaust_hope", "description": "Agota Motivación" },
+                  {
+                    "type": "build_building",
+                    "description": "Construye Edificio (coste hasta 2 madera) gratis"
+                  }
+                ]
+              }
             ]
           }
         },
         {
-          "condition": { "type": "compare_hope_discontent", "operator": "less_than", "description": "Si tienes menos Esperanza que Descontento" },
-          "effect": { "type": "custom", "description": "Aplica efecto según Descontento más común (Ira: Destruye Edificio; Apatía: Agota Trabajador; Codicia: Pierde recursos)" }
+          "condition": {
+            "type": "compare_hope_discontent",
+            "operator": "less_than",
+            "description": "Si tienes menos Esperanza que Descontento"
+          },
+          "effect": {
+            "type": "custom",
+            "description": "Aplica efecto según Descontento más común (Ira: Destruye Edificio; Apatía: Agota Trabajador; Codicia: Pierde recursos)"
+          }
         },
         {
-          "condition": { "type": "compare_hope_discontent", "operator": "equal", "description": "Si tienes el mismo número" },
+          "condition": {
+            "type": "compare_hope_discontent",
+            "operator": "equal",
+            "description": "Si tienes el mismo número"
+          },
           "effect": {
             "effects": [
               { "type": "activate_hope", "description": "Activa 1 Esperanza" },
-              { "type": "activate_discontent", "description": "Activa 1 Descontento" }
+              {
+                "type": "activate_discontent",
+                "description": "Activa 1 Descontento"
+              }
             ]
           }
         }
@@ -202,28 +428,76 @@
     "efectoEstructurado": {
       "branches": [
         {
-          "condition": { "type": "compare_hope_discontent", "operator": "greater_than", "description": "Si tienes más Esperanza que Descontento" },
+          "condition": {
+            "type": "compare_hope_discontent",
+            "operator": "greater_than",
+            "description": "Si tienes más Esperanza que Descontento"
+          },
           "effect": {
             "description": "Elige una opción agotando 1 Esperanza correspondiente:",
             "minChoices": 1,
             "maxChoices": 1,
             "options": [
-              { "type": "composite", "description": "Justicia: Descarta 1 Descontento", "effects": [{ "type": "exhaust_hope", "description": "Agota Justicia" }, { "type": "change_discontent", "description": "-1 Descontento" }] },
-              { "type": "composite", "description": "Cuidado: Puesto Médico Mejorado", "effects": [{ "type": "exhaust_hope", "description": "Agota Cuidado" }, { "type": "build_building", "description": "Construye Puesto Médico mejorado gratis" }] },
-              { "type": "composite", "description": "Motivación: Reutiliza un Trabajador", "effects": [{ "type": "exhaust_hope", "description": "Agota Motivación" }, { "type": "reuse_worker", "description": "Reutiliza 1 Trabajador" }] }
+              {
+                "type": "composite",
+                "description": "Justicia: Descarta 1 Descontento",
+                "effects": [
+                  { "type": "exhaust_hope", "description": "Agota Justicia" },
+                  {
+                    "type": "change_discontent",
+                    "description": "-1 Descontento"
+                  }
+                ]
+              },
+              {
+                "type": "composite",
+                "description": "Cuidado: Puesto Médico Mejorado",
+                "effects": [
+                  { "type": "exhaust_hope", "description": "Agota Cuidado" },
+                  {
+                    "type": "build_building",
+                    "description": "Construye Puesto Médico mejorado gratis"
+                  }
+                ]
+              },
+              {
+                "type": "composite",
+                "description": "Motivación: Reutiliza un Trabajador",
+                "effects": [
+                  { "type": "exhaust_hope", "description": "Agota Motivación" },
+                  {
+                    "type": "reuse_worker",
+                    "description": "Reutiliza 1 Trabajador"
+                  }
+                ]
+              }
             ]
           }
         },
         {
-          "condition": { "type": "compare_hope_discontent", "operator": "less_than", "description": "Si tienes menos Esperanza que Descontento" },
-          "effect": { "type": "custom", "description": "Aplica efecto según Descontento más común (Codicia: Elimina recursos mapa; Ira: Muere 1; Apatía: Agota Trabajador)" }
+          "condition": {
+            "type": "compare_hope_discontent",
+            "operator": "less_than",
+            "description": "Si tienes menos Esperanza que Descontento"
+          },
+          "effect": {
+            "type": "custom",
+            "description": "Aplica efecto según Descontento más común (Codicia: Elimina recursos mapa; Ira: Muere 1; Apatía: Agota Trabajador)"
+          }
         },
         {
-          "condition": { "type": "compare_hope_discontent", "operator": "equal", "description": "Si tienes el mismo número" },
+          "condition": {
+            "type": "compare_hope_discontent",
+            "operator": "equal",
+            "description": "Si tienes el mismo número"
+          },
           "effect": {
             "effects": [
               { "type": "activate_hope", "description": "Activa 1 Esperanza" },
-              { "type": "activate_discontent", "description": "Activa 1 Descontento" }
+              {
+                "type": "activate_discontent",
+                "description": "Activa 1 Descontento"
+              }
             ]
           }
         }
@@ -248,8 +522,14 @@
         "minChoices": 1,
         "maxChoices": 1,
         "options": [
-          { "type": "change_stress", "description": "Elimina hasta 4 cubos de Estrés" },
-          { "type": "upgrade_building", "description": "Mejora 1 Edificio Pequeño gratis" }
+          {
+            "type": "change_stress",
+            "description": "Elimina hasta 4 cubos de Estrés"
+          },
+          {
+            "type": "upgrade_building",
+            "description": "Mejora 1 Edificio Pequeño gratis"
+          }
         ]
       },
       "ifFalse": {
@@ -257,11 +537,18 @@
         "minChoices": 1,
         "maxChoices": 1,
         "options": [
-          { "type": "composite", "description": "Pierde 2 Trabajadores, 2 Ingenieros, 1 Niño", "effects": [
-            { "type": "lose_citizen", "description": "Pierde 2 Trabajadores" },
-            { "type": "lose_citizen", "description": "Pierde 2 Ingenieros" },
-            { "type": "lose_citizen", "description": "Pierde 1 Niño" }
-          ]},
+          {
+            "type": "composite",
+            "description": "Pierde 2 Trabajadores, 2 Ingenieros, 1 Niño",
+            "effects": [
+              {
+                "type": "lose_citizen",
+                "description": "Pierde 2 Trabajadores"
+              },
+              { "type": "lose_citizen", "description": "Pierde 2 Ingenieros" },
+              { "type": "lose_citizen", "description": "Pierde 1 Niño" }
+            ]
+          },
           { "type": "change_stress", "description": "Coloca 3 cubos de Estrés" }
         ]
       }
@@ -285,8 +572,14 @@
         "minChoices": 1,
         "maxChoices": 1,
         "options": [
-          { "type": "change_stress", "description": "Elimina hasta 4 cubos de Estrés" },
-          { "type": "gain_resource", "description": "Gana Comida igual al número de Ronda" }
+          {
+            "type": "change_stress",
+            "description": "Elimina hasta 4 cubos de Estrés"
+          },
+          {
+            "type": "gain_resource",
+            "description": "Gana Comida igual al número de Ronda"
+          }
         ]
       },
       "ifFalse": {
@@ -294,8 +587,18 @@
         "minChoices": 1,
         "maxChoices": 1,
         "options": [
-          { "target": "niño_usado_esta_ronda", "effect": { "type": "gain_sick", "description": "Gana 1 Niño enfermo" }, "description": "Por cada Meeple de Niño" },
-          { "type": "destroy_building", "description": "Destruye 2 Edificios ocupados por Meeples de Ciudadano" }
+          {
+            "target": "niño_usado_esta_ronda",
+            "effect": {
+              "type": "gain_sick",
+              "description": "Gana 1 Niño enfermo"
+            },
+            "description": "Por cada Meeple de Niño"
+          },
+          {
+            "type": "destroy_building",
+            "description": "Destruye 2 Edificios ocupados por Meeples de Ciudadano"
+          }
         ]
       }
     }
@@ -318,15 +621,42 @@
         "maxChoices": 1,
         "options": [
           { "type": "change_discontent", "description": "-1 Descontento" },
-          { "type": "place_tile", "description": "Coloca 1 loseta Cercana o 1 loseta Lejana" },
-          { "type": "workshop_effect", "description": "Realiza 2 efectos de Taller" }
+          {
+            "type": "place_tile",
+            "description": "Coloca 1 loseta Cercana o 1 loseta Lejana"
+          },
+          {
+            "type": "workshop_effect",
+            "description": "Realiza 2 efectos de Taller"
+          }
         ]
       },
       "ifFalse": {
         "effects": [
-          { "target": "codicia_activa", "effect": { "type": "change_hunger", "description": "Aumenta el Hambre en 3" }, "description": "Si tienes Codicia activa" },
-          { "target": "apatia_activa", "effect": { "type": "exhaust_worker", "description": "Coloca 1 Trabajador Agotado" }, "description": "Si tienes Apatía activa" },
-          { "target": "ira_activa", "effect": { "type": "gain_sick", "description": "Gana 2 Ciudadanos enfermos" }, "description": "Si tienes Ira activa" }
+          {
+            "target": "codicia_activa",
+            "effect": {
+              "type": "change_hunger",
+              "description": "Aumenta el Hambre en 3"
+            },
+            "description": "Si tienes Codicia activa"
+          },
+          {
+            "target": "apatia_activa",
+            "effect": {
+              "type": "exhaust_worker",
+              "description": "Coloca 1 Trabajador Agotado"
+            },
+            "description": "Si tienes Apatía activa"
+          },
+          {
+            "target": "ira_activa",
+            "effect": {
+              "type": "gain_sick",
+              "description": "Gana 2 Ciudadanos enfermos"
+            },
+            "description": "Si tienes Ira activa"
+          }
         ]
       }
     }
@@ -349,16 +679,31 @@
         "maxChoices": 1,
         "options": [
           { "type": "change_discontent", "description": "-1 Descontento" },
-          { "type": "place_tile", "description": "Coloca 1 loseta Cercana o 1 loseta Lejana" },
-          { "type": "workshop_effect", "description": "Realiza 2 efectos de Taller" }
+          {
+            "type": "place_tile",
+            "description": "Coloca 1 loseta Cercana o 1 loseta Lejana"
+          },
+          {
+            "type": "workshop_effect",
+            "description": "Realiza 2 efectos de Taller"
+          }
         ]
       },
       "ifFalse": {
         "description": "Por cada tipo de Esperanza que NO tengas:",
         "effects": [
-          { "type": "custom", "description": "Si NO tienes Cuidado: Voltea 1 marcador de Enfermedad" },
-          { "type": "custom", "description": "Si NO tienes Motivación: Coloca 1 ficha de Trabajador Agotado" },
-          { "type": "custom", "description": "Si NO tienes Justicia: Agota 1 Esperanza. Si no puedes, +1 Descontento" }
+          {
+            "type": "custom",
+            "description": "Si NO tienes Cuidado: Voltea 1 marcador de Enfermedad"
+          },
+          {
+            "type": "custom",
+            "description": "Si NO tienes Motivación: Coloca 1 ficha de Trabajador Agotado"
+          },
+          {
+            "type": "custom",
+            "description": "Si NO tienes Justicia: Agota 1 Esperanza. Si no puedes, +1 Descontento"
+          }
         ]
       }
     }

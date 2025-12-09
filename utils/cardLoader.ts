@@ -1,96 +1,45 @@
-import { Asset } from "expo-asset";
-import * as FileSystem from "expo-file-system/legacy";
 import { Card, CardType } from "../types/card";
 
-// eslint-disable-next-line @typescript-eslint/no-require-imports
-const csvConsecuenciaLey = require("../assets/cards/cartas_consecuencia_ley.csv");
-// eslint-disable-next-line @typescript-eslint/no-require-imports
-const csvDisputaSocial = require("../assets/cards/cartas_disputa_social.csv");
-// eslint-disable-next-line @typescript-eslint/no-require-imports
-const csvOcaso = require("../assets/cards/cartas_ocaso.csv");
+// Archivos JSON
 
-// Parser de CSV con soporte para punto y coma
-const parseCSV = (csvText: string): any[] => {
-  const lines = csvText.trim().split("\n");
-  if (lines.length < 2) return [];
+const jsonConsecuenciaLey = require("../assets/cards/cartas_consecuencia_ley_json.json");
 
-  const headers = lines[0].split(";").map((h) => h.trim().replace(/"/g, ""));
-  const data: any[] = [];
+const jsonDisputaSocial = require("../assets/cards/cartas_disputa_social_json.json");
 
-  for (let i = 1; i < lines.length; i++) {
-    const values = lines[i]
-      .split(";")
-      .map((v) => v.trim().replace(/^"|"$/g, ""));
-    const row: any = {};
-    headers.forEach((header, index) => {
-      row[header] = values[index] || "";
-    });
-    data.push(row);
-  }
+const jsonOcaso = require("../assets/cards/cartas_ocaso_json.json");
 
-  return data;
+// Mapeo de tipos de carta a archivos JSON
+const JSON_FILES = {
+  [CardType.CONSECUENCIA_LEY]: jsonConsecuenciaLey,
+  [CardType.DISPUTA_SOCIAL]: jsonDisputaSocial,
+  [CardType.OCASO]: jsonOcaso,
 };
 
-// Mapeo de tipos de carta a archivos CSV
-const CSV_FILES = {
-  [CardType.CONSECUENCIA_LEY]: csvConsecuenciaLey,
-  [CardType.DISPUTA_SOCIAL]: csvDisputaSocial,
-  [CardType.OCASO]: csvOcaso,
-};
-
-// Función para leer el contenido del archivo CSV
-const readCSVFile = async (cardType: CardType): Promise<string> => {
+// Función para cargar cartas desde JSON
+export const loadCardsFromJSON = (cardType: CardType): Card[] => {
   try {
-    const asset = Asset.fromModule(CSV_FILES[cardType]);
-    await asset.downloadAsync();
+    const jsonData = JSON_FILES[cardType];
 
-    if (!asset.localUri) {
-      throw new Error("No se pudo obtener la URI local del archivo");
-    }
-
-    const csvContent = await FileSystem.readAsStringAsync(asset.localUri);
-    return csvContent;
-  } catch (error) {
-    console.error(`Error leyendo archivo CSV para ${cardType}:`, error);
-    return "";
-  }
-};
-
-// Función para cargar los CSV
-export const loadCardsFromCSV = async (cardType: CardType): Promise<Card[]> => {
-  try {
-    const csvContent = await readCSVFile(cardType);
-    if (!csvContent) {
-      console.warn(`No hay datos CSV para ${cardType}`);
+    if (!jsonData || !Array.isArray(jsonData)) {
+      console.warn(`No hay datos JSON válidos para ${cardType}`);
       return [];
     }
 
-    const parsed = parseCSV(csvContent);
-
-    return parsed.map((row) => ({
-      id: row.ID || row.id || "",
-      type: cardType,
-      etiqueta: row.Etiqueta || "",
-      titulo: row["Título"] || row.Titulo || "",
-      textoAmbientacion:
-        row["Texto de Ambientación"] || row.TextoAmbientacion || "",
-      efecto: row.Efecto || "",
-      variante: row.Variante || undefined,
-    }));
+    // El JSON ya tiene la estructura correcta, solo validamos los campos requeridos
+    return jsonData.filter(
+      (card: any) => card.id && card.type && card.titulo && card.efecto
+    ) as Card[];
   } catch (error) {
-    console.error(`Error cargando CSV para ${cardType}:`, error);
+    console.error(`Error cargando JSON para ${cardType}:`, error);
     return [];
   }
 };
 
 // Cargar todas las cartas disponibles
-export const loadAllCards = async (): Promise<Card[]> => {
-  const [consecuenciaLeyCards, disputaSocialCards, ocasoCards] =
-    await Promise.all([
-      loadCardsFromCSV(CardType.CONSECUENCIA_LEY),
-      loadCardsFromCSV(CardType.DISPUTA_SOCIAL),
-      loadCardsFromCSV(CardType.OCASO),
-    ]);
+export const loadAllCards = (): Card[] => {
+  const consecuenciaLeyCards = loadCardsFromJSON(CardType.CONSECUENCIA_LEY);
+  const disputaSocialCards = loadCardsFromJSON(CardType.DISPUTA_SOCIAL);
+  const ocasoCards = loadCardsFromJSON(CardType.OCASO);
 
   return [...consecuenciaLeyCards, ...disputaSocialCards, ...ocasoCards];
 };

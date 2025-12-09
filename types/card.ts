@@ -100,6 +100,7 @@ export interface ConditionalEffect {
 
 // Efecto multi-condicional (múltiples ramas: if-else if-else if-else)
 export interface MultiConditionalEffect {
+  description?: string; // Descripción opcional del efecto
   branches: {
     condition: Condition;
     effect: CardEffect;

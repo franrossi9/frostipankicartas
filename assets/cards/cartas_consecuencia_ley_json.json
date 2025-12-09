@@ -1,0 +1,681 @@
+[
+  {
+    "id": "L01",
+    "type": "consecuencia_ley",
+    "variante": "A",
+    "etiqueta": "ANOCHECER",
+    "titulo": "ACCIDENTES LABORALES",
+    "textoAmbientacion": "Los niños están ahora expuestos a accidentes en el trabajo. Si no proporcionamos una buena atención médica, algunos podrían incluso pagar el precio con sus jóvenes vidas.",
+    "efecto": "Si tienes Cuidado activo: Por cada Meeple de Niño usado para realizar una acción esta Ronda, gana 1 Niño enfermo. En caso contrario: Por cada Meeple de Niño usado para realizar una acción esta Ronda, gana 2 Niños enfermos.",
+    "efectoEstructurado": {
+      "condition": {
+        "type": "custom",
+        "description": "Si tienes Cuidado activo"
+      },
+      "ifTrue": {
+        "target": "niño_usado_esta_ronda",
+        "effect": {
+          "type": "gain_sick",
+          "description": "gana 1 Niño enfermo."
+        },
+        "description": "Por cada Meeple de Niño usado para realizar una acción esta Ronda gana 1 Niño enfermo."
+      },
+      "ifFalse": {
+        "target": "niño_usado_esta_ronda",
+        "effect": {
+          "type": "gain_sick",
+          "description": "gana 2 Niños enfermos."
+        },
+        "description": "Por cada Meeple de Niño usado para realizar una acción esta Ronda gana 2 Niños enfermos."
+      }
+    }
+  },
+  {
+    "id": "L01",
+    "type": "consecuencia_ley",
+    "variante": "B",
+    "etiqueta": "ANOCHECER",
+    "titulo": "DERECHOS DE LOS PADRES",
+    "textoAmbientacion": "Los padres no permitirán que sus hijos estén en peligro trabajando en tales condiciones. Organizaron una protesta y gritaron: \"¡Dejad que sean niños!\" y \"¡No lastiméis a nuestros hijos!\".",
+    "efecto": "Si tienes Ira activa: Coloca 1 ficha de Trabajador / Ingeniero Agotado y 2 fichas de Niño Agotado en el suministro. En caso contrario: Coloca 1 ficha de Trabajador / Ingeniero Agotado y 1 ficha de Niño Agotado en el suministro.",
+    "efectoEstructurado": {
+      "condition": {
+        "type": "custom",
+        "description": "Si tienes Ira activa"
+      },
+      "ifTrue": {
+        "type": "custom",
+        "description": "Coloca 1 ficha de Trabajador / Ingeniero Agotado y 2 fichas de Niño Agotado en el suministro."
+      },
+      "ifFalse": {
+        "type": "custom",
+        "description": "Coloca 1 ficha de Trabajador / Ingeniero Agotado y 1 ficha de Niño Agotado en el suministro."
+      }
+    }
+  },
+  {
+    "id": "L02",
+    "type": "consecuencia_ley",
+    "variante": "A",
+    "etiqueta": "ANOCHECER",
+    "titulo": "EDUCACIÓN INFANTIL – JÓVENES MÉDICOS",
+    "textoAmbientacion": "Gracias a su educación especializada, los niños pueden ayudarnos con los enfermos.",
+    "efecto": "Si el Refugio Infantil está construido: Por cada Meeple de Niño, Cura 1. En caso contrario: -2 Esperanza. Baraja esta carta de nuevo en el mazo de Anochecer.",
+    "efectoEstructurado": {
+      "condition": {
+        "type": "custom",
+        "description": "Si el Refugio Infantil está construido"
+      },
+      "ifTrue": {
+        "target": "custom",
+        "effect": {
+          "type": "heal",
+          "description": "Cura 1."
+        },
+        "description": "Por cada Meeple de Niño Cura 1."
+      },
+      "ifFalse": {
+        "effects": [
+          {
+            "type": "change_hope",
+            "description": "-2 Esperanza"
+          },
+          {
+            "type": "shuffle_card_into_deck",
+            "description": "Baraja esta carta de nuevo en el mazo de Anochecer."
+          }
+        ],
+        "type": "composite"
+      }
+    }
+  },
+  {
+    "id": "L02",
+    "type": "consecuencia_ley",
+    "variante": "B",
+    "etiqueta": "ANOCHECER",
+    "titulo": "EDUCACIÓN INFANTIL – MENTES BRILLANTES",
+    "textoAmbientacion": "Tras recibir cursos intensivos y formación in situ de nuestros ingenieros, los jóvenes aprendices ayudaron a progresar significativamente nuestra investigación tecnológica. Sus ideas brillantes y entusiasmo encontraron terreno fértil.",
+    "efecto": "Si el Refugio Infantil está construido: Elige uno: A) Mueve la ficha de Desarrollo 1 espacio hacia atrás en el track de Ronda. B) Mejora un Edificio Pequeño pagando su coste de mejora, incluso si ese Edificio ha sido usado en esta Ronda. En caso contrario: -2 Esperanza. Baraja esta carta de nuevo en el mazo de Anochecer.",
+    "efectoEstructurado": {
+      "condition": {
+        "type": "custom",
+        "description": "Si el Refugio Infantil está construido"
+      },
+      "ifTrue": {
+        "description": "Elige una opción:",
+        "minChoices": 1,
+        "maxChoices": 1,
+        "options": [
+          {
+            "type": "custom",
+            "description": "Mueve la ficha de Desarrollo 1 espacio hacia atrás en el track de Ronda."
+          },
+          {
+            "type": "upgrade_building",
+            "description": "Mejora un Edificio Pequeño pagando su coste de mejora, incluso si ese Edificio ha sido usado en esta Ronda."
+          }
+        ]
+      },
+      "ifFalse": {
+        "effects": [
+          {
+            "type": "change_hope",
+            "description": "-2 Esperanza"
+          },
+          {
+            "type": "shuffle_card_into_deck",
+            "description": "Baraja esta carta de nuevo en el mazo de Anochecer."
+          }
+        ],
+        "type": "composite"
+      }
+    }
+  },
+  {
+    "id": "L03",
+    "type": "consecuencia_ley",
+    "variante": "A",
+    "etiqueta": "ANOCHECER",
+    "titulo": "UNA BARRIGA LLENA DE MENTIRAS",
+    "textoAmbientacion": "Debido al aserrín añadido a las comidas, se sentían más saciantes. Nuestra gente echaba de menos la sensación de tener la barriga llena, la pura alegría de comer tanto como uno quiera. Muchos de ellos se atiborraron de comida.",
+    "efecto": "Si el nivel de Hambre es 1 o más: Gana 2 Ciudadanos enfermos (del tipo de la Ronda actual). Reduce el Hambre en 3.",
+    "efectoEstructurado": {
+      "condition": {
+        "type": "custom",
+        "description": "Si el nivel de Hambre es 1 o más"
+      },
+      "ifTrue": {
+        "effects": [
+          {
+            "type": "gain_sick",
+            "description": "Gana 2 Ciudadanos enfermos (del tipo de la Ronda actual)."
+          },
+          {
+            "type": "change_hunger",
+            "description": "Reduce el Hambre en 3."
+          }
+        ],
+        "type": "composite"
+      }
+    }
+  },
+  {
+    "id": "L03",
+    "type": "consecuencia_ley",
+    "variante": "B",
+    "etiqueta": "ANOCHECER",
+    "titulo": "SOPA",
+    "textoAmbientacion": "La sopa sabe a agua de fregar y no tiene valor nutricional, pero es cálida y hay mucha. Podemos llenar nuestros estómagos vacíos con ella.",
+    "efecto": "Si el nivel de Hambre es 4 o más: Reduce el Hambre en 4. En caso contrario: Reduce el Hambre a 0.",
+    "efectoEstructurado": {
+      "condition": {
+        "type": "custom",
+        "description": "Si el nivel de Hambre es 4 o más"
+      },
+      "ifTrue": {
+        "type": "change_hunger",
+        "description": "Reduce el Hambre en 4."
+      },
+      "ifFalse": {
+        "type": "change_hunger",
+        "description": "Reduce el Hambre a 0."
+      }
+    }
+  },
+  {
+    "id": "L04",
+    "type": "consecuencia_ley",
+    "variante": "A",
+    "etiqueta": "ANOCHECER",
+    "titulo": "¡EL CIRUJANO HA MUERTO!",
+    "textoAmbientacion": "Durante una cirugía particularmente difícil, uno de nuestros aprendices, sobrecargado de trabajo, cometió un error fatal... El paciente no sobrevivió. La familia exige justicia.",
+    "efecto": "Si tienes Justicia activa: 1 Ingeniero muere. Elige uno: A) -1 Descontento. B) Activa 1 Esperanza. En caso contrario: 1 Ingeniero muere. +1 Descontento. -1 Esperanza.",
+    "efectoEstructurado": {
+      "condition": {
+        "type": "custom",
+        "description": "Si tienes Justicia activa"
+      },
+      "ifTrue": {
+        "effects": [
+          {
+            "type": "die_citizen",
+            "description": "1 Ingeniero muere."
+          },
+          {
+            "description": "Elige una opción:",
+            "minChoices": 1,
+            "maxChoices": 1,
+            "options": [
+              {
+                "type": "change_discontent",
+                "description": "-1 Descontento."
+              },
+              {
+                "type": "activate_hope",
+                "description": "Activa 1 Esperanza."
+              }
+            ]
+          }
+        ],
+        "type": "composite"
+      },
+      "ifFalse": {
+        "effects": [
+          {
+            "type": "die_citizen",
+            "description": "1 Ingeniero muere."
+          },
+          {
+            "type": "change_discontent",
+            "description": "+1 Descontento."
+          },
+          {
+            "type": "change_hope",
+            "description": "-1 Esperanza."
+          }
+        ],
+        "type": "composite"
+      }
+    }
+  },
+  {
+    "id": "L04",
+    "type": "consecuencia_ley",
+    "variante": "B",
+    "etiqueta": "ANOCHECER",
+    "titulo": "CONSERVANDO SUMINISTROS",
+    "textoAmbientacion": "Los enfermos terminales son una carga para nuestra sociedad. Mantenerlos con vida cuesta recursos preciosos que podrían usarse para salvar a aquellos que tienen una oportunidad de sobrevivir.",
+    "efecto": "Si hay algún Ciudadano enfermo: Elige uno: A) 1 Ciudadano enfermo muere. B) 2 Ciudadanos enfermos mueren. +1 Esperanza.",
+    "efectoEstructurado": {
+      "condition": {
+        "type": "custom",
+        "description": "Si hay algún Ciudadano enfermo"
+      },
+      "ifTrue": {
+        "description": "Elige una opción:",
+        "minChoices": 1,
+        "maxChoices": 1,
+        "options": [
+          {
+            "type": "die_citizen",
+            "description": "1 Ciudadano enfermo muere."
+          },
+          {
+            "effects": [
+              {
+                "type": "custom",
+                "description": "2 Ciudadanos enfermos mueren."
+              },
+              {
+                "type": "change_hope",
+                "description": "+1 Esperanza."
+              }
+            ],
+            "type": "composite"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "L05",
+    "type": "consecuencia_ley",
+    "variante": "A",
+    "etiqueta": "ANOCHECER",
+    "titulo": "ALOJAMIENTOS ABARROTADOS",
+    "textoAmbientacion": "La gente se apiña como sardinas en los refugios. Es incómodo, huele mal y es un caldo de cultivo para enfermedades y descontento.",
+    "efecto": "Coloca esta carta sobre la carta de Ley de Alojamientos Abarrotados. Ignora la carta de Ley de Alojamientos Abarrotados mientras esta carta la esté cubriendo. FASE DE NOCHE: Al final de la Fase de Noche: Si hay algún Meeple de Ciudadano sin un lugar cálido para dormir: +1 Descontento. Coloca esta carta en la pila de descartes de Anochecer.",
+    "efectoEstructurado": {
+      "effects": [
+        {
+          "type": "custom",
+          "description": "Coloca esta carta sobre la carta de Ley de Alojamientos Abarrotados."
+        },
+        {
+          "type": "custom",
+          "description": "Ignora la carta de Ley de Alojamientos Abarrotados mientras esta carta la esté cubriendo."
+        },
+        {
+          "condition": {
+            "type": "custom",
+            "description": "FASE DE NOCHE: Al final de la Fase de Noche: Si hay algún Meeple de Ciudadano sin un lugar cálido para dormir"
+          },
+          "ifTrue": {
+            "type": "change_discontent",
+            "description": "+1 Descontento."
+          }
+        },
+        {
+          "type": "discard_card",
+          "description": "Coloca esta carta en la pila de descartes de Anochecer."
+        }
+      ],
+      "type": "composite"
+    }
+  },
+  {
+    "id": "L05",
+    "type": "consecuencia_ley",
+    "variante": "B",
+    "etiqueta": "ANOCHECER",
+    "titulo": "REFUGIOS ABARROTADOS – INCOMODIDAD",
+    "textoAmbientacion": "Nuestra gente está dispuesta a compartir sus refugios con extraños, pero la falta de privacidad y espacio personal está empezando a pasar factura.",
+    "efecto": "Si la Esperanza es mayor que el Descontento: -1 Esperanza. +1 Descontento. En caso contrario: +2 Descontento. Baraja esta carta de nuevo en el mazo de Anochecer.",
+    "efectoEstructurado": {
+      "condition": {
+        "type": "custom",
+        "description": "Si la Esperanza es mayor que el Descontento"
+      },
+      "ifTrue": {
+        "effects": [
+          {
+            "type": "change_hope",
+            "description": "-1 Esperanza."
+          },
+          {
+            "type": "change_discontent",
+            "description": "+1 Descontento."
+          }
+        ],
+        "type": "composite"
+      },
+      "ifFalse": {
+        "effects": [
+          {
+            "type": "change_discontent",
+            "description": "+2 Descontento."
+          },
+          {
+            "type": "shuffle_card_into_deck",
+            "description": "Baraja esta carta de nuevo en el mazo de Anochecer."
+          }
+        ],
+        "type": "composite"
+      }
+    }
+  },
+  {
+    "id": "L06",
+    "type": "consecuencia_ley",
+    "variante": "A",
+    "etiqueta": "ANOCHECER",
+    "titulo": "REFUGIOS IMPROVISADOS",
+    "textoAmbientacion": "Los refugios improvisados son una solución temporal, pero mejor que dormir al raso.",
+    "efecto": "Coloca esta carta sobre la carta de Ley de Refugios Improvisados. Ignora la carta de Ley de Refugios Improvisados mientras esta carta la esté cubriendo. FASE DE NOCHE: Al final de la Fase de Noche: Si todos los Meeples de Ciudadano tienen un lugar cálido para dormir: Los ciudadanos aprecian no tener que usar más los refugios improvisados... -1 Descontento. En caso contrario: La nevada fue fuerte y los techos de los refugios improvisados no aguantaron el peso... Sin Efecto. En cualquier caso: Coloca esta carta en la pila de descartes de Anochecer.",
+    "efectoEstructurado": {
+      "effects": [
+        {
+          "type": "custom",
+          "description": "Coloca esta carta sobre la carta de Ley de Refugios Improvisados."
+        },
+        {
+          "type": "custom",
+          "description": "Ignora la carta de Ley de Refugios Improvisados mientras esta carta la esté cubriendo."
+        },
+        {
+          "condition": {
+            "type": "custom",
+            "description": "FASE DE NOCHE: Al final de la Fase de Noche: Si todos los Meeples de Ciudadano tienen un lugar cálido para dormir"
+          },
+          "ifTrue": {
+            "type": "change_discontent",
+            "description": "Los ciudadanos aprecian no tener que usar más los refugios improvisados... -1 Descontento."
+          },
+          "ifFalse": {
+            "type": "custom",
+            "description": "La nevada fue fuerte y los techos de los refugios improvisados no aguantaron el peso... Sin Efecto."
+          }
+        },
+        {
+          "type": "discard_card",
+          "description": "En cualquier caso: Coloca esta carta en la pila de descartes de Anochecer."
+        }
+      ],
+      "type": "composite"
+    }
+  },
+  {
+    "id": "L06",
+    "type": "consecuencia_ley",
+    "variante": "B",
+    "etiqueta": "ANOCHECER",
+    "titulo": "VIDA EN LAS CALLES",
+    "textoAmbientacion": "Dormir en la calle es una sentencia de muerte lenta. El frío se filtra en los huesos y la esperanza se desvanece con cada noche que pasa.",
+    "efecto": "Coloca esta carta en el despliegue de Eventos. FASE DE NOCHE: Al final de la Fase de Noche: Si todos los Meeples de Ciudadano tienen un lugar cálido para dormir sin usar Ruinas: El alojamiento en nuestra ciudad es tan bueno como puede ser... +1 Esperanza. En caso contrario: ¡Algunos de nosotros todavía dormimos en el frío... Agota Cuidado. -1 Esperanza. En cualquier caso: Coloca esta carta en la pila de descartes de Anochecer.",
+    "efectoEstructurado": {
+      "effects": [
+        {
+          "type": "custom",
+          "description": "Coloca esta carta en el despliegue de Eventos."
+        },
+        {
+          "condition": {
+            "type": "custom",
+            "description": "FASE DE NOCHE: Al final de la Fase de Noche: Si todos los Meeples de Ciudadano tienen un lugar cálido para dormir sin usar Ruinas"
+          },
+          "ifTrue": {
+            "type": "change_hope",
+            "description": "El alojamiento en nuestra ciudad es tan bueno como puede ser... +1 Esperanza."
+          },
+          "ifFalse": {
+            "effects": [
+              {
+                "type": "exhaust_hope",
+                "description": "¡Algunos de nosotros todavía dormimos en el frío... Agota Cuidado."
+              },
+              {
+                "type": "change_hope",
+                "description": "-1 Esperanza."
+              }
+            ],
+            "type": "composite"
+          }
+        },
+        {
+          "type": "discard_card",
+          "description": "En cualquier caso: Coloca esta carta en la pila de descartes de Anochecer."
+        }
+      ],
+      "type": "composite"
+    }
+  },
+  {
+    "id": "L07",
+    "type": "consecuencia_ley",
+    "variante": "A",
+    "etiqueta": "ANOCHECER",
+    "titulo": "ENTRENAMIENTO EXHAUSTIVO",
+    "textoAmbientacion": "Los turnos de entrenamiento son agotadores y peligrosos. Algunos ciudadanos no pueden soportar la presión.",
+    "efecto": "Si tienes Justicia activa: Coloca 3 fichas de Trabajador / Ingeniero Agotado en el suministro. En caso contrario: 1 Trabajador muere. Coloca 1 ficha de Trabajador / Ingeniero Agotado en el suministro.",
+    "efectoEstructurado": {
+      "condition": {
+        "type": "custom",
+        "description": "Si tienes Justicia activa"
+      },
+      "ifTrue": {
+        "type": "custom",
+        "description": "Coloca 3 fichas de Trabajador / Ingeniero Agotado en el suministro."
+      },
+      "ifFalse": {
+        "effects": [
+          {
+            "type": "die_citizen",
+            "description": "1 Trabajador muere."
+          },
+          {
+            "type": "custom",
+            "description": "Coloca 1 ficha de Trabajador / Ingeniero Agotado en el suministro."
+          }
+        ],
+        "type": "composite"
+      }
+    }
+  },
+  {
+    "id": "L07",
+    "type": "consecuencia_ley",
+    "variante": "B",
+    "etiqueta": "ANOCHECER",
+    "titulo": "PATRULLAS DE BARRIO",
+    "textoAmbientacion": "Los ciudadanos patrullan las calles para mantener el orden. Se sienten más seguros, pero también más vigilados.",
+    "efecto": "Si tienes Ira activa: -1 Descontento. En caso contrario: Activa 1 Esperanza. +1 Descontento.",
+    "efectoEstructurado": {
+      "condition": {
+        "type": "custom",
+        "description": "Si tienes Ira activa"
+      },
+      "ifTrue": {
+        "type": "change_discontent",
+        "description": "-1 Descontento."
+      },
+      "ifFalse": {
+        "effects": [
+          {
+            "type": "activate_hope",
+            "description": "Activa 1 Esperanza."
+          },
+          {
+            "type": "change_discontent",
+            "description": "+1 Descontento."
+          }
+        ],
+        "type": "composite"
+      }
+    }
+  },
+  {
+    "id": "L08",
+    "type": "consecuencia_ley",
+    "variante": "A",
+    "etiqueta": "ANOCHECER",
+    "titulo": "TURNOS DE MAÑANA",
+    "textoAmbientacion": "Los turnos de mañana son productivos, pero la gente está cansada.",
+    "efecto": "Si tienes Motivación activa: Reutiliza 2 Trabajadores. En caso contrario: Coloca 2 fichas de Trabajador Agotado en el suministro.",
+    "efectoEstructurado": {
+      "condition": {
+        "type": "custom",
+        "description": "Si tienes Motivación activa"
+      },
+      "ifTrue": {
+        "type": "reuse_worker",
+        "description": "Reutiliza 2 Trabajadores."
+      },
+      "ifFalse": {
+        "type": "exhaust_worker",
+        "description": "Coloca 2 fichas de Trabajador Agotado en el suministro."
+      }
+    }
+  },
+  {
+    "id": "L08",
+    "type": "consecuencia_ley",
+    "variante": "B",
+    "etiqueta": "ANOCHECER",
+    "titulo": "TRABAJO DE EMERGENCIA",
+    "textoAmbientacion": "El trabajo de emergencia es necesario, pero peligroso. Los accidentes son más frecuentes.",
+    "efecto": "Si el Generador está encendido: Gana 1 Recurso de Carbón. Gana 1 Trabajador enfermo. En caso contrario: 1 Trabajador muere.",
+    "efectoEstructurado": {
+      "condition": {
+        "type": "custom",
+        "description": "Si el Generador está encendido"
+      },
+      "ifTrue": {
+        "effects": [
+          {
+            "type": "gain_resource",
+            "description": "Gana 1 Recurso de Carbón."
+          },
+          {
+            "type": "gain_sick",
+            "description": "Gana 1 Trabajador enfermo."
+          }
+        ],
+        "type": "composite"
+      },
+      "ifFalse": {
+        "type": "die_citizen",
+        "description": "1 Trabajador muere."
+      }
+    }
+  },
+  {
+    "id": "L09",
+    "type": "consecuencia_ley",
+    "variante": "A",
+    "etiqueta": "ANOCHECER",
+    "titulo": "CEMENTERIO",
+    "textoAmbientacion": "Un lugar para enterrar a nuestros muertos con dignidad. Ayuda a procesar el duelo, pero ocupa espacio valioso.",
+    "efecto": "Si el Cementerio está construido: +1 Esperanza. En caso contrario: -1 Esperanza. +1 Descontento.",
+    "efectoEstructurado": {
+      "condition": {
+        "type": "custom",
+        "description": "Si el Cementerio está construido"
+      },
+      "ifTrue": {
+        "type": "change_hope",
+        "description": "+1 Esperanza."
+      },
+      "ifFalse": {
+        "effects": [
+          {
+            "type": "change_hope",
+            "description": "-1 Esperanza."
+          },
+          {
+            "type": "change_discontent",
+            "description": "+1 Descontento."
+          }
+        ],
+        "type": "composite"
+      }
+    }
+  },
+  {
+    "id": "L09",
+    "type": "consecuencia_ley",
+    "variante": "B",
+    "etiqueta": "ANOCHECER",
+    "titulo": "FOSA COMÚN",
+    "textoAmbientacion": "Una solución práctica para un problema sombrío. Nadie quiere terminar aquí.",
+    "efecto": "Si hay Cadáveres sin enterrar: Entierra todos los Cadáveres. -2 Esperanza. En caso contrario: +1 Descontento.",
+    "efectoEstructurado": {
+      "condition": {
+        "type": "custom",
+        "description": "Si hay Cadáveres sin enterrar"
+      },
+      "ifTrue": {
+        "effects": [
+          {
+            "type": "custom",
+            "description": "Entierra todos los Cadáveres."
+          },
+          {
+            "type": "change_hope",
+            "description": "-2 Esperanza."
+          }
+        ],
+        "type": "composite"
+      },
+      "ifFalse": {
+        "type": "change_discontent",
+        "description": "+1 Descontento."
+      }
+    }
+  },
+  {
+    "id": "L10",
+    "type": "consecuencia_ley",
+    "variante": "A",
+    "etiqueta": "ANOCHECER",
+    "titulo": "PELEAS EN LA ARENA",
+    "textoAmbientacion": "La gente necesita desahogarse. Las peleas son brutales, pero efectivas para canalizar la agresión.",
+    "efecto": "Si la Arena está construida: -1 Descontento. Gana 1 Trabajador enfermo. En caso contrario: +2 Descontento.",
+    "efectoEstructurado": {
+      "condition": {
+        "type": "custom",
+        "description": "Si la Arena está construida"
+      },
+      "ifTrue": {
+        "effects": [
+          {
+            "type": "change_discontent",
+            "description": "-1 Descontento."
+          },
+          {
+            "type": "gain_sick",
+            "description": "Gana 1 Trabajador enfermo."
+          }
+        ],
+        "type": "composite"
+      },
+      "ifFalse": {
+        "type": "change_discontent",
+        "description": "+2 Descontento."
+      }
+    }
+  },
+  {
+    "id": "L10",
+    "type": "consecuencia_ley",
+    "variante": "B",
+    "etiqueta": "ANOCHECER",
+    "titulo": "CASA DE ORACIÓN",
+    "textoAmbientacion": "La fe mantiene a la gente unida en tiempos difíciles. Pero algunos son escépticos.",
+    "efecto": "Si la Casa de Oración está construida: +1 Esperanza. En caso contrario: -1 Esperanza.",
+    "efectoEstructurado": {
+      "condition": {
+        "type": "custom",
+        "description": "Si la Casa de Oración está construida"
+      },
+      "ifTrue": {
+        "type": "change_hope",
+        "description": "+1 Esperanza."
+      },
+      "ifFalse": {
+        "type": "change_hope",
+        "description": "-1 Esperanza."
+      }
+    }
+  }
+]

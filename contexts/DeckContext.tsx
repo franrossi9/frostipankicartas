@@ -24,6 +24,7 @@ interface DeckContextType {
   loading: boolean;
   gameStarted: boolean;
   addCardToMainDeck: (card: Card) => void;
+  replaceDisputaSocialCard: (newCard: Card) => void;
   drawCard: () => Card | null;
   moveToDiscard: (card: Card) => void;
   removeCard: (card: Card) => void;
@@ -65,9 +66,9 @@ export const DeckProvider: React.FC<DeckProviderProps> = ({ children }) => {
   const [actionHistory, setActionHistory] = useState<ActionType[]>([]);
 
   useEffect(() => {
-    const loadCards = async () => {
+    const loadCards = () => {
       setLoading(true);
-      const cards = await loadAllCards();
+      const cards = loadAllCards();
       setAvailableCards(cards);
       setLoading(false);
     };
@@ -109,6 +110,43 @@ export const DeckProvider: React.FC<DeckProviderProps> = ({ children }) => {
     });
   };
 
+  const replaceDisputaSocialCard = (newCard: Card) => {
+    // Solo funciona si la nueva carta es de tipo disputa_social
+    if (newCard.type !== "disputa_social") {
+      addCardToMainDeck(newCard);
+      return;
+    }
+
+    // Encontrar la carta de disputa social actual en el mazo principal
+    const currentDisputaInDeck = mainDeck.find(
+      (card) => card.type === "disputa_social"
+    );
+
+    if (currentDisputaInDeck) {
+      // Remover la carta actual del mazo principal
+      setMainDeck((prev) =>
+        prev.filter((card) => card.id !== currentDisputaInDeck.id)
+      );
+
+      // Devolver la carta actual al mazo de disputas no usadas
+      setDisputaSocialDeck((prev) => [...prev, currentDisputaInDeck]);
+    }
+
+    // Agregar la nueva carta al mazo principal
+    setMainDeck((prev) => [...prev, newCard]);
+
+    // Actualizar firstDisputaSocial (la que está en el mazo ahora)
+    setFirstDisputaSocial(newCard);
+
+    setActionHistory((prev) => {
+      const newHistory: ActionType[] = [
+        ...prev,
+        { type: "ADD_CARD" as const, card: newCard },
+      ];
+      return newHistory.slice(-5);
+    });
+  };
+
   const drawCard = (): Card | null => {
     if (mainDeck.length === 0) return null;
 
@@ -138,11 +176,18 @@ export const DeckProvider: React.FC<DeckProviderProps> = ({ children }) => {
       // Agregar el descarte al mazo principal y la siguiente carta de Disputa Social
       if (disputaSocialDeck.length > 0) {
         const nextDisputaSocial = disputaSocialDeck[0];
-        setCurrentDisputaSocial(nextDisputaSocial);
+        const newCurrentDisputaSocial = disputaSocialDeck[1] || null;
+
+        // Actualizar firstDisputaSocial (la que está en el mazo)
+        setFirstDisputaSocial(nextDisputaSocial);
+        // Actualizar currentDisputaSocial (la próxima que entrará)
+        setCurrentDisputaSocial(newCurrentDisputaSocial);
+
         setMainDeck((prev) => [...prev, ...discardDeck, nextDisputaSocial]);
         setDisputaSocialDeck((prev) => prev.slice(1));
       } else {
         setMainDeck((prev) => [...prev, ...discardDeck]);
+        setFirstDisputaSocial(null);
         setCurrentDisputaSocial(null);
       }
       setDiscardDeck([]);
@@ -218,6 +263,7 @@ export const DeckProvider: React.FC<DeckProviderProps> = ({ children }) => {
     loading,
     gameStarted,
     addCardToMainDeck,
+    replaceDisputaSocialCard,
     drawCard,
     moveToDiscard,
     removeCard,
