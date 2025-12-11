@@ -21,6 +21,7 @@
           "description": "Por cada Cadáver que tengas, gana 1 Ciudadano enfermo"
         }
       ],
+      "discardAfter": true,
       "type": "composite"
     }
   },
@@ -85,6 +86,7 @@
           ]
         }
       ],
+      "removeAfter": true,
       "type": "composite"
     }
   },
@@ -145,6 +147,7 @@
           ]
         }
       ],
+      "removeAfter": true,
       "type": "composite"
     }
   },
@@ -185,6 +188,7 @@
     "textoAmbientacion": "La empatía solía ser lo que nos impulsaba, ahora es una mercancía que rara vez podemos permitirnos. La noticia sobre quién era el ladrón se difundió rápidamente... Una multitud enfurecida ha impuesto su propia justicia. El ladrón y su familia han sido atacados.",
     "efecto": "1 Trabajador muere. Gana 1 Trabajador enfermo. Si tienes Ira activa: Gana 1 Niño enfermo. OPCIONES: 1. Tuvieron lo que merecían: -1 Esperanza. // 2. Castigar a la multitud con horas de trabajo más largas: +1 Ira. Reutiliza un Trabajador.",
     "efectoEstructurado": {
+      "removeAfter": true,
       "effects": [
         {
           "type": "die_citizen",
@@ -240,6 +244,7 @@
     "textoAmbientacion": "",
     "efecto": "Si tienes un Explorador en cualquier carta de Expedición: Ve a 1. De lo contrario: Ve a 2. // 1. El grupo de rescate encontró un asentamiento abandonado sin rastro del grupo perdido. Lo intentamos: Coloca 2 de Madera debajo de una Expedición activa. Gana esa 2 de Madera cuando el Explorador regrese de esa Expedición. Si tienes Justicia activa: Agota 1 Descontento. // 2. Los hermanos están causando problemas, gritando sobre promesas rotas y trato desalmado. Los ciudadanos están de acuerdo: Activa la Apatía. +1 Ira.",
     "efectoEstructurado": {
+      "removeAfter": true,
       "condition": {
         "type": "custom",
         "description": "Si tienes un Explorador en cualquier carta de Expedición"
@@ -248,15 +253,7 @@
         "effects": [
           {
             "type": "custom",
-            "description": "El grupo de rescate encontró un asentamiento abandonado sin rastro del grupo perdido"
-          },
-          {
-            "type": "custom",
-            "description": "Lo intentamos: Coloca 2 de Madera debajo de una Expedición activa"
-          },
-          {
-            "type": "gain_resource",
-            "description": "Gana esa 2 de Madera cuando el Explorador regrese de esa Expedición"
+            "description": "El grupo de rescate encontró un asentamiento abandonado sin rastro del grupo perdido. Lo intentamos: Coloca 2 de Madera debajo de una Expedición activa. Gana esa 2 de Madera cuando el Explorador regrese de esa Expedición"
           },
           {
             "condition": {
@@ -275,11 +272,11 @@
         "effects": [
           {
             "type": "custom",
-            "description": "Los hermanos están causando problemas, gritando sobre promesas rotas y trato desalmado"
+            "description": "Los hermanos están causando problemas, gritando sobre promesas rotas y trato desalmado. Los ciudadanos están de acuerdo"
           },
           {
             "type": "activate_discontent",
-            "description": "Los ciudadanos están de acuerdo: Activa la Apatía"
+            "description": "Activa la Apatía"
           },
           {
             "type": "change_discontent",
@@ -298,6 +295,7 @@
     "textoAmbientacion": "Los dos hermanos que buscaban a su familia acaban de regresar a nuestro asentamiento. ",
     "efecto": "Si el número de Ronda es impar: Ve a 1. De lo contrario: Ve a 2. // 1. ¡Han encontrado a su familia! Pueden estar exhaustos y congelados, pero están muy agradecidos: Gana 2 Trabajadores, 3 Ingenieros y 2 Niños. Gana 2 Ingenieros enfermos y 1 Niño enfermo. // 2. La tristeza y la pérdida fueron las únicas compañeras que regresaron con los dos hermanos. Evocó recuerdos dolorosos entre nuestra gente: Gana 2 Trabajadores. Gana 2 Trabajadores enfermos. +1 Apatía.",
     "efectoEstructurado": {
+      "removeAfter": true,
       "condition": {
         "type": "custom",
         "description": "Si el número de Ronda es impar"
@@ -306,11 +304,11 @@
         "effects": [
           {
             "type": "gain_citizen",
-            "description": "¡Han encontrado a su familia! Pueden estar exhaustos y congelados, pero están muy agradecidos: Gana 2 Trabajadores, 3 Ingenieros y 2 Niños"
+            "description": "¡Han encontrado a su familia! Pueden estar exhaustos y congelados, pero están muy agradecidos"
           },
           {
             "type": "gain_sick",
-            "description": "Gana 2 Ingenieros enfermos y 1 Niño enfermo"
+            "description": "Gana 2 Trabajadores, 3 Ingenieros y 2 Niños. Gana 2 Ingenieros enfermos y 1 Niño enfermo"
           }
         ],
         "type": "composite"
@@ -346,6 +344,7 @@
     "textoAmbientacion": "Por demanda de los ciudadanos, has prometido proporcionar confort a los enfermos. ¿Lo has hecho?.",
     "efecto": "Si no hay Recursos en #M004: Ve a 1. De lo contrario: Ve a 2. // 1. Tus mentiras han mostrado a la gente que solo pueden contar consigo mismos: +1 Avaricia. Agota toda la Esperanza. Elimina #M004 del juego. // 2. Por cada marcador de Enfermedad por encima de 4: Elimina 1 Recurso de #M004 o -1 Esperanza. Si todos los Recursos fueron eliminados de #M004: -1 Esperanza. Coloca todos los Recursos de #M004 en el banco. Elimina #M004 del juego.",
     "efectoEstructurado": {
+      "removeAfter": true,
       "condition": {
         "type": "custom",
         "description": "Si no hay Recursos en #M004"
@@ -405,6 +404,7 @@
     "textoAmbientacion": "Prometiste que tus ciudadanos no dormirían en el frío. ¿Has mantenido tu palabra?",
     "efecto": "Coloca esta carta en el despliegue de Eventos. FASE DE NOCHE: Al final de la Fase de NOCHE: Si todos los Meeples de Ciudadano tienen un lugar cálido para dormir: Activa 1 de Esperanza. De lo contrario: Por cada Meeple de Ciudadano sin un lugar cálido para dormir, -1 de Esperanza.",
     "efectoEstructurado": {
+      "removeAfter": true,
       "effects": [
         {
           "type": "custom",
@@ -430,6 +430,7 @@
     "textoAmbientacion": "Prometiste que la mayoría de los ciudadanos dormirían en refugios calefactados. ¿Has mantenido tu palabra?",
     "efecto": "Coloca esta carta en el despliegue de Eventos. FASE DE NOCHE: Al final de la Fase de NOCHE: Si más de la mitad de tus Meeples de Ciudadano tienen un lugar cálido para dormir: Elimina esta carta del juego. De lo contrario: +1 Apatía.",
     "efectoEstructurado": {
+      "removeAfter": true,
       "effects": [
         {
           "type": "custom",
@@ -455,6 +456,7 @@
     "textoAmbientacion": "Diste tu palabra de que habría suficientes recursos para mantener a todos calientes. La gente exige cumplimiento. Ahora.",
     "efecto": "Coloca esta carta en el despliegue de Eventos. FASE DE NOCHE: Por cada Refugio y por cada Meeple de Ciudadano sin un lugar cálido para dormir, pierde 1 Madera o 1 Carbón. Si perdiste la cantidad completa: Descarta 1 ficha de Descontento. De lo contrario: Por cada Recurso que no pudiste perder: -1 Esperanza.",
     "efectoEstructurado": {
+      "removeAfter": true,
       "effects": [
         {
           "type": "custom",
@@ -491,18 +493,26 @@
     "textoAmbientacion": "Prometiste tener suficientes suministros para los más necesitados. Ahora es el momento.",
     "efecto": "Coloca esta carta en el despliegue de Eventos. FASE DE NOCHE: Si tienes algún Meeple de Ciudadano sin un lugar cálido para dormir: Ve a 1. De lo contrario: Ve a 2. // 1. Proporcionar ayuda a los sin techo: Cuenta el número de Meeples de Ciudadano sin un lugar cálido para dormir. Gasta esa cantidad de Madera / Carbón (en cualquier combinación). Si lo haces: +1 Esperanza. Si no puedes: +1 Avaricia. Por cada Avaricia activa, pierdes 1 Recurso. // 2. Proporcionar ayuda a los temerosos: Divide el número de Refugios que tienes por 2 y redondea hacia arriba. Gasta esa cantidad de Madera / Carbón (en cualquier combinación). Si lo haces: +1 Esperanza. Si no puedes: +1 Avaricia. Por cada Avaricia activa, pierdes 1 Recurso.",
     "efectoEstructurado": {
+      "removeAfter": true,
       "effects": [
         {
           "type": "custom",
           "description": "Coloca esta carta en el despliegue de Eventos"
         },
         {
-          "type": "custom",
-          "description": "FASE DE NOCHE: Si tienes algún Meeple de Ciudadano sin un lugar cálido para dormir: Ve a 1"
-        },
-        {
-          "type": "custom",
-          "description": "De lo contrario: Ve a 2"
+          "condition": {
+            "type": "custom",
+            "description": "FASE DE NOCHE: Si tienes algún Meeple de Ciudadano sin un lugar cálido para dormir"
+          },
+          "ifTrue": {
+            "type": "custom",
+            "description": "Cuenta el numero de Meeples de Ciudadano sin un lugar cálido para dormir. Gasta esa cantidad de Madera / Carbón (en cualquier combinación). Si lo haces: +1 Esperanza. Si no puedes: +1 Avaricia. Por cada Avaricia activa, pierdes 1 Recurso."
+          },
+          "ifFalse": {
+            "target": "esperanza_activa_total",
+            "effect": null,
+            "description": "Divide el numero de Refugios que tienes por 2 y redondea hacia arriba. Gasta esa cantidad de Madera / Carbón (en cualquier combinación). Si lo haces: +1 Esperanza. Si no puedes: +1 Avaricia. Por cada Avaricia activa, pierdes 1 Recurso."
+          }
         }
       ],
       "type": "composite"
@@ -516,6 +526,7 @@
     "textoAmbientacion": "Hiciste promesas, pero no llenan estómagos vacíos. ¿Puedes entregar la solución?",
     "efecto": "Si no hay Hambre: +1 Cuidado. De lo contrario: Por cada 5 de Hambre que tengas (redondeado hacia arriba), -1 Esperanza.",
     "efectoEstructurado": {
+      "removeAfter": true,
       "condition": {
         "type": "custom",
         "description": "Si no hay Hambre"
@@ -542,6 +553,7 @@
     "textoAmbientacion": "Nuestra gente conoce las dificultades y anhela esperanza. Una promesa incumplida puede doler más que una barriga rugiendo.",
     "efecto": "Si el Hambre es menor o igual a la Comida: +1 Esperanza. De lo contrario: +1 Avaricia.",
     "efectoEstructurado": {
+      "removeAfter": true,
       "condition": {
         "type": "custom",
         "description": "Si el Hambre es menor o igual a la Comida"
@@ -564,6 +576,7 @@
     "textoAmbientacion": "Todo lo que hizo falta fue una distracción momentánea, ojos cansados cerrados por un segundo de más. La gente no son autómatas, necesitan descanso.",
     "efecto": "Si tienes Apatía activa: 1 Trabajador muere. De lo contrario: Gana 1 Trabajador enfermo.",
     "efectoEstructurado": {
+      "removeAfter": true,
       "condition": {
         "type": "custom",
         "description": "Si tienes Apatía activa"
@@ -586,6 +599,7 @@
     "textoAmbientacion": "La poeta desapareció junto con su familia. Faltan algunos recursos también. ¿Era su poesía tan importante para ella que arriesgó su vida y la de sus seres queridos?",
     "efecto": "Pierdes 2 Trabajadores y 1 Niño. Pierdes 3 Recursos. Añade #D018 al mazo de Anochecer.",
     "efectoEstructurado": {
+      "removeAfter": true,
       "effects": [
         {
           "type": "lose_citizen",
@@ -612,6 +626,7 @@
     "textoAmbientacion": "Algo sobre esa poesía seguía molestándote... Organizaste una reunión con la poeta... Debido a las dificultades de la vida, ella solo necesitaba desahogarse un poco...",
     "efecto": "Agota todo el Descontento de un tipo o -1 de Descontento.",
     "efectoEstructurado": {
+      "removeAfter": true,
       "type": "exhaust_discontent",
       "description": "Agota todo el Descontento de un tipo o -1 de Descontento"
     }
@@ -624,10 +639,11 @@
     "textoAmbientacion": "Tu desaprobación pública de su poesía la empujó al suicidio. Fue encontrada aferrando una nota con sus últimas palabras: \"Toda la noche nos arrodillamos y rezamos, ¡Locos dolientes de un cadáver!...\"",
     "efecto": "Activa la Ira. 1 Trabajador muere.",
     "efectoEstructurado": {
+      "removeAfter": true,
       "effects": [
         {
           "type": "activate_discontent",
-          "description": "Activa la Ira"
+          "description": "Activa Ira"
         },
         {
           "type": "die_citizen",
@@ -645,6 +661,7 @@
     "textoAmbientacion": "La noticia sobre el regreso de la poeta trajo sentimientos encontrados... Pide perdón y explica que sus acciones fueron motivadas por nuestra supresión de su arte. ¿Concederemos asilo a la hija pródiga y su rebaño?",
     "efecto": "OPCIONES: 1. Es un milagro. ¡Son todos bienvenidos!: Gana 4 Trabajadores, 2 Ingenieros y 1 Niño. Gana 2 Trabajadores enfermos y 1 Niño enfermo. Aumenta el Hambre en 4. // 2. Los refugiados son bienvenidos si obedecen las reglas. ¡Tú las rompiste, así que vete!: Gana 2 Trabajadores y 2 Ingenieros. Aumenta el Hambre en 2. -1 Esperanza. // 3. Por lo que sabemos, son alborotadores igual que tú. ¡Fuera con vosotros!: +1 Apatía.",
     "efectoEstructurado": {
+      "removeAfter": true,
       "description": "Elige una opción:",
       "minChoices": 1,
       "maxChoices": 1,
@@ -653,11 +670,11 @@
           "effects": [
             {
               "type": "custom",
-              "description": "Es un milagro"
+              "description": "Es un milagro. ¡Son todos bienvenidos!"
             },
             {
               "type": "gain_citizen",
-              "description": "¡Son todos bienvenidos!: Gana 4 Trabajadores, 2 Ingenieros y 1 Niño"
+              "description": "Gana 4 Trabajadores, 2 Ingenieros y 1 Niño"
             },
             {
               "type": "gain_sick",
@@ -665,7 +682,7 @@
             },
             {
               "type": "change_hunger",
-              "description": "Aumenta el Hambre en"
+              "description": "Aumenta el Hambre en 4"
             }
           ],
           "type": "composite"
@@ -674,11 +691,11 @@
           "effects": [
             {
               "type": "custom",
-              "description": "Los refugiados son bienvenidos si obedecen las reglas"
+              "description": "Los refugiados son bienvenidos si obedecen las reglas. ¡Tú las rompiste, así que vete!: "
             },
             {
               "type": "gain_citizen",
-              "description": "¡Tú las rompiste, así que vete!: Gana 2 Trabajadores y 2 Ingenieros"
+              "description": "Gana 2 Trabajadores y 2 Ingenieros"
             },
             {
               "type": "change_hunger",
@@ -695,11 +712,11 @@
           "effects": [
             {
               "type": "custom",
-              "description": "Por lo que sabemos, son alborotadores igual que tú"
+              "description": "Por lo que sabemos, son alborotadores igual que tú. ¡Fuera con vosotros!"
             },
             {
               "type": "change_discontent",
-              "description": "¡Fuera con vosotros!: +1 Apatía"
+              "description": " +1 Apatía"
             }
           ],
           "type": "composite"
@@ -715,6 +732,7 @@
     "textoAmbientacion": "Prometiste que nuestra ciudad ayudaría a estas personas a sobrevivir en su propio asentamiento. ¿Has mantenido tu palabra?",
     "efecto": "Si hay Recursos en #M010: Ve a 1. De lo contrario: Ve a 2. // 1. Nuestra ayuda fue suficiente y el otro asentamiento sobrevivió. Ahora nos han enviado un regalo como muestra de su gratitud: +1 Esperanza. Gana 1 Núcleo de Vapor. Coloca todos los Recursos de #M010 en el banco. Elimina #M010 del juego. // 2. Nos negamos. Sobrevivimos... solos: +1 Avaricia. Elimina #M010 del juego. Añade #D020 al mazo de Anochecer.",
     "efectoEstructurado": {
+      "removeAfter": true,
       "condition": {
         "type": "custom",
         "description": "Si hay Recursos en #M010"
@@ -723,11 +741,11 @@
         "effects": [
           {
             "type": "custom",
-            "description": "Nuestra ayuda fue suficiente y el otro asentamiento sobrevivió"
+            "description": "Nuestra ayuda fue suficiente y el otro asentamiento sobrevivió. Ahora nos han enviado un regalo como muestra de su gratitud"
           },
           {
             "type": "change_hope",
-            "description": "Ahora nos han enviado un regalo como muestra de su gratitud: +1 Esperanza"
+            "description": "+1 Esperanza"
           },
           {
             "type": "gain_resource",
@@ -748,7 +766,11 @@
         "effects": [
           {
             "type": "change_discontent",
-            "description": "Nos negamos. Sobrevivimos... solos: +1 Avaricia"
+            "description": "Nos negamos. Sobrevivimos... solos"
+          },
+          {
+            "type": "custom",
+            "description": " +1 Avaricia"
           },
           {
             "type": "custom",
@@ -772,6 +794,7 @@
     "textoAmbientacion": "Vienen arrastrando los pies; sus vidas tan destruidas como su asentamiento. ¿Vienen por refugio o venganza?",
     "efecto": "1. Podéis uniros a nosotros si lográis mantener el pasado enterrado y mirar hacia el futuro: Gana 4 Trabajadores y 4 Niños. Gana 1 Trabajador enfermo y 1 Niño enfermo. Aumenta el Hambre en 6. +1 Esperanza. Añade #D021 al mazo de Anochecer. // 2. ¡Están destinados a culparnos por su desaparición! ¡No podemos dejarlos entrar!: +1 Avaricia.",
     "efectoEstructurado": {
+      "removeAfter": true,
       "description": "Elige una opción:",
       "minChoices": 1,
       "maxChoices": 1,
@@ -780,21 +803,16 @@
           "effects": [
             {
               "type": "gain_citizen",
-              "description": "Podéis uniros a nosotros si lográis mantener el pasado enterrado y mirar hacia el futuro: Gana 4 Trabajadores y 4 Niños"
+              "description": "Podéis uniros a nosotros si lográis mantener el pasado enterrado y mirar hacia el futuro"
             },
             {
               "type": "gain_sick",
-              "description": "Gana 1 Trabajador enfermo y 1 Niño enfermo"
+              "description": "Gana 4 Trabajadores y 4 Niños. Gana 1 Trabajador enfermo y 1 Niño enfermo"
             },
             {
               "type": "change_hunger",
-              "description": "Aumenta el Hambre en"
-            }
-          ],
-          "type": "composite"
-        },
-        {
-          "effects": [
+              "description": "Aumenta el Hambre en 6"
+            },
             {
               "type": "change_hope",
               "description": "+1 Esperanza"
@@ -803,6 +821,15 @@
               "type": "add_card_to_deck",
               "description": "Añade #D021 al mazo de Anochecer",
               "cardId": "D021"
+            }
+          ],
+          "type": "composite"
+        },
+        {
+          "effects": [
+            {
+              "type": "change_discontent",
+              "description": "Podéis uniros a nosotros si lográis mantener el pasado enterrado y mirar hacia el futuro: +1 Avaricia"
             }
           ],
           "type": "composite"
@@ -818,6 +845,7 @@
     "textoAmbientacion": "",
     "efecto": "Si no tienes fichas de Descontento activas: Elimina esta carta del juego. De lo contrario: Si tu ficha de Descontento activa más común es Ira (o empate), ve a 1. Si es Avaricia (o empate), ve a 2. De lo contrario, ve a 3. // 1. Nuestros ciudadanos fueron agresivos... Han reaccionado con violencia: +1 Ira. // 2. Nuestros ciudadanos miraron a esta pobre gente con desdén. Han reaccionado con avaricia: +1 Avaricia. // 3. Nuestra gente no dio la bienvenida a los recién llegados con ningún tipo de empatía. Han reaccionado con apatía: +1 Apatía.",
     "efectoEstructurado": {
+      "removeAfter": true,
       "effects": [
         {
           "condition": {
@@ -837,11 +865,11 @@
               "effects": [
                 {
                   "type": "custom",
-                  "description": "Nuestros ciudadanos fueron agresivos."
+                  "description": "Nuestros ciudadanos fueron agresivos. Han reaccionado con violencia"
                 },
                 {
                   "type": "change_discontent",
-                  "description": "Han reaccionado con violencia: +1 Ira"
+                  "description": "+1 Ira"
                 }
               ],
               "type": "composite"
@@ -857,11 +885,11 @@
             "effects": [
               {
                 "type": "custom",
-                "description": "Nuestros ciudadanos miraron a esta pobre gente con desdén"
+                "description": "Nuestros ciudadanos miraron a esta pobre gente con desdén. Han reaccionado con avaricia"
               },
               {
                 "type": "change_discontent",
-                "description": "Han reaccionado con avaricia: +1 Avaricia"
+                "description": "+1 Avaricia"
               }
             ],
             "type": "composite"
@@ -870,11 +898,11 @@
             "effects": [
               {
                 "type": "custom",
-                "description": "Nuestra gente no dio la bienvenida a los recién llegados con ningún tipo de empatía"
+                "description": "Nuestra gente no dio la bienvenida a los recién llegados con ningún tipo de empatía. Han reaccionado con apatía"
               },
               {
                 "type": "change_discontent",
-                "description": "Han reaccionado con apatía: +1 Apatía"
+                "description": "+1 Apatía"
               }
             ],
             "type": "composite"
@@ -910,26 +938,30 @@
               "effects": [
                 {
                   "type": "custom",
-                  "description": "Esto termina ahora"
+                  "description": "Esto termina ahora. Ella y su madre recibirán la orden de detenerse. Si no lo hacen, serán desterradas"
                 },
                 {
-                  "type": "custom",
-                  "description": "Ella y su madre recibirán la orden de detenerse"
-                },
-                {
-                  "condition": {
-                    "type": "custom",
-                    "description": "Si no lo hacen, serán desterradas"
-                  },
-                  "ifTrue": {
-                    "type": "change_discontent",
-                    "description": "+1 Ira"
-                  }
+                  "type": "change_discontent",
+                  "description": "+1 Ira"
                 },
                 {
                   "type": "add_card_to_deck",
                   "description": "Añade #D023 al mazo de Anochecer",
-                  "cardId": "D023"
+                  "cardId": "D023",
+                  "removeAfter": true
+                }
+              ],
+              "type": "composite"
+            },
+            {
+              "effects": [
+                {
+                  "type": "custom",
+                  "description": "Los deseos de la Profeta deben cumplirse - si no, ¡estaremos todos condenados!"
+                },
+                {
+                  "type": "custom",
+                  "description": "Coloca esta carta en el despliegue de Eventos. FASE DE ANOCHECER: Gasta 2 Comida. Si no puedes, -1 Esperanza."
                 }
               ],
               "type": "composite"
@@ -956,7 +988,8 @@
           "effects": [
             {
               "type": "lose_citizen",
-              "description": "¡Esto es una locura! ¡Ambas deben ser desterradas inmediatamente!: Pierde 1 Ingeniero y 1 Niño"
+              "description": "¡Esto es una locura! ¡Ambas deben ser desterradas inmediatamente!: Pierde 1 Ingeniero y 1 Niño",
+              "removeAfter": true
             },
             {
               "condition": {
@@ -967,6 +1000,23 @@
                 "type": "change_discontent",
                 "description": "+1 Ira"
               }
+            }
+          ],
+          "type": "composite"
+        },
+        {
+          "effects": [
+            {
+              "type": "custom",
+              "description": "La gente bebe las palabras de sus labios. Anteriormente desprovistos de esperanza, ahora se aferran a ella como niños"
+            },
+            {
+              "type": "custom",
+              "description": "Pierde 2 Recursos"
+            },
+            {
+              "type": "custom",
+              "description": "Coloca esta carta en el despliegue de Eventos. FASE DE ANOCHECER: Gasta 2 Comida. Si no puedes, -1 Esperanza."
             }
           ],
           "type": "composite"
@@ -982,6 +1032,7 @@
     "textoAmbientacion": "El asesino ha atacado de nuevo... logró intervenir a tiempo... El asesino murió durante la pelea.",
     "efecto": "1 Ingeniero muere. No robes una carta de Ciudadano por esta muerte.",
     "efectoEstructurado": {
+      "removeAfter": true,
       "effects": [
         {
           "type": "die_citizen",
@@ -1032,6 +1083,7 @@
                 {
                   "type": "add_card_to_deck",
                   "description": "Añade #D024 al mazo de Anochecer",
+                  "removeAfter": true,
                   "cardId": "D024"
                 }
               ],
@@ -1063,6 +1115,7 @@
                 {
                   "type": "add_card_to_deck",
                   "description": "Añade #D026 al mazo de Anochecer",
+                  "removeAfter": true,
                   "cardId": "D026"
                 }
               ],
@@ -1082,6 +1135,7 @@
     "textoAmbientacion": "Atraparon al asesino. Resulta que es el ingeniero jefe responsable del mantenimiento del generador. Intentó explicar que el estrés que siente por la responsabilidad es lo que le provoca esos impulsos…",
     "efecto": "OPCIONES: 1. Este hombre ha matado inocentes, pero si no se le castiga adecuadamente, muchos más podrían morir. Debe arrepentirse trabajando turnos más largos: +1 Ira. Elimina todos los cubos de Estrés del marcador de Estrés. // 2. ¡Justicia para todos! Será ejecutado públicamente: -1 Descontento. 1 Ingeniero muere. No robes una carta de Ciudadano por esta muerte.",
     "efectoEstructurado": {
+      "removeAfter": true,
       "description": "Elige una opción:",
       "minChoices": 1,
       "maxChoices": 1,
@@ -1131,6 +1185,7 @@
     "textoAmbientacion": "No muchos se han ofrecido como voluntarios... Una familia decidió dar un paso al frente. Sus intenciones parecen genuinas.",
     "efecto": "Si tienes Cuidado activo: Ve a 1. De lo contrario: Ve a 2. // 1. Los niños se ven más felices y también los ciudadanos: +1 Esperanza. // 2. La familia no tenía suficiente tiempo o amor para los niños... La niña más joven... fue encontrada muerta de frío: 1 Niño muere.",
     "efectoEstructurado": {
+      "removeAfter": true,
       "condition": {
         "type": "custom",
         "description": "Si tienes Cuidado activo"
@@ -1143,15 +1198,12 @@
         "effects": [
           {
             "type": "custom",
-            "description": "La familia no tenía suficiente tiempo o amor para los niños."
+            "description": ""
           },
-          {
-            "type": "custom",
-            "description": "La niña más joven."
-          },
+
           {
             "type": "die_citizen",
-            "description": "fue encontrada muerta de frío: 1 Niño muere"
+            "description": "La familia no tenía suficiente tiempo o amor para los niños. Ellos los enviaron a trabajar. La Niña mas jovencita le fue encargado vender fosforos. Fue congelada hasta morir agarrando una canasta: 1 Niño muere"
           }
         ],
         "type": "composite"
@@ -1166,6 +1218,7 @@
     "textoAmbientacion": "Una niña pequeña fue encontrada muerta por congelación en la calle. Todos la conocían como la niña de los fósforos...",
     "efecto": "+1 Descontento. 1 Niño muere.",
     "efectoEstructurado": {
+      "removeAfter": true,
       "effects": [
         {
           "type": "change_discontent",
@@ -1187,6 +1240,7 @@
     "textoAmbientacion": "Todos escucharon el sonido terrible antes de la explosión... ¡Solo por pura suerte nadie murió!",
     "efecto": "Gana 2 Ingenieros enfermos. Coloca 3 cubos de Estrés en el medidor de Estrés.",
     "efectoEstructurado": {
+      "removeAfter": true,
       "effects": [
         {
           "type": "gain_sick",
@@ -1208,6 +1262,7 @@
     "textoAmbientacion": "El proyecto del ingeniero fue exitoso, y ha logrado mejorar nuestra producción de alimentos permanentemente.",
     "efecto": "Elige uno: A) Construye un Invernadero (Hothouse) gratis. B) Mejora una Cabaña de Cazadores o Invernadero gratis, incluso si ese Edificio ha sido usado esta Ronda.",
     "efectoEstructurado": {
+      "removeAfter": true,
       "description": "Elige una opción:",
       "minChoices": 1,
       "maxChoices": 1,
@@ -1231,6 +1286,7 @@
     "textoAmbientacion": "Nuestros jóvenes adeptos han sido entrenados por los profesionales.",
     "efecto": "Intercambia 1 de tus Meeples de Niño con el Meeple de Niño Trabajador / Ingeniero en #M016. Este Meeple cuenta como un Niño en todos los aspectos, excepto que puede ser usado para realizar una acción como si fuera un Trabajador / Ingeniero (según corresponda). Elimina #M016 del juego.",
     "efectoEstructurado": {
+      "removeAfter": true,
       "effects": [
         {
           "type": "custom",
@@ -1256,6 +1312,7 @@
     "textoAmbientacion": "Hubo una explosión en una destilería privada y hubo gente herida.",
     "efecto": "Elige un Edificio con un Meeple de Ingeniero en él, o cualquier Refugio. Destruye el Edificio elegido. 1 Ingeniero muere.",
     "efectoEstructurado": {
+      "removeAfter": true,
       "effects": [
         {
           "type": "custom",
@@ -1281,6 +1338,7 @@
     "textoAmbientacion": "La prostitución florece en el asentamiento... Las enfermedades venéreas se han convertido en una amenaza real.",
     "efecto": "-1 Esperanza. Gana 2 Trabajadores enfermos. Gana 2 Ingenieros enfermos.",
     "efectoEstructurado": {
+      "removeAfter": true,
       "effects": [
         {
           "type": "change_hope",
@@ -1306,6 +1364,7 @@
     "textoAmbientacion": "El alboroto que siguió a la pelea en la cocina sacó a la luz una terrible verdad... alguien había sido pisoteado hasta la muerte...",
     "efecto": "Agota 1 Esperanza. 1 Trabajador muere.",
     "efectoEstructurado": {
+      "removeAfter": true,
       "effects": [
         {
           "type": "exhaust_hope",
@@ -1327,6 +1386,7 @@
     "textoAmbientacion": "¡Nuestra gente ha estudiado los libros. El conocimiento que contienen nos ayudará enormemente!",
     "efecto": "Si todas las Tecnologías han sido desarrolladas: Mejora un Edificio gratis, incluso si ese Edificio ha sido usado esta Ronda. Si hay una ficha de Desarrollo en el marcador de Ronda: Mueve esa ficha de Desarrollo 2 espacios hacia atrás en el marcador de Ronda. De lo contrario: Elimina esta carta del juego.",
     "efectoEstructurado": {
+      "removeAfter": true,
       "effects": [
         {
           "condition": {
@@ -1364,6 +1424,7 @@
     "textoAmbientacion": "Especialmente en tiempos como estos, entristece a la gente que el trabajo de toda la vida de un hombre pueda ser desperdiciado...",
     "efecto": "Activa Avaricia o Apatía. Si no pudiste: +1 Descontento.",
     "efectoEstructurado": {
+      "removeAfter": true,
       "effects": [
         {
           "type": "activate_discontent",
@@ -1391,6 +1452,7 @@
     "textoAmbientacion": "Pocas cosas ayudan a una enfermedad a supurar y propagarse más que la ignorancia y la negación...",
     "efecto": "Agota Cuidado. Coloca esta carta en el despliegue de Eventos. FASE DE ANOCHECER: Si hay un Meeple de Ingeniero en esta carta: Elimina esta carta del juego. FASE DE NOCHE: Gana 3 Ciudadanos enfermos (del tipo de la Ronda actual). (Icono de engranaje: Una vez por Ronda).",
     "efectoEstructurado": {
+      "removeAfter": true,
       "effects": [
         {
           "type": "exhaust_hope",
@@ -1407,10 +1469,6 @@
         {
           "type": "gain_sick",
           "description": "FASE DE NOCHE: Gana 3 Ciudadanos enfermos (del tipo de la Ronda actual)"
-        },
-        {
-          "type": "custom",
-          "description": "(Icono de engranaje: Una vez por Ronda)"
         }
       ],
       "type": "composite"
@@ -1424,6 +1482,7 @@
     "textoAmbientacion": "",
     "efecto": "Si tienes Ira activa: Ve a 1. De lo contrario: Ve a 2. // 1. La ira no está solo en los niños. Los adultos enviados a hablar con ellos tampoco eran muy calmados. Terminó en una pelea, y la pandilla se dispersó. Gana 2 Trabajadores enfermos. Añade #D039 al mazo de Anochecer. // 2. Afortunadamente, el ánimo entre nuestra gente no es lo suficientemente grave como para causar conflicto abierto... Un poco de atención... fue todo lo que hizo falta: Activa Cuidado.",
     "efectoEstructurado": {
+      "removeAfter": true,
       "condition": {
         "type": "custom",
         "description": "Si tienes Ira activa"
@@ -1432,15 +1491,7 @@
         "effects": [
           {
             "type": "custom",
-            "description": "La ira no está solo en los niños"
-          },
-          {
-            "type": "custom",
-            "description": "Los adultos enviados a hablar con ellos tampoco eran muy calmados"
-          },
-          {
-            "type": "custom",
-            "description": "Terminó en una pelea, y la pandilla se dispersó"
+            "description": "La ira no está solo en los niños. Los adultos enviados a hablar con ellos tampoco eran muy calmados. Terminó en una pelea, y la pandilla se dispersó"
           },
           {
             "type": "gain_sick",
@@ -1461,12 +1512,8 @@
             "description": "Afortunadamente, el ánimo entre nuestra gente no es lo suficientemente grave como para causar conflicto abierto."
           },
           {
-            "type": "custom",
-            "description": "Un poco de atención."
-          },
-          {
             "type": "activate_hope",
-            "description": "fue todo lo que hizo falta: Activa Cuidado"
+            "description": "Un poco de atención.fue todo lo que hizo falta: Activa Cuidado"
           }
         ],
         "type": "composite"
@@ -1481,34 +1528,39 @@
     "textoAmbientacion": "El grupo de niños tratados con dureza estaba desesperado por atención. Engañaron a los hombres de guardia y lograron escalar las plataformas del generador. La tragedia ocurrió cuando uno de los niños más pequeños cayó de una escalera.",
     "efecto": "1 Niño muere. // 1. Los niños necesitan cuidado, no castigo y agresión. Esta situación no puede volver a suceder. Es una pena que entendiéramos esto solo después de esta tragedia: +1 Esperanza. Coloca 1 ficha de Trabajador Agotado y 2 fichas de Niño Agotado en el suministro. // 2. Los padres son los culpables de esto: +1 Ira. // 3. La gente de guardia debería haber notado a estos niños antes y haberlos detenido. Deberían ser castigados por esto (Solo si tienes Justicia activa): Gana 2 Trabajadores enfermos.",
     "efectoEstructurado": {
-      "description": "Elige una opción:",
-      "minChoices": 1,
-      "maxChoices": 1,
-      "options": [
+      "removeAfter": true,
+      "effects": [
         {
-          "effects": [
+          "type": "die_citizen",
+          "description": "1 Niño muere"
+        },
+        {
+          "description": "Elige una opción:",
+          "minChoices": 1,
+          "maxChoices": 1,
+          "options": [
             {
-              "type": "die_citizen",
-              "description": "1 Niño muere"
+              "effects": [
+                {
+                  "type": "change_hope",
+                  "description": "Los niños necesitan cuidado, no castigo y agresión. Esta situación no puede volver a suceder. Es una pena que entendiéramos esto solo después de esta tragedia: +1 Esperanza"
+                },
+                {
+                  "type": "exhaust_worker",
+                  "description": "Coloca 1 ficha de Trabajador Agotado y 2 fichas de Niño Agotado en el suministro"
+                }
+              ],
+              "type": "composite"
             },
             {
-              "type": "change_hope",
-              "description": "Los niños necesitan cuidado, no castigo y agresión. Esta situación no puede volver a suceder. Es una pena que entendiéramos esto solo después de esta tragedia: +1 Esperanza"
+              "type": "change_discontent",
+              "description": "Los padres son los culpables de esto: +1 Ira"
             },
             {
-              "type": "exhaust_worker",
-              "description": "Coloca 1 ficha de Trabajador Agotado y 2 fichas de Niño Agotado en el suministro"
+              "type": "gain_sick",
+              "description": "La gente de guardia debería haber notado a estos niños antes y haberlos detenido. Deberían ser castigados por esto (Solo si tienes Justicia activa): Gana 2 Trabajadores enfermos"
             }
-          ],
-          "type": "composite"
-        },
-        {
-          "type": "change_discontent",
-          "description": "Los padres son los culpables de esto: +1 Ira"
-        },
-        {
-          "type": "gain_sick",
-          "description": "La gente de guardia debería haber notado a estos niños antes y haberlos detenido. Deberían ser castigados por esto (Solo si tienes Justicia activa): Gana 2 Trabajadores enfermos"
+          ]
         }
       ]
     }
@@ -1521,6 +1573,7 @@
     "textoAmbientacion": "Nuestra gente encontró un sistema de túneles. En la misma entrada, un grupo de refugiados aterrorizados estaban acurrucados sobre algunos suministros. Hablaban de ruidos extraños provenientes de las profundidades, y que dos de su grupo no habían regresado después de investigar los túneles. Debemos llevarlos a un lugar seguro.",
     "efecto": "Gana 5 Trabajadores. Gana 2 Trabajadores enfermos. Gana 3 de Carbón. // 1. Organizar una guardia nocturna para proteger a nuestros ciudadanos: Coloca 1 ficha de Trabajador / Ingeniero Agotado en el suministro. // 2. Hemos gastado suficiente tiempo y recursos en esta situación de folletín: Añade #D041 al mazo de Anochecer.",
     "efectoEstructurado": {
+      "removeAfter": true,
       "effects": [
         {
           "type": "gain_citizen",
@@ -1533,6 +1586,22 @@
         {
           "type": "gain_resource",
           "description": "Gana 3 de Carbón"
+        },
+        {
+          "description": "Elige una opción:",
+          "minChoices": 1,
+          "maxChoices": 1,
+          "options": [
+            {
+              "type": "exhaust_worker",
+              "description": "Organizar una guardia nocturna para proteger a nuestros ciudadanos: Coloca 1 ficha de Trabajador / Ingeniero Agotado en el suministro"
+            },
+            {
+              "type": "add_card_to_deck",
+              "description": "Hemos gastado suficiente tiempo y recursos en esta situación de folletín: Añade #D041 al mazo de Anochecer",
+              "cardId": "D041"
+            }
+          ]
         }
       ],
       "type": "composite"
@@ -1546,6 +1615,7 @@
     "textoAmbientacion": "El agudo grito de terror resonó por todo el asentamiento. Dos cuerpos, o más bien lo que quedaba de ellos, fueron encontrados en las afueras. No había huellas visibles. Ninguno de nosotros se sentirá seguro a partir de ahora...",
     "efecto": "-1 Esperanza. 2 Trabajadores mueren. No robes cartas de Ciudadano por estas muertes.",
     "efectoEstructurado": {
+      "removeAfter": true,
       "effects": [
         {
           "type": "change_hope",
@@ -1571,6 +1641,7 @@
     "textoAmbientacion": "¡Desenterramos un autómata! ¿Cómo terminó aquí bajo la nieve? Nadie lo sabe. Le falta una pierna, pero partes de ella son visibles bajo la nieve y el hielo. Con suficiente esfuerzo podríamos arreglarlo.",
     "efecto": "1. ¡Esta máquina podría trabajar mientras nuestros ciudadanos duermen o se recuperan. Debemos arreglarla! (Solo si agotas Motivación): Coloca 1 Meeple de Autómata en el suministro. Coloca 1 ficha de Ingeniero Agotado en el suministro. // 2. El corazón de esta máquina – el núcleo de vapor – será de más utilidad para nosotros que la máquina en sí: Gana 1 Núcleo de Vapor. Coloca 1 ficha de Ingeniero Agotado en el suministro. // 3. No tenemos mano de obra de sobra. Deja la máquina enterrada a pesar de la emoción: +1 Descontento. Añade #D043 al mazo de Anochecer.",
     "efectoEstructurado": {
+      "removeAfter": true,
       "description": "Elige una opción:",
       "minChoices": 1,
       "maxChoices": 1,
@@ -1638,6 +1709,7 @@
     "textoAmbientacion": "¡El autómata se activó de alguna manera! Le faltaba una de sus piernas. Destruyó todo cerca de donde estaba enterrado. La gente entró en pánico, pero con un esfuerzo coordinado logramos apagarlo. Ahora yace en la nieve, como un monstruo caído, ocupando espacio.",
     "efecto": "+1 Ira. Elige una loseta Lejana. Destruye todos los Edificios en ella y coloca todos los Recursos y Árboles en ella en el banco. Coloca un Autómata en la loseta, cubriendo ambos espacios. No puedes Construir en estos espacios hasta que el Autómata sea eliminado. FASE DE ACCIÓN: Como una acción puedes colocar un Meeple de Ingeniero en uno de estos espacios de Autómata para Reparar el Autómata o Desguazar piezas. Verifica la calefacción de la loseta para esta acción como es normal. Reparar: Gasta 1 Núcleo de Vapor. Coloca el Autómata en el suministro. // Desguazar: Gana 1 Núcleo de Vapor. Coloca el Autómata en el banco.",
     "efectoEstructurado": {
+      "removeAfter": true,
       "effects": [
         {
           "type": "change_discontent",
@@ -1645,19 +1717,7 @@
         },
         {
           "type": "custom",
-          "description": "Elige una loseta Lejana"
-        },
-        {
-          "type": "destroy_building",
-          "description": "Destruye todos los Edificios en ella y coloca todos los Recursos y Árboles en ella en el banco"
-        },
-        {
-          "type": "custom",
-          "description": "Coloca un Autómata en la loseta, cubriendo ambos espacios"
-        },
-        {
-          "type": "custom",
-          "description": "No puedes Construir en estos espacios hasta que el Autómata sea eliminado"
+          "description": "Elige una loseta Lejana. Destruye todos los Edificios en ella y coloca todos los Recursos y Árboles en ella en el banco. Coloca un Autómata en la loseta, cubriendo ambos espacios. No puedes Construir en estos espacios hasta que el Autómata sea eliminado"
         },
         {
           "type": "custom",
@@ -1695,6 +1755,7 @@
     "textoAmbientacion": "Empezaron a aparecer uno por uno y finalmente apareció todo un grupo. Todos ciudadanos desesperados que apostaron algo querido para ellos. Un anillo de bodas de un cónyuge perdido durante la gran migración, el juguete favorito de un niño... Piden ayuda para recuperarlo todo. ¿Qué harás?",
     "efecto": "1. Habrá una intervención oficial. Una cosa de una sola vez. Que esto sea una advertencia de que no hay lugar para el juego en nuestra sociedad en nuestra situación actual (Solo si agotas Justicia). // 2. Las reglas son las reglas. Conocían los riesgos y deben sufrir las consecuencias: +1 Descontento. Añade #D046 al mazo de Anochecer. // 3. Esto no puede continuar. Nuestra gente vive a través de dificultades que nadie debería. No podemos permitir que sufran aún más debido a una adicción. ¡El juego está prohibido!: +1 Ira.",
     "efectoEstructurado": {
+      "removeAfter": true,
       "description": "Elige una opción:",
       "minChoices": 1,
       "maxChoices": 1,
@@ -1703,15 +1764,7 @@
           "effects": [
             {
               "type": "custom",
-              "description": "Habrá una intervención oficial"
-            },
-            {
-              "type": "custom",
-              "description": "Una cosa de una sola vez"
-            },
-            {
-              "type": "custom",
-              "description": "Que esto sea una advertencia de que no hay lugar para el juego en nuestra sociedad en nuestra situación actual (Solo si agotas Justicia)"
+              "description": "Habrá una intervención oficial. Una cosa de una sola vez. Que esto sea una advertencia de que no hay lugar para el juego en nuestra sociedad en nuestra situación actual (Solo si agotas Justicia)"
             }
           ],
           "type": "composite"
@@ -1719,12 +1772,8 @@
         {
           "effects": [
             {
-              "type": "custom",
-              "description": "Las reglas son las reglas"
-            },
-            {
               "type": "change_discontent",
-              "description": "Conocían los riesgos y deben sufrir las consecuencias: +1 Descontento"
+              "description": "Las reglas son las reglas. Conocían los riesgos y deben sufrir las consecuencias: +1 Descontento"
             },
             {
               "type": "add_card_to_deck",
@@ -1738,15 +1787,7 @@
           "effects": [
             {
               "type": "custom",
-              "description": "Esto no puede continuar"
-            },
-            {
-              "type": "custom",
-              "description": "Nuestra gente vive a través de dificultades que nadie debería"
-            },
-            {
-              "type": "change_discontent",
-              "description": "No podemos permitir que sufran aún más debido a una adicción. ¡El juego está prohibido!: +1 Ira"
+              "description": "Esto no puede continuar. Nuestra gente vive a través de dificultades que nadie debería. No podemos permitir que sufran aún más debido a una adicción. ¡El juego está prohibido!: +1 Ira"
             }
           ],
           "type": "composite"
@@ -1762,6 +1803,7 @@
     "textoAmbientacion": "La gente se queja de los apostadores. Algunos de ellos fueron tan lejos como para robar raciones de comida de la cocina. El único crimen peor en nuestra sociedad es el asesinato. La adicción debe haber encontrado terreno fértil, alimentada por la desesperación.",
     "efecto": "Activa Avaricia. Aumenta el Hambre en 3. // 1. El trabajo duro les permitirá olvidar su adicción y compensar a otros ciudadanos para que no haya justicia por mano propia: +1 Ira. Elimina todos los cubos de Estrés del medidor de Estrés. // 2. Sus crímenes no pueden justificarse por la adicción. ¡Pusieron en peligro a sus conciudadanos y serán desterrados!: -1 Descontento. Pierdes 4 Trabajadores.",
     "efectoEstructurado": {
+      "removeAfter": true,
       "effects": [
         {
           "type": "activate_discontent",
@@ -1797,11 +1839,11 @@
               "effects": [
                 {
                   "type": "custom",
-                  "description": "Sus crímenes no pueden justificarse por la adicción"
+                  "description": "Sus crímenes no pueden justificarse por la adicción. ¡Pusieron en peligro a sus conciudadanos y serán desterrados!"
                 },
                 {
                   "type": "change_discontent",
-                  "description": "¡Pusieron en peligro a sus conciudadanos y serán desterrados!: -1 Descontento"
+                  "description": "-1 Descontento"
                 },
                 {
                   "type": "lose_citizen",
@@ -1824,6 +1866,7 @@
     "textoAmbientacion": "La adicción al juego se propagó más rápido que una enfermedad... La situación escaló a un motín total cuando un grupo de adictos asaltó la cocina con la esperanza de robar raciones de comida. La pelea solo se detuvo cuando el primer cadáver golpeó el suelo.",
     "efecto": "Aumenta el Hambre en 4. 1 Trabajador muere.",
     "efectoEstructurado": {
+      "removeAfter": true,
       "effects": [
         {
           "type": "change_hunger",
@@ -1845,6 +1888,7 @@
     "textoAmbientacion": "",
     "efecto": "Si el número de Ronda actual es impar: Ve a 1. De lo contrario: Ve a 2. // 1. Impulsados por la esperanza de una vida mejor, estas personas vagaron por las Tierras Heladas... El único futuro que tenemos es el que estamos construyendo: +1 Esperanza. Gana 3 Trabajadores y 2 Ingenieros. Gana 1 Trabajador enfermo. // 2. Encontraron una pieza de tecnología de vapor en las ruinas... Además de eso, también trajeron agotamiento y esperanzas destrozadas: Agota Motivación. Gana 2 Trabajadores. Gana 2 Trabajadores enfermos. Gana 1 Núcleo de Vapor.",
     "efectoEstructurado": {
+      "removeAfter": true,
       "condition": {
         "type": "custom",
         "description": "Si el número de Ronda actual es impar"
@@ -1853,11 +1897,11 @@
         "effects": [
           {
             "type": "custom",
-            "description": "Impulsados por la esperanza de una vida mejor, estas personas vagaron por las Tierras Heladas."
+            "description": "Impulsados por la esperanza de una vida mejor, estas personas vagaron por las Tierras Heladas.El único futuro que tenemos es el que estamos construyendo"
           },
           {
             "type": "change_hope",
-            "description": "El único futuro que tenemos es el que estamos construyendo: +1 Esperanza"
+            "description": "+1 Esperanza"
           },
           {
             "type": "gain_citizen",
@@ -1874,11 +1918,11 @@
         "effects": [
           {
             "type": "custom",
-            "description": "Encontraron una pieza de tecnología de vapor en las ruinas."
+            "description": "Encontraron una pieza de tecnología de vapor en las ruinas.Además de eso, también trajeron agotamiento y esperanzas destrozadas"
           },
           {
             "type": "exhaust_hope",
-            "description": "Además de eso, también trajeron agotamiento y esperanzas destrozadas: Agota Motivación"
+            "description": "Agota Motivación"
           },
           {
             "type": "gain_citizen",
@@ -1905,6 +1949,7 @@
     "textoAmbientacion": "Los rumores desenfrenados echaron raíces y dieron a luz a lo que ha ocurrido. Un gran grupo de personas tomó suministros y se fue a buscar este \"lugar mejor\". Solo se puede esperar que lo encuentren, porque la alternativa es demasiado para que cualquier conciencia la soporte.",
     "efecto": "Pierde 4 de Comida. Pierde 3 Trabajadores y 2 Ingenieros.",
     "efectoEstructurado": {
+      "removeAfter": true,
       "effects": [
         {
           "type": "lose_resource",
@@ -1926,6 +1971,7 @@
     "textoAmbientacion": "Los ruidos seguían viniendo de debajo de uno de los túneles de servicio. Tomó un tiempo, pero finalmente descubrimos dónde estaba la entrada. La habitación oculta estaba llena de artilugios y tecnología olvidados o nunca antes vistos.",
     "efecto": "1. Nuestros ingenieros deberían investigar. Podrían encontrar algo que nos ayude: Coloca 1 ficha de Ingeniero Agotado en el suministro. Añade #D051 al mazo de Anochecer. // 2. ¡Deberíamos desguazarlo todo por piezas, fuente de energía y la máquina que hace ruido incluida!: Coloca 1 ficha de Ingeniero Agotado en el suministro. Gana 1 Núcleo de Vapor. // 3. Cada par de manos es necesario para satisfacer las necesidades básicas del asentamiento. Se le debe decir a la gente qué causa los ruidos para que no haya más drama: +1 Descontento. Añade #D050 al mazo de Anochecer.",
     "efectoEstructurado": {
+      "removeAfter": true,
       "description": "Elige una opción:",
       "minChoices": 1,
       "maxChoices": 1,
@@ -1934,11 +1980,11 @@
           "effects": [
             {
               "type": "custom",
-              "description": "Nuestros ingenieros deberían investigar"
+              "description": "Nuestros ingenieros deberían investigar. Podrían encontrar algo que nos ayude"
             },
             {
               "type": "custom",
-              "description": "Podrían encontrar algo que nos ayude: Coloca 1 ficha de Ingeniero Agotado en el suministro"
+              "description": "Coloca 1 ficha de Ingeniero Agotado en el suministro"
             },
             {
               "type": "add_card_to_deck",
@@ -1965,11 +2011,11 @@
           "effects": [
             {
               "type": "custom",
-              "description": "Cada par de manos es necesario para satisfacer las necesidades básicas del asentamiento"
+              "description": "Cada par de manos es necesario para satisfacer las necesidades básicas del asentamiento. Se le debe decir a la gente qué causa los ruidos para que no haya más drama"
             },
             {
               "type": "change_discontent",
-              "description": "Se le debe decir a la gente qué causa los ruidos para que no haya más drama: +1 Descontento"
+              "description": "+1 Descontento"
             },
             {
               "type": "add_card_to_deck",
@@ -1990,6 +2036,7 @@
     "textoAmbientacion": "La gente todavía escuchaba los ruidos de arañazos y no podía soportar la monotonía de ello. Un grupo de ellos tomó el asunto en sus propias manos. Descendieron a los túneles con martillos en mano, y con una furia nacida de la privación del sueño, arremetieron contra el lugar. Al irse, cerraron la puerta y apagaron las luces.",
     "efecto": "+1 Ira. Agota Motivación.",
     "efectoEstructurado": {
+      "removeAfter": true,
       "effects": [
         {
           "type": "change_discontent",
@@ -2011,6 +2058,7 @@
     "textoAmbientacion": "Cuando los ingenieros intentaron averiguar el contenido de la habitación, uno de ellos reconoció el dispositivo que hacía los ruidos como una especie de aparato fonográfico. Cuando ajustó uno de sus periféricos, notas familiares comenzaron a brotar de él. Era \"Para Elisa\" de Beethoven. La música resonó por todo el asentamiento...",
     "efecto": "-1 Descontento. // 1. Todos merecemos un respiro. Tengamos un concierto como lo hacíamos en los viejos tiempos: +1 Esperanza. // 2. La fuente de energía es un módulo a vapor y podría desconectarse y colocarse en otro lugar para un mejor uso: Gana 1 Núcleo de Vapor.",
     "efectoEstructurado": {
+      "removeAfter": true,
       "effects": [
         {
           "type": "change_discontent",
@@ -2025,11 +2073,11 @@
               "effects": [
                 {
                   "type": "custom",
-                  "description": "Todos merecemos un respiro"
+                  "description": "Todos merecemos un respiro. Tengamos un concierto como lo hacíamos en los viejos tiempos"
                 },
                 {
                   "type": "change_hope",
-                  "description": "Tengamos un concierto como lo hacíamos en los viejos tiempos: +1 Esperanza"
+                  "description": "+1 Esperanza"
                 }
               ],
               "type": "composite"
@@ -2061,6 +2109,7 @@
     "textoAmbientacion": "",
     "efecto": "Si tienes 3 o más fichas de Esperanza: Ve a 1. De lo contrario: Ve a 2. // 1. Alguien dijo una vez: \"La forma inteligente de mantener a la gente pasiva y obediente es limitar estrictamente el espectro de opinión aceptable, pero permitir un debate muy animado dentro de ese espectro...\": Agota todo el Descontento de un tipo o -1 Descontento. // 2. Alguien dijo una vez: \"El que no puede poner sus pensamientos en hielo no debe entrar en el calor de la disputa.\" El debate se convirtió en un disturbio abierto: +1 Ira. Por cada Ira activa, gana 1 Ciudadano enfermo.",
     "efectoEstructurado": {
+      "removeAfter": true,
       "condition": {
         "type": "custom",
         "description": "Si tienes 3 o más fichas de Esperanza"
@@ -2096,6 +2145,7 @@
     "textoAmbientacion": "",
     "efecto": "Si no hay Madera en #M029: Ve a 1. De lo contrario: Ve a 2. // 1. Se hizo una promesa a los niños... la decepción que arranca la alegría en sus ojos es tan difícil de soportar que puede romper incluso la capa más gruesa de hielo en el corazón de uno: -1 Esperanza. Activa toda la Avaricia. Elimina #M029 del juego. // 2. \"Las cosas más terribles pueden pasarle a un hombre, pero nunca se perderá a sí mismo si recuerda que una vez fue un niño.\" R.D. Si hay tanta Madera en #M029 como Meeples de Niño: +2 Esperanza. De lo contrario: +1 Esperanza. En cualquier caso: Coloca los Recursos de #M029 en el banco, y elimina #M029 del juego.",
     "efectoEstructurado": {
+      "removeAfter": true,
       "condition": {
         "type": "custom",
         "description": "Si no hay Madera en #M029"
@@ -2104,11 +2154,11 @@
         "effects": [
           {
             "type": "custom",
-            "description": "Se hizo una promesa a los niños."
+            "description": "Se hizo una promesa a los niños. la decepción que arranca la alegría en sus ojos es tan difícil de soportar que puede romper incluso la capa más gruesa de hielo en el corazón de uno"
           },
           {
             "type": "change_hope",
-            "description": "la decepción que arranca la alegría en sus ojos es tan difícil de soportar que puede romper incluso la capa más gruesa de hielo en el corazón de uno: -1 Esperanza"
+            "description": "-1 Esperanza"
           },
           {
             "type": "activate_discontent",
@@ -2158,6 +2208,7 @@
     "textoAmbientacion": "Varios de nuestros ciudadanos presentan síntomas de fiebre alta, vómitos y diarrea. Además, manchas rosadas cubren sus cuerpos. ¿Quién iba a saber que comer ratas resultaría ser una mala idea?",
     "efecto": "Gana 3 Ciudadanos enfermos (del tipo de la Ronda actual).",
     "efectoEstructurado": {
+      "removeAfter": true,
       "type": "gain_sick",
       "description": "Gana 3 Ciudadanos enfermos (del tipo de la Ronda actual)"
     }
@@ -2170,6 +2221,7 @@
     "textoAmbientacion": "Por un tiempo, pareció que el sistema de recompensas mató dos pájaros de un tiro, por deformar la frase. En teoría redujo la población de roedores y permitió a los ciudadanos ganar comida extra. Solo que, como resultó, la gente estaba cortando las colas de las ratas y luego dejándolas sueltas para que se reprodujeran... ¡ahora nos enfrentamos a una marea de alimañas y una crisis alimentaria!",
     "efecto": "+1 Avaricia. Aumenta el Hambre en 4. Luego, por cada Avaricia activa, aumenta el Hambre en otros 2.",
     "efectoEstructurado": {
+      "removeAfter": true,
       "effects": [
         {
           "type": "change_discontent",
@@ -2195,6 +2247,7 @@
     "textoAmbientacion": "A través de instintos primarios, hemos logrado lo que nuestros antepasados hicieron hace miles de años: domesticar al lobo común. La pregunta es, ¿los entrenamos como mascotas o como cazadores?",
     "efecto": "1. Con su cálido pelaje y su innegable ternura, los cachorros proporcionarán consuelo a los necesitados: Agota toda la Apatía. // 2. El perro puede ser el mejor amigo del hombre, pero un lobo es el mejor compañero de un cazador: Gana 7 de Comida.",
     "efectoEstructurado": {
+      "removeAfter": true,
       "description": "Elige una opción:",
       "minChoices": 1,
       "maxChoices": 1,
@@ -2218,6 +2271,7 @@
     "textoAmbientacion": "",
     "efecto": "Si tienes Apatía activa: Ve a 1. De lo contrario: Ve a 2. // 1. Los cachorros terminaron en las manos equivocadas. La gente que se suponía debía criarlos descargó sus frustraciones en la especie más débil. Una vez que los lobos crecieron un poco, se volvieron contra sus antiguos amos. Ahora han regresado a la naturaleza: Gana 3 Ciudadanos enfermos. // 2. Los lobos crecieron hasta ser especímenes magníficos, su misma presencia entre nuestros ciudadanos proporciona consuelo... también si aprendieron a vivir entre nosotros, tal vez nosotros podamos aprender a adaptarnos a este nuevo y duro mundo: +1 Esperanza.",
     "efectoEstructurado": {
+      "removeAfter": true,
       "condition": {
         "type": "custom",
         "description": "Si tienes Apatía activa"
@@ -2226,19 +2280,11 @@
         "effects": [
           {
             "type": "custom",
-            "description": "Los cachorros terminaron en las manos equivocadas"
-          },
-          {
-            "type": "custom",
-            "description": "La gente que se suponía debía criarlos descargó sus frustraciones en la especie más débil"
-          },
-          {
-            "type": "custom",
-            "description": "Una vez que los lobos crecieron un poco, se volvieron contra sus antiguos amos"
+            "description": "Los cachorros terminaron en las manos equivocadas. La gente que se suponía debía criarlos descargó sus frustraciones en la especie más débil. Una vez que los lobos crecieron un poco, se volvieron contra sus antiguos amos. Ahora han regresado a la naturaleza"
           },
           {
             "type": "gain_sick",
-            "description": "Ahora han regresado a la naturaleza: Gana 3 Ciudadanos enfermos"
+            "description": "Gana 3 Ciudadanos enfermos"
           }
         ],
         "type": "composite"
@@ -2266,6 +2312,7 @@
     "textoAmbientacion": "Los ciudadanos están enfermos y pierden la esperanza. Prometiste construir un Puesto Médico mejorado. ¿Lo has hecho?",
     "efecto": "Coloca 1 ficha de Trabajador / Ingeniero Agotado en el suministro. Voltea 1 marcador de Enfermedad.",
     "efectoEstructurado": {
+      "removeAfter": true,
       "effects": [
         {
           "type": "custom",
@@ -2287,6 +2334,7 @@
     "textoAmbientacion": "Prometiste brindar una mejor atención a los enfermos. La gente está esperando...",
     "efecto": "Si tienes Cuidado activo: Cura 3. De lo contrario: Cura 2.",
     "efectoEstructurado": {
+      "removeAfter": true,
       "condition": {
         "type": "custom",
         "description": "Si tienes Cuidado activo"
@@ -2309,6 +2357,7 @@
     "textoAmbientacion": "Se reveló que un hombre que se hacía pasar por médico no tenía licencia. Por el contrario, era un estafador y engañó a la gente para obtener comida extra.",
     "efecto": "Voltea el marcador de Enfermedad de Trabajador. // 1. Es un hombre roto; sería innecesariamente cruel desterrarlo (Solo si tienes Justicia activa). // 2. El charlatán debe ser castigado. Este hombre es peligroso y no hay lugar para tales individuos en nuestro asentamiento. Destiérralo: Pierdes 1 Trabajador.",
     "efectoEstructurado": {
+      "removeAfter": true,
       "effects": [
         {
           "type": "custom",
@@ -2327,384 +2376,16 @@
               "effects": [
                 {
                   "type": "custom",
-                  "description": "El charlatán debe ser castigado"
-                },
-                {
-                  "type": "custom",
-                  "description": "Este hombre es peligroso y no hay lugar para tales individuos en nuestro asentamiento"
+                  "description": "El charlatán debe ser castigado. Este hombre es peligroso y no hay lugar para tales individuos en nuestro asentamiento.Destiérralo"
                 },
                 {
                   "type": "lose_citizen",
-                  "description": "Destiérralo: Pierdes 1 Trabajador"
+                  "description": "Pierdes 1 Trabajador"
                 }
               ],
               "type": "composite"
             }
           ]
-        }
-      ],
-      "type": "composite"
-    }
-  },
-  {
-    "id": "D061",
-    "type": "ocaso",
-    "etiqueta": "ANOCHECER",
-    "titulo": "HUELGA",
-    "textoAmbientacion": "Tus ciudadanos están descontentos. Se niegan a trabajar a menos que se cumplan sus demandas.",
-    "efecto": "1. Aceptar sus términos (Solo si agotas Justicia). // 2. Obligarlos a trabajar: +2 Descontento. // 3. Dejarlos descansar: -1 Descontento. Coloca 1 ficha de Trabajador Agotado en el suministro. Luego, por cada Ira activa, coloca otra 1 ficha de Trabajador Agotado en el suministro.",
-    "efectoEstructurado": {
-      "description": "Elige una opción:",
-      "minChoices": 1,
-      "maxChoices": 1,
-      "options": [
-        {
-          "type": "custom",
-          "description": "Aceptar sus términos (Solo si agotas Justicia)"
-        },
-        {
-          "type": "change_discontent",
-          "description": "Obligarlos a trabajar: +2 Descontento"
-        },
-        {
-          "effects": [
-            {
-              "type": "change_discontent",
-              "description": "Dejarlos descansar: -1 Descontento"
-            },
-            {
-              "type": "exhaust_worker",
-              "description": "Coloca 1 ficha de Trabajador Agotado en el suministro"
-            },
-            {
-              "target": "ira_activa",
-              "effect": {
-                "type": "exhaust_worker",
-                "description": "coloca otra 1 ficha de Trabajador Agotado en el suministro"
-              },
-              "description": "Luego, por cada Ira activa, coloca otra 1 ficha de Trabajador Agotado en el suministro"
-            }
-          ],
-          "type": "composite"
-        }
-      ]
-    }
-  },
-  {
-    "id": "D062",
-    "type": "ocaso",
-    "etiqueta": "ANOCHECER",
-    "titulo": "SABOTAJE",
-    "textoAmbientacion": "Los ciudadanos descontentos han saboteado uno de nuestros edificios. No funcionará hasta que se repare.",
-    "efecto": "Coloca 1 ficha de Trabajador Agotado en el suministro. Destruye 1 Edificio. Si tienes Ira activa: Destruye 1 Edificio adicional.",
-    "efectoEstructurado": {
-      "effects": [
-        {
-          "type": "exhaust_worker",
-          "description": "Coloca 1 ficha de Trabajador Agotado en el suministro"
-        },
-        {
-          "type": "destroy_building",
-          "description": "Destruye 1 Edificio"
-        },
-        {
-          "condition": {
-            "type": "custom",
-            "description": "Si tienes Ira activa"
-          },
-          "ifTrue": {
-            "type": "destroy_building",
-            "description": "Destruye 1 Edificio adicional"
-          }
-        }
-      ],
-      "type": "composite"
-    }
-  },
-  {
-    "id": "D063",
-    "type": "ocaso",
-    "etiqueta": "ANOCHECER",
-    "titulo": "ROBO",
-    "textoAmbientacion": "Alguien ha estado robando recursos del almacén. Los guardias atraparon al ladrón, pero la comida ya no está.",
-    "efecto": "Pierde 3 de Comida. Si tienes Avaricia activa: Pierde 2 Recursos adicionales.",
-    "efectoEstructurado": {
-      "effects": [
-        {
-          "type": "lose_resource",
-          "description": "Pierde 3 de Comida"
-        },
-        {
-          "condition": {
-            "type": "custom",
-            "description": "Si tienes Avaricia activa"
-          },
-          "ifTrue": {
-            "type": "lose_resource",
-            "description": "Pierde 2 Recursos adicionales"
-          }
-        }
-      ],
-      "type": "composite"
-    }
-  },
-  {
-    "id": "D064",
-    "type": "ocaso",
-    "etiqueta": "ANOCHECER",
-    "titulo": "ACCIDENTE INDUSTRIAL",
-    "textoAmbientacion": "Una máquina funcionó mal, hiriendo a varios trabajadores. Dicen que es porque los estamos presionando demasiado.",
-    "efecto": "Gana 2 Trabajadores enfermos. Si el nivel de Estrés es 3 o más: Gana 1 Ingeniero enfermo.",
-    "efectoEstructurado": {
-      "effects": [
-        {
-          "type": "gain_sick",
-          "description": "Gana 2 Trabajadores enfermos"
-        },
-        {
-          "condition": {
-            "type": "custom",
-            "description": "Si el nivel de Estrés es 3 o más"
-          },
-          "ifTrue": {
-            "type": "gain_sick",
-            "description": "Gana 1 Ingeniero enfermo"
-          }
-        }
-      ],
-      "type": "composite"
-    }
-  },
-  {
-    "id": "D065",
-    "type": "ocaso",
-    "etiqueta": "ANOCHECER",
-    "titulo": "MOTÍN",
-    "textoAmbientacion": "La tensión ha llegado a un punto de ruptura. Un grupo de ciudadanos ha tomado el control de un puesto de guardia.",
-    "efecto": "Agota toda la Esperanza. 1 Trabajador muere. Si tienes Ira activa: 1 Ingeniero muere.",
-    "efectoEstructurado": {
-      "effects": [
-        {
-          "type": "exhaust_hope",
-          "description": "Agota toda la Esperanza"
-        },
-        {
-          "type": "die_citizen",
-          "description": "1 Trabajador muere"
-        },
-        {
-          "condition": {
-            "type": "custom",
-            "description": "Si tienes Ira activa"
-          },
-          "ifTrue": {
-            "type": "die_citizen",
-            "description": "1 Ingeniero muere"
-          }
-        }
-      ],
-      "type": "composite"
-    }
-  },
-  {
-    "id": "D066",
-    "type": "ocaso",
-    "etiqueta": "ANOCHECER",
-    "titulo": "DESESPERACIÓN",
-    "textoAmbientacion": "La gente ha perdido la fe. Se reúnen en las calles, orando o llorando.",
-    "efecto": "-2 Esperanza. Si no tienes Esperanza: +1 Descontento.",
-    "efectoEstructurado": {
-      "effects": [
-        {
-          "type": "change_hope",
-          "description": "-2 Esperanza"
-        },
-        {
-          "condition": {
-            "type": "custom",
-            "description": "Si no tienes Esperanza"
-          },
-          "ifTrue": {
-            "type": "change_discontent",
-            "description": "+1 Descontento"
-          }
-        }
-      ],
-      "type": "composite"
-    }
-  },
-  {
-    "id": "D067",
-    "type": "ocaso",
-    "etiqueta": "ANOCHECER",
-    "titulo": "FUGAS",
-    "textoAmbientacion": "Las tuberías de vapor tienen fugas por todas partes. Estamos perdiendo calor y presión.",
-    "efecto": "Aumenta el nivel de Estrés en 2. Si tienes Apatía activa: Aumenta el nivel de Estrés en 1 adicional.",
-    "efectoEstructurado": {
-      "effects": [
-        {
-          "type": "change_stress",
-          "description": "Aumenta el nivel de Estrés en 2"
-        },
-        {
-          "condition": {
-            "type": "custom",
-            "description": "Si tienes Apatía activa"
-          },
-          "ifTrue": {
-            "type": "change_stress",
-            "description": "Aumenta el nivel de Estrés en 1 adicional"
-          }
-        }
-      ],
-      "type": "composite"
-    }
-  },
-  {
-    "id": "D068",
-    "type": "ocaso",
-    "etiqueta": "ANOCHECER",
-    "titulo": "INVIERNO CRUEL",
-    "textoAmbientacion": "La temperatura ha bajado aún más. Incluso con el generador funcionando, el frío se filtra en cada casa.",
-    "efecto": "Gana 3 Ciudadanos enfermos (del tipo de la Ronda actual). Si el Generador está apagado: Gana 2 Ciudadanos enfermos adicionales.",
-    "efectoEstructurado": {
-      "effects": [
-        {
-          "type": "gain_sick",
-          "description": "Gana 3 Ciudadanos enfermos (del tipo de la Ronda actual)"
-        },
-        {
-          "condition": {
-            "type": "custom",
-            "description": "Si el Generador está apagado"
-          },
-          "ifTrue": {
-            "type": "gain_sick",
-            "description": "Gana 2 Ciudadanos enfermos adicionales"
-          }
-        }
-      ],
-      "type": "composite"
-    }
-  },
-  {
-    "id": "D069",
-    "type": "ocaso",
-    "etiqueta": "ANOCHECER",
-    "titulo": "ESCASEZ DE CARBÓN",
-    "textoAmbientacion": "Nuestras reservas de carbón se están agotando más rápido de lo esperado.",
-    "efecto": "Pierde 3 de Carbón. Si no puedes: El Generador se apaga (reduce el nivel de Calor a 0).",
-    "efectoEstructurado": {
-      "effects": [
-        {
-          "type": "lose_resource",
-          "description": "Pierde 3 de Carbón"
-        },
-        {
-          "condition": {
-            "type": "custom",
-            "description": "Si no puedes"
-          },
-          "ifTrue": {
-            "type": "custom",
-            "description": "El Generador se apaga (reduce el nivel de Calor a 0)"
-          }
-        }
-      ],
-      "type": "composite"
-    }
-  },
-  {
-    "id": "D070",
-    "type": "ocaso",
-    "etiqueta": "ANOCHECER",
-    "titulo": "HALLAZGO EN LAS RUINAS",
-    "textoAmbientacion": "Nuestros exploradores encontraron algo útil en las ruinas de la vieja ciudad.",
-    "efecto": "Gana 1 Núcleo de Vapor y 2 de Acero.",
-    "efectoEstructurado": {
-      "effects": [
-        {
-          "type": "gain_resource",
-          "description": "Gana 1 Núcleo de Vapor"
-        },
-        {
-          "type": "gain_resource",
-          "description": "y 2 de Acero"
-        }
-      ],
-      "type": "composite"
-    }
-  },
-  {
-    "id": "D071",
-    "type": "ocaso",
-    "etiqueta": "ANOCHECER",
-    "titulo": "NUEVOS SUPERVIVIENTES",
-    "textoAmbientacion": "Un grupo de supervivientes llegó a nuestras puertas. Están congelados y hambrientos, pero vivos.",
-    "efecto": "Gana 2 Trabajadores, 1 Ingeniero y 1 Niño. Gana 2 Ciudadanos enfermos.",
-    "efectoEstructurado": {
-      "effects": [
-        {
-          "type": "gain_citizen",
-          "description": "Gana 2 Trabajadores, 1 Ingeniero y 1 Niño"
-        },
-        {
-          "type": "gain_sick",
-          "description": "Gana 2 Ciudadanos enfermos"
-        }
-      ],
-      "type": "composite"
-    }
-  },
-  {
-    "id": "D072",
-    "type": "ocaso",
-    "etiqueta": "ANOCHECER",
-    "titulo": "DÍA DE DESCANSO",
-    "textoAmbientacion": "Has declarado un día de descanso para levantar la moral.",
-    "efecto": "+1 Esperanza. Elimina 2 cubos de Estrés.",
-    "efectoEstructurado": {
-      "effects": [
-        {
-          "type": "change_hope",
-          "description": "+1 Esperanza"
-        },
-        {
-          "type": "change_stress",
-          "description": "Elimina 2 cubos de Estrés"
-        }
-      ],
-      "type": "composite"
-    }
-  },
-  {
-    "id": "D073",
-    "type": "ocaso",
-    "etiqueta": "ANOCHECER",
-    "titulo": "COSECHA ABUNDANTE",
-    "textoAmbientacion": "Los invernaderos han producido más comida de lo habitual.",
-    "efecto": "Gana 5 de Comida.",
-    "efectoEstructurado": {
-      "type": "gain_resource",
-      "description": "Gana 5 de Comida"
-    }
-  },
-  {
-    "id": "D074",
-    "type": "ocaso",
-    "etiqueta": "ANOCHECER",
-    "titulo": "INSPIRACIÓN",
-    "textoAmbientacion": "Un discurso inspirador ha motivado a la gente a trabajar más duro.",
-    "efecto": "Reutiliza 2 Trabajadores. +1 Motivación.",
-    "efectoEstructurado": {
-      "effects": [
-        {
-          "type": "reuse_worker",
-          "description": "Reutiliza 2 Trabajadores"
-        },
-        {
-          "type": "change_hope",
-          "description": "+1 Motivación"
         }
       ],
       "type": "composite"

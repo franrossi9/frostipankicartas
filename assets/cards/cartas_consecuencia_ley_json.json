@@ -8,6 +8,7 @@
     "textoAmbientacion": "Los niños están ahora expuestos a accidentes en el trabajo. Si no proporcionamos una buena atención médica, algunos podrían incluso pagar el precio con sus jóvenes vidas.",
     "efecto": "Si tienes Cuidado activo: Por cada Meeple de Niño usado para realizar una acción esta Ronda, gana 1 Niño enfermo. En caso contrario: Por cada Meeple de Niño usado para realizar una acción esta Ronda, gana 2 Niños enfermos.",
     "efectoEstructurado": {
+      "discardAfter": true,
       "condition": {
         "type": "custom",
         "description": "Si tienes Cuidado activo"
@@ -39,6 +40,7 @@
     "textoAmbientacion": "Los padres no permitirán que sus hijos estén en peligro trabajando en tales condiciones. Organizaron una protesta y gritaron: \"¡Dejad que sean niños!\" y \"¡No lastiméis a nuestros hijos!\".",
     "efecto": "Si tienes Ira activa: Coloca 1 ficha de Trabajador / Ingeniero Agotado y 2 fichas de Niño Agotado en el suministro. En caso contrario: Coloca 1 ficha de Trabajador / Ingeniero Agotado y 1 ficha de Niño Agotado en el suministro.",
     "efectoEstructurado": {
+      "discardAfter": true,
       "condition": {
         "type": "custom",
         "description": "Si tienes Ira activa"
@@ -69,6 +71,7 @@
       "ifTrue": {
         "target": "custom",
         "effect": {
+          "discardAfter": true,
           "type": "heal",
           "description": "Cura 1."
         },
@@ -103,6 +106,7 @@
         "description": "Si el Refugio Infantil está construido"
       },
       "ifTrue": {
+        "discardAfter": true,
         "description": "Elige una opción:",
         "minChoices": 1,
         "maxChoices": 1,
@@ -141,6 +145,7 @@
     "textoAmbientacion": "Debido al aserrín añadido a las comidas, se sentían más saciantes. Nuestra gente echaba de menos la sensación de tener la barriga llena, la pura alegría de comer tanto como uno quiera. Muchos de ellos se atiborraron de comida.",
     "efecto": "Si el nivel de Hambre es 1 o más: Gana 2 Ciudadanos enfermos (del tipo de la Ronda actual). Reduce el Hambre en 3.",
     "efectoEstructurado": {
+      "discardAfter": true,
       "condition": {
         "type": "custom",
         "description": "Si el nivel de Hambre es 1 o más"
@@ -169,6 +174,7 @@
     "textoAmbientacion": "La sopa sabe a agua de fregar y no tiene valor nutricional, pero es cálida y hay mucha. Podemos llenar nuestros estómagos vacíos con ella.",
     "efecto": "Si el nivel de Hambre es 4 o más: Reduce el Hambre en 4. En caso contrario: Reduce el Hambre a 0.",
     "efectoEstructurado": {
+      "removeAfter": true,
       "condition": {
         "type": "custom",
         "description": "Si el nivel de Hambre es 4 o más"
@@ -192,6 +198,7 @@
     "textoAmbientacion": "Durante una cirugía particularmente difícil, uno de nuestros aprendices, sobrecargado de trabajo, cometió un error fatal... El paciente no sobrevivió. La familia exige justicia.",
     "efecto": "Si tienes Justicia activa: 1 Ingeniero muere. Elige uno: A) -1 Descontento. B) Activa 1 Esperanza. En caso contrario: 1 Ingeniero muere. +1 Descontento. -1 Esperanza.",
     "efectoEstructurado": {
+      "removeAfter": true,
       "condition": {
         "type": "custom",
         "description": "Si tienes Justicia activa"
@@ -248,6 +255,7 @@
     "textoAmbientacion": "Los enfermos terminales son una carga para nuestra sociedad. Mantenerlos con vida cuesta recursos preciosos que podrían usarse para salvar a aquellos que tienen una oportunidad de sobrevivir.",
     "efecto": "Si hay algún Ciudadano enfermo: Elige uno: A) 1 Ciudadano enfermo muere. B) 2 Ciudadanos enfermos mueren. +1 Esperanza.",
     "efectoEstructurado": {
+      "removeAfter": true,
       "condition": {
         "type": "custom",
         "description": "Si hay algún Ciudadano enfermo"
@@ -287,6 +295,7 @@
     "textoAmbientacion": "La gente se apiña como sardinas en los refugios. Es incómodo, huele mal y es un caldo de cultivo para enfermedades y descontento.",
     "efecto": "Coloca esta carta sobre la carta de Ley de Alojamientos Abarrotados. Ignora la carta de Ley de Alojamientos Abarrotados mientras esta carta la esté cubriendo. FASE DE NOCHE: Al final de la Fase de Noche: Si hay algún Meeple de Ciudadano sin un lugar cálido para dormir: +1 Descontento. Coloca esta carta en la pila de descartes de Anochecer.",
     "efectoEstructurado": {
+      "removeAfter": true,
       "effects": [
         {
           "type": "custom",
@@ -315,84 +324,57 @@
     }
   },
   {
-    "id": "L05",
+    "id": "L05 B",
     "type": "consecuencia_ley",
     "variante": "B",
     "etiqueta": "ANOCHECER",
-    "titulo": "REFUGIOS ABARROTADOS – INCOMODIDAD",
-    "textoAmbientacion": "Nuestra gente está dispuesta a compartir sus refugios con extraños, pero la falta de privacidad y espacio personal está empezando a pasar factura.",
-    "efecto": "Si la Esperanza es mayor que el Descontento: -1 Esperanza. +1 Descontento. En caso contrario: +2 Descontento. Baraja esta carta de nuevo en el mazo de Anochecer.",
-    "efectoEstructurado": {
-      "condition": {
-        "type": "custom",
-        "description": "Si la Esperanza es mayor que el Descontento"
-      },
-      "ifTrue": {
-        "effects": [
-          {
-            "type": "change_hope",
-            "description": "-1 Esperanza."
-          },
-          {
-            "type": "change_discontent",
-            "description": "+1 Descontento."
-          }
-        ],
-        "type": "composite"
-      },
-      "ifFalse": {
-        "effects": [
-          {
-            "type": "change_discontent",
-            "description": "+2 Descontento."
-          },
-          {
-            "type": "shuffle_card_into_deck",
-            "description": "Baraja esta carta de nuevo en el mazo de Anochecer."
-          }
-        ],
-        "type": "composite"
-      }
-    }
-  },
-  {
-    "id": "L06",
-    "type": "consecuencia_ley",
-    "variante": "A",
-    "etiqueta": "ANOCHECER",
-    "titulo": "REFUGIOS IMPROVISADOS",
-    "textoAmbientacion": "Los refugios improvisados son una solución temporal, pero mejor que dormir al raso.",
-    "efecto": "Coloca esta carta sobre la carta de Ley de Refugios Improvisados. Ignora la carta de Ley de Refugios Improvisados mientras esta carta la esté cubriendo. FASE DE NOCHE: Al final de la Fase de Noche: Si todos los Meeples de Ciudadano tienen un lugar cálido para dormir: Los ciudadanos aprecian no tener que usar más los refugios improvisados... -1 Descontento. En caso contrario: La nevada fue fuerte y los techos de los refugios improvisados no aguantaron el peso... Sin Efecto. En cualquier caso: Coloca esta carta en la pila de descartes de Anochecer.",
+    "titulo": "AMA A TU PRÓJIMO",
+    "textoAmbientacion": "Los alojamientos hacinados son la causa de violencia y abuso entre los ocupantes. Hay acusaciones de robo, adulterio y muchas otras. Después de todo, nuestra decisión ha obligado a las personas a vivir con extraños en un espacio confinado.",
+    "efecto": "+1 Ira. Gana 1 Ciudadano enfermo. Luego, por cada Ira activa, gana otros 2 Ciudadanos enfermos.",
     "efectoEstructurado": {
       "effects": [
         {
-          "type": "custom",
-          "description": "Coloca esta carta sobre la carta de Ley de Refugios Improvisados."
+          "type": "activate_discontent",
+          "description": "+1 Ira"
         },
         {
-          "type": "custom",
-          "description": "Ignora la carta de Ley de Refugios Improvisados mientras esta carta la esté cubriendo."
+          "type": "gain_sick",
+          "description": "Gana 1 Ciudadano enfermo"
         },
         {
-          "condition": {
-            "type": "custom",
-            "description": "FASE DE NOCHE: Al final de la Fase de Noche: Si todos los Meeples de Ciudadano tienen un lugar cálido para dormir"
+          "target": "ira_activa",
+          "effect": {
+            "type": "gain_sick",
+            "description": "Gana 2 Ciudadanos enfermos"
           },
-          "ifTrue": {
-            "type": "change_discontent",
-            "description": "Los ciudadanos aprecian no tener que usar más los refugios improvisados... -1 Descontento."
-          },
-          "ifFalse": {
-            "type": "custom",
-            "description": "La nevada fue fuerte y los techos de los refugios improvisados no aguantaron el peso... Sin Efecto."
-          }
-        },
-        {
-          "type": "discard_card",
-          "description": "En cualquier caso: Coloca esta carta en la pila de descartes de Anochecer."
+          "description": "Luego, por cada Ira activa"
         }
       ],
-      "type": "composite"
+      "removeAfter": true
+    }
+  },
+  {
+    "id": "L06 A",
+    "type": "consecuencia_ley",
+    "variante": "A",
+    "etiqueta": "ANOCHECER",
+    "titulo": "CONDICIONES INSEGURAS",
+    "textoAmbientacion": "Los ciudadanos agradecen no tener que usar más los refugios improvisados. Las condiciones no eran seguras ni agradables. Muchos ven la situación actual como una señal de buena gestión. / La nevada fue intensa y los techos de los refugios improvisados no soportaron el peso. Deben hacerse reparaciones. Muchos tendrán que pasar la noche sin un techo sobre sus cabezas.",
+    "efecto": "Coloca esta carta sobre la carta de Ley de Refugios Improvisados. Ignora la carta de Ley de Refugios Improvisados mientras esta carta la cubra. FASE DE NOCHE: Al final de la Fase de Noche: Si todos los Meeples de Ciudadano tienen un lugar cálido para dormir: -1 Descontento. De lo contrario: Sin Efecto. En cualquier caso: Coloca esta carta en la pila de descartes de Anochecer.",
+    "efectoEstructurado": {
+      "condition": {
+        "type": "custom",
+        "description": "Si todos los Meeples de Ciudadano tienen un lugar cálido para dormir"
+      },
+      "ifTrue": {
+        "type": "change_discontent",
+        "description": "-1 Descontento"
+      },
+      "ifFalse": {
+        "type": "custom",
+        "description": "Sin Efecto"
+      },
+      "discardAfter": true
     }
   },
   {
@@ -404,6 +386,7 @@
     "textoAmbientacion": "Dormir en la calle es una sentencia de muerte lenta. El frío se filtra en los huesos y la esperanza se desvanece con cada noche que pasa.",
     "efecto": "Coloca esta carta en el despliegue de Eventos. FASE DE NOCHE: Al final de la Fase de Noche: Si todos los Meeples de Ciudadano tienen un lugar cálido para dormir sin usar Ruinas: El alojamiento en nuestra ciudad es tan bueno como puede ser... +1 Esperanza. En caso contrario: ¡Algunos de nosotros todavía dormimos en el frío... Agota Cuidado. -1 Esperanza. En cualquier caso: Coloca esta carta en la pila de descartes de Anochecer.",
     "efectoEstructurado": {
+      "discardAfter": true,
       "effects": [
         {
           "type": "custom",
@@ -441,240 +424,1259 @@
     }
   },
   {
-    "id": "L07",
+    "id": "L07 A",
     "type": "consecuencia_ley",
     "variante": "A",
     "etiqueta": "ANOCHECER",
-    "titulo": "ENTRENAMIENTO EXHAUSTIVO",
-    "textoAmbientacion": "Los turnos de entrenamiento son agotadores y peligrosos. Algunos ciudadanos no pueden soportar la presión.",
-    "efecto": "Si tienes Justicia activa: Coloca 3 fichas de Trabajador / Ingeniero Agotado en el suministro. En caso contrario: 1 Trabajador muere. Coloca 1 ficha de Trabajador / Ingeniero Agotado en el suministro.",
+    "titulo": "EL PUÑO DE HIERRO DE LA ORDEN",
+    "textoAmbientacion": "La Orden lo abarca todo. Con despiadada eficiencia, el sistema recién formado impone obediencia absoluta a los ciudadanos. Sus cimientos se construyen sobre la falta de alternativas y el pisoteo del espíritu de la gente bajo su pesada bota para aplastar cualquier pensamiento de revolución.",
+    "efecto": "Si todas tus fichas de Esperanza están agotadas: Puedes activar todas las fichas de Descontento de un tipo. Por cada ficha que actives, aplica el siguiente efecto: (Codicia: Toma 1 Recurso del Mapa y colócalo en la reserva. / Apatía: Cura 2 o Trata 1. / Ira: Coloca 1 loseta Cercana o 1 loseta Lejana). De lo contrario: Por cada tipo de ficha de Esperanza activa, en el siguiente orden, aplica el efecto correspondiente: (Justicia: 1 Ciudadano muere. / Motivación: Gana 3 Ciudadanos enfermos. / Cuidado: Coloca 1 ficha de Trabajador/Ingeniero Gastado en la reserva).",
     "efectoEstructurado": {
       "condition": {
         "type": "custom",
-        "description": "Si tienes Justicia activa"
+        "description": "Si todas tus fichas de Esperanza están agotadas"
       },
       "ifTrue": {
-        "type": "custom",
-        "description": "Coloca 3 fichas de Trabajador / Ingeniero Agotado en el suministro."
+        "description": "Elige un tipo de Descontento para activar todas sus fichas. Por cada una activada, aplica el efecto:",
+        "minChoices": 1,
+        "maxChoices": 1,
+        "options": [
+          {
+            "description": "Codicia (Greed): Toma 1 Recurso del Mapa",
+            "effects": [
+              {
+                "type": "activate_discontent",
+                "description": "Activa todas las fichas de Codicia"
+              },
+              {
+                "target": "custom",
+                "description": "Por cada ficha activada",
+                "effect": {
+                  "type": "take_from_map",
+                  "description": "Toma 1 Recurso del Mapa y colócalo en la reserva"
+                }
+              }
+            ]
+          },
+          {
+            "description": "Apatía (Apathy): Cura 2 o Trata 1",
+            "effects": [
+              {
+                "type": "activate_discontent",
+                "description": "Activa todas las fichas de Apatía"
+              },
+              {
+                "target": "custom",
+                "description": "Por cada ficha activada",
+                "effect": {
+                  "description": "Elige uno:",
+                  "minChoices": 1,
+                  "maxChoices": 1,
+                  "options": [
+                    {
+                      "type": "heal",
+                      "description": "Cura 2"
+                    },
+                    {
+                      "type": "treat",
+                      "description": "Trata 1"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "description": "Ira (Anger): Coloca loseta de mapa",
+            "effects": [
+              {
+                "type": "activate_discontent",
+                "description": "Activa todas las fichas de Ira"
+              },
+              {
+                "target": "custom",
+                "description": "Por cada ficha activada",
+                "effect": {
+                  "description": "Elige uno:",
+                  "minChoices": 1,
+                  "maxChoices": 1,
+                  "options": [
+                    {
+                      "type": "place_tile",
+                      "description": "Coloca 1 loseta Cercana"
+                    },
+                    {
+                      "type": "place_tile",
+                      "description": "Coloca 1 loseta Lejana"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
       },
       "ifFalse": {
+        "description": "Por cada tipo de Esperanza activa, en el siguiente orden:",
+        "effects": [
+          {
+            "condition": {
+              "type": "has_hope",
+              "value": "justicia",
+              "description": "Si tienes Justicia activa"
+            },
+            "ifTrue": {
+              "type": "die_citizen",
+              "description": "1 Ciudadano muere"
+            }
+          },
+          {
+            "condition": {
+              "type": "has_hope",
+              "value": "motivacion",
+              "description": "Si tienes Motivación activa"
+            },
+            "ifTrue": {
+              "type": "gain_sick",
+              "description": "Gana 3 Ciudadanos enfermos"
+            }
+          },
+          {
+            "condition": {
+              "type": "has_hope",
+              "value": "cuidado",
+              "description": "Si tienes Cuidado activo"
+            },
+            "ifTrue": {
+              "type": "custom",
+              "description": "Coloca 1 ficha de Trabajador/Ingeniero Gastado en la reserva"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "L07 B",
+    "type": "consecuencia_ley",
+    "variante": "B",
+    "etiqueta": "ANOCHECER",
+    "titulo": "SI NO ESTÁN CON NOSOTROS...",
+    "textoAmbientacion": "Las regulaciones introducidas por La Orden afectan casi todos los aspectos de la vida de nuestros ciudadanos. Una persona no es más que una estadística en el funcionamiento ciego del aparato que se traga a aquellos que no pueden aceptar el nuevo orden de las cosas.",
+    "efecto": "Si todas tus fichas de Esperanza están agotadas: Puedes activar todas las fichas de Descontento de un tipo. Por cada ficha que actives, aplica el siguiente efecto: (Codicia: Gana 4 Comida. / Apatía: Cura 2 o Trata 1. / Ira: Toma 1 Recurso del Mapa y colócalo en la reserva). De lo contrario: Por cada tipo de ficha de Esperanza activa, en el siguiente orden, aplica el efecto correspondiente: (Justicia: Activa todo el Descontento de un tipo. / Motivación: Voltea 1 marcador de Enfermedad. / Cuidado: Aumenta el Hambre en 4).",
+    "efectoEstructurado": {
+      "condition": {
+        "type": "custom",
+        "description": "Si todas tus fichas de Esperanza están agotadas"
+      },
+      "ifTrue": {
+        "description": "Elige un tipo de Descontento para activar todas sus fichas. Por cada una activada, aplica el efecto:",
+        "minChoices": 1,
+        "maxChoices": 1,
+        "options": [
+          {
+            "description": "Codicia (Greed): Gana 4 Comida",
+            "effects": [
+              {
+                "type": "activate_discontent",
+                "description": "Activa todas las fichas de Codicia"
+              },
+              {
+                "target": "custom",
+                "description": "Por cada ficha activada",
+                "effect": {
+                  "type": "gain_resource",
+                  "description": "Gana 4 Comida"
+                }
+              }
+            ]
+          },
+          {
+            "description": "Apatía (Apathy): Cura 2 o Trata 1",
+            "effects": [
+              {
+                "type": "activate_discontent",
+                "description": "Activa todas las fichas de Apatía"
+              },
+              {
+                "target": "custom",
+                "description": "Por cada ficha activada",
+                "effect": {
+                  "description": "Elige uno:",
+                  "minChoices": 1,
+                  "maxChoices": 1,
+                  "options": [
+                    {
+                      "type": "heal",
+                      "description": "Cura 2"
+                    },
+                    {
+                      "type": "treat",
+                      "description": "Trata 1"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "description": "Ira (Anger): Toma 1 Recurso del Mapa",
+            "effects": [
+              {
+                "type": "activate_discontent",
+                "description": "Activa todas las fichas de Ira"
+              },
+              {
+                "target": "custom",
+                "description": "Por cada ficha activada",
+                "effect": {
+                  "type": "take_from_map",
+                  "description": "Toma 1 Recurso del Mapa y colócalo en la reserva"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "ifFalse": {
+        "description": "Por cada tipo de Esperanza activa, en el siguiente orden:",
+        "effects": [
+          {
+            "condition": {
+              "type": "has_hope",
+              "value": "justicia",
+              "description": "Si tienes Justicia activa"
+            },
+            "ifTrue": {
+              "description": "Activa todo el Descontento de un tipo",
+              "minChoices": 1,
+              "maxChoices": 1,
+              "options": [
+                {
+                  "type": "activate_discontent",
+                  "description": "Activa toda la Codicia"
+                },
+                {
+                  "type": "activate_discontent",
+                  "description": "Activa toda la Ira"
+                },
+                {
+                  "type": "activate_discontent",
+                  "description": "Activa toda la Apatía"
+                }
+              ]
+            }
+          },
+          {
+            "condition": {
+              "type": "has_hope",
+              "value": "motivacion",
+              "description": "Si tienes Motivación activa"
+            },
+            "ifTrue": {
+              "type": "flip_disease",
+              "description": "Voltea 1 marcador de Enfermedad"
+            }
+          },
+          {
+            "condition": {
+              "type": "has_hope",
+              "value": "cuidado",
+              "description": "Si tienes Cuidado activo"
+            },
+            "ifTrue": {
+              "type": "change_hunger",
+              "description": "Aumenta el Hambre en 4"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "L08 A",
+    "type": "consecuencia_ley",
+    "variante": "A",
+    "etiqueta": "ANOCHECER",
+    "titulo": "NEÓFITOS Y ESCÉPTICOS",
+    "textoAmbientacion": "Muchos de nuestros ciudadanos siguieron ciegamente la nueva fe...",
+    "efecto": "Si todo el Descontento está agotado: Agota toda la Esperanza de un tipo. Por cada ficha agotada: (Justicia: -1 Descontento; Motivación: Toma Recurso; Cuidado: Gana 4 Comida). De lo contrario: Por cada tipo de Descontento activo (Codicia: Gasta 2 Recursos o +1 Descontento; Apatía: Trabajador Gastado; Ira: Gana 3 enfermos).",
+    "efectoEstructurado": {
+      "condition": {
+        "type": "custom",
+        "description": "Si todas tus fichas de Descontento están agotadas"
+      },
+      "ifTrue": {
+        "description": "Elige un tipo de Esperanza, agota todas sus fichas y aplica efecto por cada una:",
+        "minChoices": 1,
+        "maxChoices": 1,
+        "options": [
+          {
+            "description": "Justicia: -1 Descontento por cada ficha",
+            "effects": [
+              {
+                "type": "exhaust_hope",
+                "description": "Agota todas las fichas de Justicia"
+              },
+              {
+                "target": "custom",
+                "effect": {
+                  "type": "change_discontent",
+                  "description": "-1 Descontento"
+                }
+              }
+            ]
+          },
+          {
+            "description": "Motivación: Toma 1 Recurso del Mapa por cada ficha",
+            "effects": [
+              {
+                "type": "exhaust_hope",
+                "description": "Agota todas las fichas de Motivación"
+              },
+              { "target": "custom", "effect": { "type": "take_from_map" } }
+            ]
+          },
+          {
+            "description": "Cuidado: Gana 4 Comida por cada ficha",
+            "effects": [
+              {
+                "type": "exhaust_hope",
+                "description": "Agota todas las fichas de Cuidado"
+              },
+              {
+                "target": "custom",
+                "effect": {
+                  "type": "gain_resource",
+                  "description": "Gana 4 Comida"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "ifFalse": {
+        "description": "Por cada tipo de Descontento activo:",
+        "effects": [
+          {
+            "condition": {
+              "type": "has_discontent",
+              "value": "codicia",
+              "description": "Codicia activa"
+            },
+            "ifTrue": {
+              "type": "custom",
+              "description": "Gasta 2 Recursos. Si no puedes, +1 Descontento."
+            }
+          },
+          {
+            "condition": {
+              "type": "has_discontent",
+              "value": "apatia",
+              "description": "Apatía activa"
+            },
+            "ifTrue": {
+              "type": "custom",
+              "description": "Coloca 1 Trabajador/Ingeniero Gastado en reserva"
+            }
+          },
+          {
+            "condition": {
+              "type": "has_discontent",
+              "value": "ira",
+              "description": "Ira activa"
+            },
+            "ifTrue": {
+              "type": "gain_sick",
+              "description": "Gana 3 Ciudadanos enfermos"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "L08 B",
+    "type": "consecuencia_ley",
+    "variante": "B",
+    "etiqueta": "ANOCHECER",
+    "titulo": "LLAMAS DE LA NUEVA FE",
+    "textoAmbientacion": "La nueva fe arde brillante en los corazones de nuestros ciudadanos...",
+    "efecto": "Si todo el Descontento está agotado: Agota toda la Esperanza de un tipo. Por cada ficha: (Justicia: Toma Recurso; Motivación: Construye Edificio gratis; Cuidado: Cura/Trata). De lo contrario: Por cada tipo de Descontento activo (Codicia: Hambre +4; Apatía: Voltea Enfermedad; Ira: Agota Esperanza).",
+    "efectoEstructurado": {
+      "condition": {
+        "type": "custom",
+        "description": "Si todas tus fichas de Descontento están agotadas"
+      },
+      "ifTrue": {
+        "description": "Elige un tipo de Esperanza, agota todas sus fichas y aplica efecto por cada una:",
+        "minChoices": 1,
+        "maxChoices": 1,
+        "options": [
+          {
+            "description": "Justicia: Toma 1 Recurso del Mapa",
+            "effects": [
+              { "type": "exhaust_hope" },
+              { "target": "custom", "effect": { "type": "take_from_map" } }
+            ]
+          },
+          {
+            "description": "Motivación: Construye gratis Edificio (coste 1 Madera)",
+            "effects": [
+              { "type": "exhaust_hope" },
+              {
+                "target": "custom",
+                "effect": {
+                  "type": "build_building",
+                  "description": "Construye gratis un Edificio de coste 1 Madera"
+                }
+              }
+            ]
+          },
+          {
+            "description": "Cuidado: Cura 2 o Trata 1",
+            "effects": [
+              { "type": "exhaust_hope" },
+              {
+                "target": "custom",
+                "effect": {
+                  "description": "Elige:",
+                  "options": [
+                    { "type": "heal", "description": "Cura 2" },
+                    { "type": "treat", "description": "Trata 1" }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "ifFalse": {
+        "description": "Por cada tipo de Descontento activo:",
+        "effects": [
+          {
+            "condition": { "type": "has_discontent", "value": "codicia" },
+            "ifTrue": {
+              "type": "change_hunger",
+              "description": "Aumenta el Hambre en 4"
+            }
+          },
+          {
+            "condition": { "type": "has_discontent", "value": "apatia" },
+            "ifTrue": {
+              "type": "flip_disease",
+              "description": "Voltea 1 marcador de Enfermedad"
+            }
+          },
+          {
+            "condition": { "type": "has_discontent", "value": "ira" },
+            "ifTrue": {
+              "type": "exhaust_hope",
+              "description": "Agota toda la Esperanza de un tipo"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "L09 A",
+    "type": "consecuencia_ley",
+    "variante": "A",
+    "etiqueta": "ANOCHECER",
+    "titulo": "RENACIMIENTO ÉTICO",
+    "textoAmbientacion": "Los ciudadanos creen que los estándares éticos deben mantenerse. Especialmente en tiempos como estos.",
+    "efecto": "Si la Casa de Cuidados (Care House) está construida: +1 Cuidado o +1 Justicia (elige antes de robar una ficha de Esperanza). Elimina esta carta. De lo contrario: -2 Esperanza. Baraja esta carta de nuevo.",
+    "efectoEstructurado": {
+      "condition": {
+        "type": "has_building",
+        "value": "care_house",
+        "description": "Si la Casa de Cuidados está construida"
+      },
+      "ifTrue": {
+        "description": "Elige uno:",
+        "minChoices": 1,
+        "maxChoices": 1,
+        "options": [
+          {
+            "type": "activate_hope",
+            "description": "+1 Cuidado"
+          },
+          {
+            "type": "activate_hope",
+            "description": "+1 Justicia"
+          }
+        ],
+        "removeAfter": true
+      },
+      "ifFalse": {
+        "effects": [
+          {
+            "type": "change_hope",
+            "description": "-2 Esperanza"
+          },
+          {
+            "type": "shuffle_card_into_deck",
+            "description": "Baraja esta carta de nuevo en el mazo de Anochecer"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "L09 B",
+    "type": "consecuencia_ley",
+    "variante": "B",
+    "etiqueta": "ANOCHECER",
+    "titulo": "DONACIONES PARA LOS MÁS POBRES",
+    "textoAmbientacion": "Los ciudadanos fueron motivados por la introducción de la casa de cuidados...",
+    "efecto": "Si la Casa de Cuidados (Care House) está construida: Reduce el Hambre en 3. De lo contrario: -2 Esperanza. Baraja esta carta de nuevo en el mazo de Anochecer.",
+    "efectoEstructurado": {
+      "condition": {
+        "type": "has_building",
+        "value": "care_house",
+        "description": "Si la Casa de Cuidados está construida"
+      },
+      "ifTrue": {
+        "type": "change_hunger",
+        "description": "Reduce el Hambre en 3"
+      },
+      "ifFalse": {
+        "effects": [
+          {
+            "type": "change_hope",
+            "description": "-2 Esperanza"
+          },
+          {
+            "type": "shuffle_card_into_deck",
+            "description": "Baraja esta carta de nuevo en el mazo de Anochecer"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "L10 A",
+    "type": "consecuencia_ley",
+    "variante": "A",
+    "etiqueta": "ANOCHECER",
+    "titulo": "NARICES ROTAS Y COSTILLAS MAGULLADAS",
+    "textoAmbientacion": "Algunos ciudadanos de mal genio expresaron su ira en una pelea total.",
+    "efecto": "Si la Arena de Lucha (Fighting Arena) está construida: Agota Ira. -1 Descontento. Coloca 1 Trabajador Gastado en la reserva. De lo contrario: +2 Descontento. Baraja esta carta de nuevo.",
+    "efectoEstructurado": {
+      "condition": {
+        "type": "has_building",
+        "value": "fighting_arena",
+        "description": "Si la Arena de Lucha está construida"
+      },
+      "ifTrue": {
+        "effects": [
+          {
+            "type": "exhaust_discontent",
+            "description": "Agota Ira"
+          },
+          {
+            "type": "change_discontent",
+            "description": "-1 Descontento"
+          },
+          {
+            "type": "custom",
+            "description": "Coloca 1 ficha de Trabajador Gastado en la reserva"
+          }
+        ]
+      },
+      "ifFalse": {
+        "effects": [
+          {
+            "type": "change_discontent",
+            "description": "+2 Descontento"
+          },
+          {
+            "type": "shuffle_card_into_deck",
+            "description": "Baraja esta carta de nuevo en el mazo de Anochecer"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "L10 B",
+    "type": "consecuencia_ley",
+    "variante": "B",
+    "etiqueta": "ANOCHECER",
+    "titulo": "JUEGOS DE SANGRE",
+    "textoAmbientacion": "Se decía que muchas revueltas en la antigua Roma se evitaban gracias a la sangre derramada en el Coliseo.",
+    "efecto": "Si la Arena de Lucha está construida: 1 Trabajador muere (no robes carta). Luego elige uno: A) Agota todo el Descontento de un tipo. B) -2 Descontento. (Si se elige B, elimina la carta). De lo contrario: +2 Descontento. Baraja esta carta de nuevo.",
+    "efectoEstructurado": {
+      "condition": {
+        "type": "has_building",
+        "value": "fighting_arena",
+        "description": "Si la Arena de Lucha está construida"
+      },
+      "ifTrue": {
         "effects": [
           {
             "type": "die_citizen",
-            "description": "1 Trabajador muere."
+            "description": "1 Trabajador muere (No robes carta de Ciudadano)"
           },
           {
-            "type": "custom",
-            "description": "Coloca 1 ficha de Trabajador / Ingeniero Agotado en el suministro."
+            "description": "Elige uno:",
+            "minChoices": 1,
+            "maxChoices": 1,
+            "options": [
+              {
+                "type": "exhaust_discontent",
+                "description": "Agota todo el Descontento de un tipo"
+              },
+              {
+                "type": "change_discontent",
+                "description": "-2 Descontento",
+                "removeAfter": true
+              }
+            ]
           }
-        ],
-        "type": "composite"
+        ]
+      },
+      "ifFalse": {
+        "effects": [
+          {
+            "type": "change_discontent",
+            "description": "+2 Descontento"
+          },
+          {
+            "type": "shuffle_card_into_deck",
+            "description": "Baraja esta carta de nuevo en el mazo de Anochecer"
+          }
+        ]
       }
     }
   },
   {
-    "id": "L07",
+    "id": "L11A",
+    "type": "consecuencia_ley",
+    "variante": "A",
+    "etiqueta": "ANOCHECER",
+    "titulo": "TRABAJAR DURO Y JUGAR DURO",
+    "textoAmbientacion": "La charla sobre una casa pública resultó en que algunos de nuestros ciudadanos más jóvenes se involucraran en borracheras...",
+    "efecto": "Si la Casa Pública está construida: Elige uno: A) Descarta 1 ficha de Esperanza y 1 de Descontento [Eliminar]. B) +1 Descontento y +1 Esperanza. De lo contrario: -2 Esperanza. Baraja esta carta en el mazo.",
+    "efectoEstructurado": {
+      "condition": {
+        "type": "has_building",
+        "value": "casa_publica",
+        "description": "Si la Casa Pública está construida"
+      },
+      "ifTrue": {
+        "type": "choice",
+        "description": "Elige uno:",
+        "minChoices": 1,
+        "maxChoices": 1,
+        "options": [
+          {
+            "effects": [
+              {
+                "type": "exhaust_hope",
+                "amount": 1,
+                "description": "Descarta 1 ficha de Esperanza"
+              },
+              {
+                "type": "exhaust_discontent",
+                "amount": 1,
+                "description": "Descarta 1 ficha de Descontento"
+              }
+            ],
+            "removeAfter": true
+          },
+          {
+            "effects": [
+              {
+                "type": "change_discontent",
+                "amount": 1,
+                "description": "+1 Descontento"
+              },
+              {
+                "type": "change_hope",
+                "amount": 1,
+                "description": "+1 Esperanza"
+              }
+            ]
+          }
+        ]
+      },
+      "ifFalse": {
+        "effects": [
+          {
+            "type": "change_hope",
+            "amount": -2,
+            "description": "-2 Esperanza"
+          },
+          {
+            "type": "shuffle_card_into_deck",
+            "description": "Baraja esta carta en el mazo de Anochecer"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "L11B",
     "type": "consecuencia_ley",
     "variante": "B",
     "etiqueta": "ANOCHECER",
-    "titulo": "PATRULLAS DE BARRIO",
-    "textoAmbientacion": "Los ciudadanos patrullan las calles para mantener el orden. Se sienten más seguros, pero también más vigilados.",
-    "efecto": "Si tienes Ira activa: -1 Descontento. En caso contrario: Activa 1 Esperanza. +1 Descontento.",
+    "titulo": "LA PARTE DEL ÁNGEL",
+    "textoAmbientacion": "El Sr. Grant, uno de nuestros ciudadanos, proviene de una larga línea de destiladores... Si tan solo tuviera un lugar para abrir una tienda.",
+    "efecto": "Si la Casa Pública está construida: Activa Justicia. +1 Esperanza. Coloca 1 Trabajador Gastado en la reserva. De lo contrario: -2 Esperanza. Baraja esta carta en el mazo de Anochecer.",
     "efectoEstructurado": {
       "condition": {
-        "type": "custom",
-        "description": "Si tienes Ira activa"
+        "type": "has_building",
+        "value": "casa_publica",
+        "description": "Si la Casa Pública está construida"
       },
       "ifTrue": {
-        "type": "change_discontent",
-        "description": "-1 Descontento."
-      },
-      "ifFalse": {
         "effects": [
           {
             "type": "activate_hope",
-            "description": "Activa 1 Esperanza."
+            "value": "justicia",
+            "description": "Activa Justicia"
           },
           {
-            "type": "change_discontent",
-            "description": "+1 Descontento."
-          }
-        ],
-        "type": "composite"
-      }
-    }
-  },
-  {
-    "id": "L08",
-    "type": "consecuencia_ley",
-    "variante": "A",
-    "etiqueta": "ANOCHECER",
-    "titulo": "TURNOS DE MAÑANA",
-    "textoAmbientacion": "Los turnos de mañana son productivos, pero la gente está cansada.",
-    "efecto": "Si tienes Motivación activa: Reutiliza 2 Trabajadores. En caso contrario: Coloca 2 fichas de Trabajador Agotado en el suministro.",
-    "efectoEstructurado": {
-      "condition": {
-        "type": "custom",
-        "description": "Si tienes Motivación activa"
-      },
-      "ifTrue": {
-        "type": "reuse_worker",
-        "description": "Reutiliza 2 Trabajadores."
-      },
-      "ifFalse": {
-        "type": "exhaust_worker",
-        "description": "Coloca 2 fichas de Trabajador Agotado en el suministro."
-      }
-    }
-  },
-  {
-    "id": "L08",
-    "type": "consecuencia_ley",
-    "variante": "B",
-    "etiqueta": "ANOCHECER",
-    "titulo": "TRABAJO DE EMERGENCIA",
-    "textoAmbientacion": "El trabajo de emergencia es necesario, pero peligroso. Los accidentes son más frecuentes.",
-    "efecto": "Si el Generador está encendido: Gana 1 Recurso de Carbón. Gana 1 Trabajador enfermo. En caso contrario: 1 Trabajador muere.",
-    "efectoEstructurado": {
-      "condition": {
-        "type": "custom",
-        "description": "Si el Generador está encendido"
-      },
-      "ifTrue": {
-        "effects": [
-          {
-            "type": "gain_resource",
-            "description": "Gana 1 Recurso de Carbón."
+            "type": "change_hope",
+            "amount": 1,
+            "description": "+1 Esperanza"
           },
           {
-            "type": "gain_sick",
-            "description": "Gana 1 Trabajador enfermo."
+            "type": "custom",
+            "description": "Coloca 1 ficha de Trabajador Gastado en la reserva"
           }
-        ],
-        "type": "composite"
-      },
-      "ifFalse": {
-        "type": "die_citizen",
-        "description": "1 Trabajador muere."
-      }
-    }
-  },
-  {
-    "id": "L09",
-    "type": "consecuencia_ley",
-    "variante": "A",
-    "etiqueta": "ANOCHECER",
-    "titulo": "CEMENTERIO",
-    "textoAmbientacion": "Un lugar para enterrar a nuestros muertos con dignidad. Ayuda a procesar el duelo, pero ocupa espacio valioso.",
-    "efecto": "Si el Cementerio está construido: +1 Esperanza. En caso contrario: -1 Esperanza. +1 Descontento.",
-    "efectoEstructurado": {
-      "condition": {
-        "type": "custom",
-        "description": "Si el Cementerio está construido"
-      },
-      "ifTrue": {
-        "type": "change_hope",
-        "description": "+1 Esperanza."
+        ]
       },
       "ifFalse": {
         "effects": [
           {
             "type": "change_hope",
-            "description": "-1 Esperanza."
+            "amount": -2,
+            "description": "-2 Esperanza"
           },
           {
-            "type": "change_discontent",
-            "description": "+1 Descontento."
+            "type": "shuffle_card_into_deck",
+            "description": "Baraja esta carta en el mazo de Anochecer"
           }
-        ],
-        "type": "composite"
+        ]
       }
     }
   },
   {
-    "id": "L09",
+    "id": "L12A",
+    "type": "consecuencia_ley",
+    "variante": "A",
+    "etiqueta": "ANOCHECER",
+    "titulo": "LA HISTORIA DE UNA SONRISA",
+    "textoAmbientacion": "La hermana Beatrice entró en la tienda médica con una sonrisa en su rostro. Siempre lo hacía. Después de todo, los pacientes no necesitaban compartir sus cargas...",
+    "efecto": "Aumenta el Hambre en 3. Cura 2.",
+    "efectoEstructurado": {
+      "effects": [
+        {
+          "type": "change_hunger",
+          "amount": 3,
+          "description": "Aumenta el Hambre en 3"
+        },
+        {
+          "type": "heal",
+          "amount": 2,
+          "description": "Cura 2"
+        }
+      ]
+    }
+  },
+  {
+    "id": "L12B",
     "type": "consecuencia_ley",
     "variante": "B",
     "etiqueta": "ANOCHECER",
-    "titulo": "FOSA COMÚN",
-    "textoAmbientacion": "Una solución práctica para un problema sombrío. Nadie quiere terminar aquí.",
-    "efecto": "Si hay Cadáveres sin enterrar: Entierra todos los Cadáveres. -2 Esperanza. En caso contrario: +1 Descontento.",
+    "titulo": "EL ALMA DE NUESTRA SOCIEDAD",
+    "textoAmbientacion": "Recordaré hoy por el resto de mi vida... Un niño pequeño me miró directamente a los ojos. Dijo: 'Salvaste a mi mamá'.",
+    "efecto": "+1 Esperanza. Activa todas las fichas de Cuidado. [Eliminar carta]",
+    "efectoEstructurado": {
+      "effects": [
+        {
+          "type": "change_hope",
+          "amount": 1,
+          "description": "+1 Esperanza"
+        },
+        {
+          "type": "custom",
+          "description": "Activa todas las fichas de Cuidado"
+        }
+      ],
+      "removeAfter": true
+    }
+  },
+  {
+    "id": "L13A",
+    "type": "consecuencia_ley",
+    "variante": "A",
+    "etiqueta": "ANOCHECER",
+    "titulo": "MENTE DESCANSADA, CUERPO SANO",
+    "textoAmbientacion": "Quien tiene salud, tiene esperanza; y quien tiene esperanza, lo tiene todo. - Thomas Carlyle",
+    "efecto": "Cura 1. Luego, por cada ficha de Ciudadano Gastado en la reserva, Cura 1 adicional.",
+    "efectoEstructurado": {
+      "effects": [
+        {
+          "type": "heal",
+          "description": "Cura 1"
+        },
+        {
+          "type": "foreach",
+          "target": "ficha_ciudadano_gastado_reserva",
+          "effect": {
+            "type": "heal",
+            "description": "Cura 1"
+          },
+          "description": "Por cada ficha de Ciudadano Gastado en la reserva"
+        }
+      ]
+    }
+  },
+  {
+    "id": "L13B",
+    "type": "consecuencia_ley",
+    "variante": "B",
+    "etiqueta": "ANOCHECER",
+    "titulo": "UN DÍA DE APRECIO",
+    "textoAmbientacion": "La gente vio la sabiduría en tu decisión de darles un respiro... Te devolvieron la amabilidad de la mejor manera que pudieron, quitando algo de carga de tus hombros.",
+    "efecto": "+1 Justicia. Luego, elige uno: A) Elimina 1 ficha de Ciudadano Gastado no ocupada [Eliminar]. B) Reutiliza 1 Trabajador.",
+    "efectoEstructurado": {
+      "effects": [
+        {
+          "type": "gain_hope",
+          "value": "justicia",
+          "description": "Gana 1 Justicia"
+        },
+        {
+          "type": "choice",
+          "description": "Elige uno:",
+          "minChoices": 1,
+          "maxChoices": 1,
+          "options": [
+            {
+              "type": "custom",
+              "description": "Elimina 1 ficha de Ciudadano Gastado no ocupada",
+              "removeAfter": true
+            },
+            {
+              "type": "reuse_worker",
+              "description": "Reutiliza 1 Trabajador"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "L14A",
+    "type": "consecuencia_ley",
+    "variante": "A",
+    "etiqueta": "ANOCHECER",
+    "titulo": "¿PRESIÓN U OPRESIÓN?",
+    "textoAmbientacion": "Se dice que todos tienen límites. Parece que mucha gente en nuestra ciudad ha alcanzado los suyos. Un grupo de ciudadanos forzó su entrada a la cocina...",
+    "efecto": "+1 Apatía. Aumenta el Hambre en 6. [Eliminar carta]",
+    "efectoEstructurado": {
+      "effects": [
+        {
+          "type": "gain_discontent",
+          "value": "apatia",
+          "description": "Gana 1 Apatía"
+        },
+        {
+          "type": "change_hunger",
+          "amount": 6,
+          "description": "Aumenta el Hambre en 6"
+        }
+      ],
+      "removeAfter": true
+    }
+  },
+  {
+    "id": "L14B",
+    "type": "consecuencia_ley",
+    "variante": "B",
+    "etiqueta": "ANOCHECER",
+    "titulo": "¡HUELGA!",
+    "textoAmbientacion": "La gente está harta de hacer trabajo extra sin beneficios ni descanso. ¡Han organizado una huelga y exigen una designación más justa de las asignaciones de trabajo!",
+    "efecto": "Si tienes Ira activa: +1 Descontento. A menos que agotes Justicia: Coloca 1 ficha de Trabajador / Ingeniero Gastado en la reserva.",
+    "efectoEstructurado": {
+      "effects": [
+        {
+          "condition": {
+            "type": "has_discontent",
+            "value": "ira",
+            "description": "Si tienes Ira activa"
+          },
+          "ifTrue": {
+            "type": "change_discontent",
+            "amount": 1,
+            "description": "+1 Descontento"
+          }
+        },
+        {
+          "type": "choice",
+          "description": "A menos que agotes Justicia (Elige uno):",
+          "minChoices": 1,
+          "maxChoices": 1,
+          "options": [
+            {
+              "type": "exhaust_hope",
+              "value": "justicia",
+              "description": "Agotar Justicia (Evita el efecto negativo)"
+            },
+            {
+              "type": "custom",
+              "description": "Coloca 1 ficha de Trabajador / Ingeniero Gastado en la reserva"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "L15A",
+    "type": "consecuencia_ley",
+    "variante": "A",
+    "etiqueta": "ANOCHECER",
+    "titulo": "ELEVADO POR ENCIMA DE OTROS",
+    "textoAmbientacion": "La elevación de un grupo de hombres y mujeres por encima del resto, dándoles el título de Consejo Público, ha enfadado a mucha gente. Pocas voces dicen abiertamente que no hay lugar para las viejas costumbres...",
+    "efecto": "Si todas las fichas de Descontento están activas: +1 Descontento. Baraja esta carta en el mazo de Anochecer. De lo contrario: +1 Justicia. Activa todo el Descontento del tipo más común (si hay empate, elige uno). [Eliminar]",
     "efectoEstructurado": {
       "condition": {
         "type": "custom",
-        "description": "Si hay Cadáveres sin enterrar"
+        "description": "Si todas las fichas de Descontento están activas"
       },
       "ifTrue": {
+        "effects": [
+          {
+            "type": "change_discontent",
+            "amount": 1,
+            "description": "+1 Descontento"
+          },
+          {
+            "type": "shuffle_card_into_deck",
+            "description": "Baraja esta carta en el mazo de Anochecer"
+          }
+        ]
+      },
+      "ifFalse": {
+        "effects": [
+          {
+            "type": "gain_hope",
+            "value": "justicia",
+            "description": "Gana 1 Justicia"
+          },
+          {
+            "type": "custom",
+            "description": "Activa todo el Descontento del tipo más común (si hay empate, elige uno)"
+          }
+        ],
+        "removeAfter": true
+      }
+    }
+  },
+  {
+    "id": "L15B",
+    "type": "consecuencia_ley",
+    "variante": "B",
+    "etiqueta": "ANOCHECER",
+    "titulo": "EL GRITO FUERTE DE LA SOCIEDAD",
+    "textoAmbientacion": "La gente está furiosa porque algunos miembros del consejo han abusado del poder que se les confirió. La estructura del Consejo Público solo recordó a la gente lo que estaba mal con el sistema anterior...",
+    "efecto": "Si tienes Justicia activa: +1 Descontento. De lo contrario: +2 Descontento. Activa Justicia.",
+    "efectoEstructurado": {
+      "condition": {
+        "type": "has_hope",
+        "value": "justicia",
+        "description": "Si tienes Justicia activa"
+      },
+      "ifTrue": {
+        "type": "change_discontent",
+        "amount": 1,
+        "description": "+1 Descontento"
+      },
+      "ifFalse": {
+        "effects": [
+          {
+            "type": "change_discontent",
+            "amount": 2,
+            "description": "+2 Descontento"
+          },
+          {
+            "type": "activate_hope",
+            "value": "justicia",
+            "description": "Activa Justicia"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "L16A",
+    "type": "consecuencia_ley",
+    "variante": "A",
+    "etiqueta": "ANOCHECER",
+    "titulo": "UNA VELA EN EL VIENTO",
+    "textoAmbientacion": "Nuestra gente está débil porque nuestras decisiones hacen que pasen hambre. Sus cuerpos son vulnerables al clima despiadado y muchos sucumben a la enfermedad.",
+    "efecto": "Gana Ciudadanos enfermos dependiendo de la posición del marcador de Frío y el marcador de Calor, como en la Fase del Generador. No puedes alimentar el Generador de antemano.",
+    "efectoEstructurado": {
+      "type": "gain_sick",
+      "description": "Gana Ciudadanos enfermos según marcadores de Frío/Calor (como en Fase de Generador). No puedes alimentar el Generador antes."
+    }
+  },
+  {
+    "id": "L16B",
+    "type": "consecuencia_ley",
+    "variante": "B",
+    "etiqueta": "ANOCHECER",
+    "titulo": "LA SUPERVIVENCIA DEL MÁS APTO",
+    "textoAmbientacion": "La escasez de comida resultó en la formación de pandillas en la ciudad; los fuertes toman de los débiles. Nuestros ciudadanos han cedido a sus instintos primarios...",
+    "efecto": "Coloca esta carta sobre la carta de Ley de Raciones de Inanición. Ignora la carta de Ley mientras esta carta la cubra. FASE DEL CLIMA: Por cada Codicia activa, aumenta el Hambre en 2. Coloca esta carta en la pila de descartes de Anochecer.",
+    "efectoEstructurado": {
+      "effects": [
+        {
+          "type": "custom",
+          "description": "Coloca esta carta sobre la Ley de Raciones de Inanición (Ignora la ley)"
+        },
+        {
+          "type": "custom",
+          "description": "FASE DEL CLIMA: Por cada Codicia activa, +2 Hambre. Luego descarta esta carta."
+        }
+      ]
+    }
+  },
+  {
+    "id": "L17A",
+    "type": "consecuencia_ley",
+    "variante": "A",
+    "etiqueta": "ANOCHECER",
+    "titulo": "LÍMITES HUMANOS",
+    "textoAmbientacion": "Nuestra gente está tan agotada con los turnos extendidos que ya no pueden trabajar. Algunos se han desmayado; otros simplemente se niegan a levantarse de sus camas...",
+    "efecto": "Si tienes Apatía activa: Coloca 2 fichas de Trabajador / Ingeniero Gastado en la reserva. De lo contrario: Coloca 1 ficha de Trabajador / Ingeniero Gastado en la reserva.",
+    "efectoEstructurado": {
+      "condition": {
+        "type": "has_discontent",
+        "value": "apatia",
+        "description": "Si tienes Apatía activa"
+      },
+      "ifTrue": {
+        "type": "custom",
+        "description": "Coloca 2 fichas de Trabajador / Ingeniero Gastado en la reserva"
+      },
+      "ifFalse": {
+        "type": "custom",
+        "description": "Coloca 1 ficha de Trabajador / Ingeniero Gastado en la reserva"
+      }
+    }
+  },
+  {
+    "id": "L17B",
+    "type": "consecuencia_ley",
+    "variante": "B",
+    "etiqueta": "ANOCHECER",
+    "titulo": "EL NACIMIENTO DE LA DESCONFIANZA",
+    "textoAmbientacion": "¿Acaso estos turnos cambian algo, o estamos siendo utilizados? Trabajando hasta los huesos, no tenemos tiempo ni fuerza para alzar nuestras voces en objeción. Si pudiéramos parar...",
+    "efecto": "+1 Apatía. Agota toda la Motivación. [Eliminar carta]",
+    "efectoEstructurado": {
+      "effects": [
+        {
+          "type": "gain_discontent",
+          "value": "apatia",
+          "description": "Gana 1 Apatía"
+        },
+        {
+          "type": "exhaust_hope",
+          "value": "motivacion",
+          "description": "Agota toda la Motivación (todas las fichas)"
+        }
+      ],
+      "removeAfter": true
+    }
+  },
+  {
+    "id": "L18A",
+    "type": "consecuencia_ley",
+    "variante": "A",
+    "etiqueta": "ANOCHECER",
+    "titulo": "EL CONOCIMIENTO ES PODER",
+    "textoAmbientacion": "El intercambio de conocimiento llevó a la aparición de equipos de trabajadores altamente especializados. A partir de ahora, pueden realizar trabajos antes disponibles solo para ingenieros altamente capacitados.",
+    "efecto": "Coloca esta carta sobre la carta de Ley de Conocimiento Compartido. Ignora la carta de Ley de Conocimiento Compartido mientras esta carta la cubra. FASE DE ACCIÓN: Puedes usar Meeples de Trabajador para usar Edificios de Taller y el Edificio del Generador. Siempre que uses un Meeple de Ingeniero para realizar la acción de Construir, puedes usar 2 sub-acciones de Construir para mejorar un Edificio pagando su coste de mejora.",
+    "efectoEstructurado": {
+      "effects": [
+        {
+          "type": "custom",
+          "description": "Coloca esta carta sobre la Ley de Conocimiento Compartido (Ignora la ley)"
+        },
+        {
+          "type": "custom",
+          "description": "FASE DE ACCIÓN: Trabajadores pueden usar Talleres y Generador. Ingenieros al Construir pueden usar 2 sub-acciones para Mejorar edificios pagando el coste."
+        }
+      ]
+    }
+  },
+  {
+    "id": "L18B",
+    "type": "consecuencia_ley",
+    "variante": "B",
+    "etiqueta": "ANOCHECER",
+    "titulo": "IGUALDAD SOCIAL",
+    "textoAmbientacion": "Nuestra gente siente armonía en la forma en que funciona nuestra sociedad. Las divisiones sociales anteriormente presentes ahora están olvidadas, y nuestros esfuerzos conjuntos benefician a todos.",
+    "efecto": "Elige uno: A) Mejora un Edificio Pequeño gratis, incluso si ese Edificio ha sido usado esta Ronda. B) Activa 1 Esperanza.",
+    "efectoEstructurado": {
+      "type": "choice",
+      "description": "Elige uno:",
+      "minChoices": 1,
+      "maxChoices": 1,
+      "options": [
+        {
+          "type": "upgrade_building",
+          "description": "Mejora un Edificio Pequeño gratis (incluso si fue usado)"
+        },
+        {
+          "type": "activate_hope",
+          "amount": 1,
+          "description": "Activa 1 Esperanza"
+        }
+      ]
+    }
+  },
+  {
+    "id": "L19A",
+    "type": "consecuencia_ley",
+    "variante": "A",
+    "etiqueta": "ANOCHECER",
+    "titulo": "ABANDONAD TODA ESPERANZA QUIENES ENTRÁIS AQUÍ",
+    "textoAmbientacion": "Priorizar a los pacientes tiene un precio alto. Sin embargo, debemos continuar este trabajo espantoso ya que no hay otra manera de asegurar nuestra supervivencia.",
+    "efecto": "Si hay 1 o más marcadores de Enfermedad en su lado de Calavera: Voltea 1 marcador de Enfermedad de su lado de Calavera a su lado de Jeringa. De lo contrario: Gana 3 Ciudadanos enfermos de cualquier tipo.",
+    "efectoEstructurado": {
+      "condition": {
+        "type": "custom",
+        "description": "Si hay 1 o más marcadores de Enfermedad en lado Calavera"
+      },
+      "ifTrue": {
+        "type": "flip_disease",
+        "description": "Voltea 1 marcador de Enfermedad de Calavera a Jeringa"
+      },
+      "ifFalse": {
+        "type": "gain_sick",
+        "amount": 3,
+        "description": "Gana 3 Ciudadanos enfermos de cualquier tipo"
+      }
+    }
+  },
+  {
+    "id": "L19B",
+    "type": "consecuencia_ley",
+    "variante": "B",
+    "etiqueta": "ANOCHECER",
+    "titulo": "MOMENTOS TRAUMÁTICOS",
+    "textoAmbientacion": "Tanta muerte. Tantas caras que nunca volverán a hablar. Los médicos son solo humanos, y sus límites han sido superados. Su dedicación y sacrificio ahora cobran un alto precio.",
+    "efecto": "+1 Apatía. Gana 2 Ingenieros enfermos. Adicionalmente, si tienes Cuidado activo: Gana 2 Ingenieros enfermos. [Eliminar carta]",
+    "efectoEstructurado": {
+      "effects": [
+        {
+          "type": "gain_discontent",
+          "value": "apatia",
+          "description": "Gana 1 Apatía"
+        },
+        {
+          "type": "gain_sick",
+          "amount": 2,
+          "description": "Gana 2 Ingenieros enfermos"
+        },
+        {
+          "condition": {
+            "type": "has_hope",
+            "value": "cuidado",
+            "description": "Si tienes Cuidado activo"
+          },
+          "ifTrue": {
+            "type": "gain_sick",
+            "amount": 2,
+            "description": "Gana 2 Ingenieros enfermos adicionales"
+          }
+        }
+      ],
+      "removeAfter": true
+    }
+  },
+  {
+    "id": "L20A",
+    "type": "consecuencia_ley",
+    "variante": "A",
+    "etiqueta": "ANOCHECER",
+    "titulo": "LA FUERZA EN LA UNIDAD",
+    "textoAmbientacion": "¿Somos una sociedad unida? ¿Aún hay esperanza para nosotros?",
+    "efecto": "Si tienes 3 o más fichas de Descontento activas: +1 Descontento. De lo contrario: Elige uno: A) Agota 1 Descontento. B) Agota una Esperanza activa y aplica el efecto según el tipo: Justicia (Elimina hasta 4 Estrés), Motivación (Reutiliza 1 Trabajador), Cuidado (Cura 2 y Trata 1). Puedes intercambiar la ficha de Esperanza en 'La Virtud de la Humanidad' con una ficha activa.",
+    "efectoEstructurado": {
+      "condition": {
+        "type": "custom",
+        "description": "Si tienes 3 o más fichas de Descontento activas"
+      },
+      "ifTrue": {
+        "type": "change_discontent",
+        "amount": 1,
+        "description": "+1 Descontento"
+      },
+      "ifFalse": {
+        "effects": [
+          {
+            "type": "choice",
+            "description": "Elige uno:",
+            "minChoices": 1,
+            "maxChoices": 1,
+            "options": [
+              {
+                "type": "exhaust_discontent",
+                "amount": 1,
+                "description": "Agota 1 Descontento"
+              },
+              {
+                "type": "custom",
+                "description": "Agota 1 Esperanza activa y aplica efecto: Justicia (-4 Estrés), Motivación (Reusa Trabajador), Cuidado (Cura 2, Trata 1)"
+              }
+            ]
+          },
+          {
+            "type": "custom",
+            "description": "Opcional: Intercambia la ficha de Esperanza en 'La Virtud de la Humanidad' (L20) con una activa"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "L20B",
+    "type": "consecuencia_ley",
+    "variante": "B",
+    "etiqueta": "ANOCHECER",
+    "titulo": "UNIDOS PERMANECEMOS",
+    "textoAmbientacion": "Nosotros, la gente, tenemos el poder de hacer esta vida libre y hermosa. ¡Usemos ese poder! ¡Unámonos todos!",
+    "efecto": "Si tienes 3 o más fichas de Descontento activas: +1 Descontento. De lo contrario: Aplica el efecto basado en el tipo de ficha de Esperanza en la carta de Ley 'La Virtud de la Humanidad' (L20). Justicia: Recupera cartas de Anochecer descartadas. Motivación: Toma recursos del mapa. Cuidado: Reduce Hambre. (Ver detalles en carta). Puedes intercambiar la ficha de Esperanza en L20.",
+    "efectoEstructurado": {
+      "condition": {
+        "type": "custom",
+        "description": "Si tienes 3 o más fichas de Descontento activas"
+      },
+      "ifTrue": {
+        "type": "change_discontent",
+        "amount": 1,
+        "description": "+1 Descontento"
+      },
+      "ifFalse": {
         "effects": [
           {
             "type": "custom",
-            "description": "Entierra todos los Cadáveres."
+            "description": "Aplica efecto según Esperanza en L20: Justicia (Recupera 1 carta de descarte +1 por cada Justicia), Motivación (Toma 1 recurso +1 por cada Motivación), Cuidado (-2 Hambre, -2 más por cada Cuidado)"
           },
           {
-            "type": "change_hope",
-            "description": "-2 Esperanza."
+            "type": "custom",
+            "description": "Opcional: Intercambia la ficha de Esperanza en 'La Virtud de la Humanidad' (L20) con una activa"
           }
-        ],
-        "type": "composite"
-      },
-      "ifFalse": {
-        "type": "change_discontent",
-        "description": "+1 Descontento."
-      }
-    }
-  },
-  {
-    "id": "L10",
-    "type": "consecuencia_ley",
-    "variante": "A",
-    "etiqueta": "ANOCHECER",
-    "titulo": "PELEAS EN LA ARENA",
-    "textoAmbientacion": "La gente necesita desahogarse. Las peleas son brutales, pero efectivas para canalizar la agresión.",
-    "efecto": "Si la Arena está construida: -1 Descontento. Gana 1 Trabajador enfermo. En caso contrario: +2 Descontento.",
-    "efectoEstructurado": {
-      "condition": {
-        "type": "custom",
-        "description": "Si la Arena está construida"
-      },
-      "ifTrue": {
-        "effects": [
-          {
-            "type": "change_discontent",
-            "description": "-1 Descontento."
-          },
-          {
-            "type": "gain_sick",
-            "description": "Gana 1 Trabajador enfermo."
-          }
-        ],
-        "type": "composite"
-      },
-      "ifFalse": {
-        "type": "change_discontent",
-        "description": "+2 Descontento."
-      }
-    }
-  },
-  {
-    "id": "L10",
-    "type": "consecuencia_ley",
-    "variante": "B",
-    "etiqueta": "ANOCHECER",
-    "titulo": "CASA DE ORACIÓN",
-    "textoAmbientacion": "La fe mantiene a la gente unida en tiempos difíciles. Pero algunos son escépticos.",
-    "efecto": "Si la Casa de Oración está construida: +1 Esperanza. En caso contrario: -1 Esperanza.",
-    "efectoEstructurado": {
-      "condition": {
-        "type": "custom",
-        "description": "Si la Casa de Oración está construida"
-      },
-      "ifTrue": {
-        "type": "change_hope",
-        "description": "+1 Esperanza."
-      },
-      "ifFalse": {
-        "type": "change_hope",
-        "description": "-1 Esperanza."
+        ]
       }
     }
   }

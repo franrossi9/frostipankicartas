@@ -175,50 +175,70 @@
   {
     "id": "SD03",
     "type": "disputa_social",
-    "etiqueta": "DISPUTA SOCIAL",
-    "titulo": "CONFUSIÓN",
-    "textoAmbientacion": "Si no podemos convencerlos, los confundiremos.",
-    "efecto": "**Si tienes más fichas de Esperanza que de Descontento:** Puedes agotar 1 Esperanza para realizar el efecto correspondiente: Justicia: Descarta 1 ficha de Descontento. Cuidado: Cura 3 o Trata 3. Motivación: Reutiliza un Trabajador. **Si tienes menos fichas de Esperanza que de Descontento:** Por tu ficha de Descontento activa más común... Codicia: Pierde 3 Recursos... Ira: 1 Ciudadano muere. Apatía: Coloca 1 ficha de Trabajador Agotado... **Si tienes el mismo número:** Activa 1 Esperanza. Activa 1 Descontento.",
+    "etiqueta": "DISPUTA",
+    "titulo": "CONFUSION",
+    "textoAmbientacion": "\"If we can't convince them, we will confuse them.\"",
+    "efecto": "Si tienes más Esperanza que Descontento: Puedes agotar 1 Esperanza para realizar el efecto correspondiente (Justicia: Descarta 1 Descontento; Cuidado: Cura 3 o Trata 3; Motivación: Reutiliza 1 Trabajador). Si tienes menos Esperanza que Descontento: Aplica el efecto de tu Descontento más común (Codicia: Pierde 3 recursos o gana Hambre; Ira: Muere 1 ciudadano; Apatía: Devuelve 1 trabajador gastado). Si tienes igual cantidad: Activa 1 Esperanza y 1 Descontento.",
     "efectoEstructurado": {
       "branches": [
         {
           "condition": {
             "type": "compare_hope_discontent",
             "operator": "greater_than",
-            "description": "Si tienes más Esperanza que Descontento"
+            "description": "Si tienes más fichas de Esperanza que de Descontento"
           },
           "effect": {
-            "description": "Elige una opción agotando 1 Esperanza correspondiente:",
-            "minChoices": 1,
+            "description": "Puedes agotar 1 Esperanza para realizar el efecto correspondiente:",
+            "minChoices": 0,
             "maxChoices": 1,
             "options": [
               {
-                "type": "composite",
-                "description": "Justicia: Descarta 1 Descontento",
+                "description": "Justicia: Agota Justicia para descartar 1 Descontento",
                 "effects": [
-                  { "type": "exhaust_hope", "description": "Agota Justicia" },
+                  {
+                    "type": "exhaust_hope",
+                    "description": "Agota Justicia"
+                  },
                   {
                     "type": "change_discontent",
-                    "description": "-1 Descontento"
+                    "description": "Descarta 1 ficha de Descontento"
                   }
                 ]
               },
               {
-                "type": "composite",
-                "description": "Cuidado: Cura 3 o Trata 3",
+                "description": "Cuidado: Agota Cuidado para Curar o Tratar",
                 "effects": [
-                  { "type": "exhaust_hope", "description": "Agota Cuidado" },
-                  { "type": "custom", "description": "Cura 3 o Trata 3" }
+                  {
+                    "type": "exhaust_hope",
+                    "description": "Agota Cuidado"
+                  },
+                  {
+                    "description": "Elige uno:",
+                    "minChoices": 1,
+                    "maxChoices": 1,
+                    "options": [
+                      {
+                        "type": "heal",
+                        "description": "Cura 3"
+                      },
+                      {
+                        "type": "treat",
+                        "description": "Trata 3"
+                      }
+                    ]
+                  }
                 ]
               },
               {
-                "type": "composite",
-                "description": "Motivación: Reutiliza un Trabajador",
+                "description": "Motivación: Agota Motivación para reutilizar un trabajador",
                 "effects": [
-                  { "type": "exhaust_hope", "description": "Agota Motivación" },
+                  {
+                    "type": "exhaust_hope",
+                    "description": "Agota Motivación"
+                  },
                   {
                     "type": "reuse_worker",
-                    "description": "Reutiliza 1 Trabajador"
+                    "description": "Reutiliza un Trabajador"
                   }
                 ]
               }
@@ -229,76 +249,123 @@
           "condition": {
             "type": "compare_hope_discontent",
             "operator": "less_than",
-            "description": "Si tienes menos Esperanza que Descontento"
+            "description": "Si tienes menos fichas de Esperanza que de Descontento"
           },
           "effect": {
-            "type": "custom",
-            "description": "Aplica efecto según Descontento más común (Codicia: Pierde recursos/Hambre; Ira: Muere 1; Apatía: Agota Trabajador)"
-          }
-        },
-        {
-          "condition": {
-            "type": "compare_hope_discontent",
-            "operator": "equal",
-            "description": "Si tienes el mismo número"
-          },
-          "effect": {
-            "effects": [
-              { "type": "activate_hope", "description": "Activa 1 Esperanza" },
+            "description": "Por tu ficha de Descontento activa más común (si no hay, Codicia; si hay empate, la primera de la lista), realiza el efecto:",
+            "minChoices": 1,
+            "maxChoices": 1,
+            "options": [
               {
-                "type": "activate_discontent",
-                "description": "Activa 1 Descontento"
+                "type": "custom",
+                "description": "Codicia (Greed): Pierde 3 Recursos. Por cada uno que no puedas perder, aumenta el Hambre en 2."
+              },
+              {
+                "type": "die_citizen",
+                "description": "Ira (Anger): 1 Ciudadano muere."
+              },
+              {
+                "type": "custom",
+                "description": "Apatía (Apathy): Coloca 1 ficha de Trabajador Gastado en la reserva (supply)."
               }
             ]
           }
         }
-      ]
+      ],
+      "default": {
+        "effects": [
+          {
+            "type": "activate_hope",
+            "description": "Activa 1 Esperanza"
+          },
+          {
+            "type": "activate_discontent",
+            "description": "Activa 1 Descontento"
+          }
+        ],
+        "description": "Si tienes la misma cantidad de fichas"
+      }
     }
   },
   {
     "id": "SD04",
     "type": "disputa_social",
-    "etiqueta": "DISPUTA SOCIAL",
-    "titulo": "DESCONFIANZA",
-    "textoAmbientacion": "La confianza muere pero la desconfianza florece.",
-    "efecto": "**Si tienes más fichas de Esperanza que de Descontento:** ...Justicia: Introduce una nueva Ley... Cuidado: Cura 3 o Trata 3. Motivación: Reutiliza un Trabajador. **Si tienes menos fichas de Esperanza que de Descontento:** ...Apatía: Agota toda la Esperanza. Codicia: Pierde 3 Recursos... Ira: 1 Ciudadano muere. **Si tienes el mismo número:** Activa 1 Esperanza. Activa 1 Descontento.",
+    "etiqueta": "DISPUTA",
+    "titulo": "MISTRUST",
+    "textoAmbientacion": "\"Trust dies but mistrust blossoms.\"",
+    "efecto": "If you have more Hope tokens than Discontent tokens: You may exhaust 1 Hope to perform the corresponding effect: (Justice: Introduce a new Law. If you already have 4 Laws, exhaust all Discontent. / Care: Cure 3 or Treat 3. / Motivation: Reuse a Worker.) If you have fewer Hope tokens than Discontent tokens: For your most common active Discontent token (if none are active, Apathy; if tied for most, the earliest in the list), perform the corresponding effect: (Apathy: Exhaust all Hope. / Greed: Lose 3 Resources. For each you cannot lose, increase Hunger by 2. / Anger: 1 Citizen dies.) If you have the same number: Activate 1 Hope. Activate 1 Discontent.",
     "efectoEstructurado": {
       "branches": [
         {
           "condition": {
             "type": "compare_hope_discontent",
             "operator": "greater_than",
-            "description": "Si tienes más Esperanza que Descontento"
+            "description": "Si tienes más fichas de Esperanza que de Descontento"
           },
           "effect": {
-            "description": "Elige una opción agotando 1 Esperanza correspondiente:",
-            "minChoices": 1,
+            "description": "Puedes agotar 1 Esperanza para realizar el efecto correspondiente:",
+            "minChoices": 0,
             "maxChoices": 1,
             "options": [
               {
-                "type": "composite",
-                "description": "Justicia: Introduce Ley (o agota Descontento)",
+                "condition": {
+                  "type": "has_hope",
+                  "value": "justicia",
+                  "description": "Si agotas Justicia"
+                },
                 "effects": [
-                  { "type": "exhaust_hope", "description": "Agota Justicia" },
-                  { "type": "introduce_law", "description": "Introduce 1 Ley" }
+                  {
+                    "type": "exhaust_hope",
+                    "description": "Agota Justicia"
+                  },
+                  {
+                    "type": "custom",
+                    "description": "Introduce una nueva Ley. Si ya tienes 4 Leyes, agota todo el Descontento."
+                  }
                 ]
               },
               {
-                "type": "composite",
-                "description": "Cuidado: Cura 3 o Trata 3",
+                "condition": {
+                  "type": "has_hope",
+                  "value": "cuidado",
+                  "description": "Si agotas Cuidado"
+                },
                 "effects": [
-                  { "type": "exhaust_hope", "description": "Agota Cuidado" },
-                  { "type": "custom", "description": "Cura 3 o Trata 3" }
+                  {
+                    "type": "exhaust_hope",
+                    "description": "Agota Cuidado"
+                  },
+                  {
+                    "description": "Elige uno:",
+                    "minChoices": 1,
+                    "maxChoices": 1,
+                    "options": [
+                      {
+                        "type": "heal",
+                        "description": "Cura 3"
+                      },
+                      {
+                        "type": "treat",
+                        "description": "Trata 3"
+                      }
+                    ]
+                  }
                 ]
               },
               {
-                "type": "composite",
-                "description": "Motivación: Reutiliza un Trabajador",
+                "condition": {
+                  "type": "has_hope",
+                  "value": "motivacion",
+                  "description": "Si agotas Motivación"
+                },
                 "effects": [
-                  { "type": "exhaust_hope", "description": "Agota Motivación" },
+                  {
+                    "type": "exhaust_hope",
+                    "description": "Agota Motivación"
+                  },
                   {
                     "type": "reuse_worker",
-                    "description": "Reutiliza 1 Trabajador"
+                    "description": "Reutiliza un Trabajador"
                   }
                 ]
               }
@@ -309,30 +376,42 @@
           "condition": {
             "type": "compare_hope_discontent",
             "operator": "less_than",
-            "description": "Si tienes menos Esperanza que Descontento"
+            "description": "Si tienes menos fichas de Esperanza que de Descontento"
           },
           "effect": {
-            "type": "custom",
-            "description": "Aplica efecto según Descontento más común (Apatía: Agota Esperanza; Codicia: Pierde recursos; Ira: Muere 1)"
-          }
-        },
-        {
-          "condition": {
-            "type": "compare_hope_discontent",
-            "operator": "equal",
-            "description": "Si tienes el mismo número"
-          },
-          "effect": {
-            "effects": [
-              { "type": "activate_hope", "description": "Activa 1 Esperanza" },
+            "description": "Por tu ficha de Descontento activa más común (si no hay, Apatía; si hay empate, la primera de la lista), realiza el efecto:",
+            "minChoices": 1,
+            "maxChoices": 1,
+            "options": [
               {
-                "type": "activate_discontent",
-                "description": "Activa 1 Descontento"
+                "type": "exhaust_hope",
+                "description": "Apatía (Apathy): Agota toda la Esperanza"
+              },
+              {
+                "type": "custom",
+                "description": "Codicia (Greed): Pierde 3 Recursos. Por cada uno que no puedas perder, aumenta el Hambre en 2."
+              },
+              {
+                "type": "die_citizen",
+                "description": "Ira (Anger): 1 Ciudadano muere"
               }
             ]
           }
         }
-      ]
+      ],
+      "default": {
+        "effects": [
+          {
+            "type": "activate_hope",
+            "description": "Activa 1 Esperanza"
+          },
+          {
+            "type": "activate_discontent",
+            "description": "Activa 1 Descontento"
+          }
+        ],
+        "description": "Si tienes la misma cantidad de fichas"
+      }
     }
   },
   {
@@ -632,6 +711,7 @@
         ]
       },
       "ifFalse": {
+        "description": "Por cada tipo de Descontento activo que tengas:",
         "effects": [
           {
             "target": "codicia_activa",
