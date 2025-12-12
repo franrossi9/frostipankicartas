@@ -374,7 +374,7 @@
         "type": "custom",
         "description": "Sin Efecto"
       },
-      "discardAfter": true
+      "removeAfter": true
     }
   },
   {
@@ -386,7 +386,7 @@
     "textoAmbientacion": "Dormir en la calle es una sentencia de muerte lenta. El frío se filtra en los huesos y la esperanza se desvanece con cada noche que pasa.",
     "efecto": "Coloca esta carta en el despliegue de Eventos. FASE DE NOCHE: Al final de la Fase de Noche: Si todos los Meeples de Ciudadano tienen un lugar cálido para dormir sin usar Ruinas: El alojamiento en nuestra ciudad es tan bueno como puede ser... +1 Esperanza. En caso contrario: ¡Algunos de nosotros todavía dormimos en el frío... Agota Cuidado. -1 Esperanza. En cualquier caso: Coloca esta carta en la pila de descartes de Anochecer.",
     "efectoEstructurado": {
-      "discardAfter": true,
+      "removeAfter": true,
       "effects": [
         {
           "type": "custom",
@@ -432,6 +432,7 @@
     "textoAmbientacion": "La Orden lo abarca todo. Con despiadada eficiencia, el sistema recién formado impone obediencia absoluta a los ciudadanos. Sus cimientos se construyen sobre la falta de alternativas y el pisoteo del espíritu de la gente bajo su pesada bota para aplastar cualquier pensamiento de revolución.",
     "efecto": "Si todas tus fichas de Esperanza están agotadas: Puedes activar todas las fichas de Descontento de un tipo. Por cada ficha que actives, aplica el siguiente efecto: (Codicia: Toma 1 Recurso del Mapa y colócalo en la reserva. / Apatía: Cura 2 o Trata 1. / Ira: Coloca 1 loseta Cercana o 1 loseta Lejana). De lo contrario: Por cada tipo de ficha de Esperanza activa, en el siguiente orden, aplica el efecto correspondiente: (Justicia: 1 Ciudadano muere. / Motivación: Gana 3 Ciudadanos enfermos. / Cuidado: Coloca 1 ficha de Trabajador/Ingeniero Gastado en la reserva).",
     "efectoEstructurado": {
+      "discardAfter": true,
       "condition": {
         "type": "custom",
         "description": "Si todas tus fichas de Esperanza están agotadas"
@@ -565,6 +566,7 @@
     "textoAmbientacion": "Las regulaciones introducidas por La Orden afectan casi todos los aspectos de la vida de nuestros ciudadanos. Una persona no es más que una estadística en el funcionamiento ciego del aparato que se traga a aquellos que no pueden aceptar el nuevo orden de las cosas.",
     "efecto": "Si todas tus fichas de Esperanza están agotadas: Puedes activar todas las fichas de Descontento de un tipo. Por cada ficha que actives, aplica el siguiente efecto: (Codicia: Gana 4 Comida. / Apatía: Cura 2 o Trata 1. / Ira: Toma 1 Recurso del Mapa y colócalo en la reserva). De lo contrario: Por cada tipo de ficha de Esperanza activa, en el siguiente orden, aplica el efecto correspondiente: (Justicia: Activa todo el Descontento de un tipo. / Motivación: Voltea 1 marcador de Enfermedad. / Cuidado: Aumenta el Hambre en 4).",
     "efectoEstructurado": {
+      "discardAfter": true,
       "condition": {
         "type": "custom",
         "description": "Si todas tus fichas de Esperanza están agotadas"
@@ -702,6 +704,7 @@
     "textoAmbientacion": "Muchos de nuestros ciudadanos siguieron ciegamente la nueva fe...",
     "efecto": "Si todo el Descontento está agotado: Agota toda la Esperanza de un tipo. Por cada ficha agotada: (Justicia: -1 Descontento; Motivación: Toma Recurso; Cuidado: Gana 4 Comida). De lo contrario: Por cada tipo de Descontento activo (Codicia: Gasta 2 Recursos o +1 Descontento; Apatía: Trabajador Gastado; Ira: Gana 3 enfermos).",
     "efectoEstructurado": {
+      "discardAfter": true,
       "condition": {
         "type": "custom",
         "description": "Si todas tus fichas de Descontento están agotadas"
@@ -804,6 +807,7 @@
     "textoAmbientacion": "La nueva fe arde brillante en los corazones de nuestros ciudadanos...",
     "efecto": "Si todo el Descontento está agotado: Agota toda la Esperanza de un tipo. Por cada ficha: (Justicia: Toma Recurso; Motivación: Construye Edificio gratis; Cuidado: Cura/Trata). De lo contrario: Por cada tipo de Descontento activo (Codicia: Hambre +4; Apatía: Voltea Enfermedad; Ira: Agota Esperanza).",
     "efectoEstructurado": {
+      "discardAfter": true,
       "condition": {
         "type": "custom",
         "description": "Si todas tus fichas de Descontento están agotadas"
@@ -939,7 +943,8 @@
       },
       "ifTrue": {
         "type": "change_hunger",
-        "description": "Reduce el Hambre en 3"
+        "description": "Reduce el Hambre en 3",
+        "discardAfter": true
       },
       "ifFalse": {
         "effects": [
@@ -970,6 +975,7 @@
         "description": "Si la Arena de Lucha está construida"
       },
       "ifTrue": {
+        "discardAfter": true,
         "effects": [
           {
             "type": "exhaust_discontent",
@@ -1014,6 +1020,7 @@
         "description": "Si la Arena de Lucha está construida"
       },
       "ifTrue": {
+        "removeAfter": true,
         "effects": [
           {
             "type": "die_citizen",
@@ -1066,6 +1073,7 @@
         "description": "Si la Casa Pública está construida"
       },
       "ifTrue": {
+        "removeAfter": true,
         "type": "choice",
         "description": "Elige uno:",
         "minChoices": 1,
@@ -1132,6 +1140,7 @@
         "description": "Si la Casa Pública está construida"
       },
       "ifTrue": {
+        "discardAfter": true,
         "effects": [
           {
             "type": "activate_hope",
@@ -1173,6 +1182,7 @@
     "textoAmbientacion": "La hermana Beatrice entró en la tienda médica con una sonrisa en su rostro. Siempre lo hacía. Después de todo, los pacientes no necesitaban compartir sus cargas...",
     "efecto": "Aumenta el Hambre en 3. Cura 2.",
     "efectoEstructurado": {
+      "discardAfter": true,
       "effects": [
         {
           "type": "change_hunger",
@@ -1219,6 +1229,7 @@
     "textoAmbientacion": "Quien tiene salud, tiene esperanza; y quien tiene esperanza, lo tiene todo. - Thomas Carlyle",
     "efecto": "Cura 1. Luego, por cada ficha de Ciudadano Gastado en la reserva, Cura 1 adicional.",
     "efectoEstructurado": {
+      "discardAfter": true,
       "effects": [
         {
           "type": "heal",
@@ -1245,6 +1256,7 @@
     "textoAmbientacion": "La gente vio la sabiduría en tu decisión de darles un respiro... Te devolvieron la amabilidad de la mejor manera que pudieron, quitando algo de carga de tus hombros.",
     "efecto": "+1 Justicia. Luego, elige uno: A) Elimina 1 ficha de Ciudadano Gastado no ocupada [Eliminar]. B) Reutiliza 1 Trabajador.",
     "efectoEstructurado": {
+      "removeAfter": true,
       "effects": [
         {
           "type": "gain_hope",
@@ -1259,8 +1271,7 @@
           "options": [
             {
               "type": "custom",
-              "description": "Elimina 1 ficha de Ciudadano Gastado no ocupada",
-              "removeAfter": true
+              "description": "Elimina 1 ficha de Ciudadano Gastado no ocupada"
             },
             {
               "type": "reuse_worker",
@@ -1304,6 +1315,7 @@
     "textoAmbientacion": "La gente está harta de hacer trabajo extra sin beneficios ni descanso. ¡Han organizado una huelga y exigen una designación más justa de las asignaciones de trabajo!",
     "efecto": "Si tienes Ira activa: +1 Descontento. A menos que agotes Justicia: Coloca 1 ficha de Trabajador / Ingeniero Gastado en la reserva.",
     "efectoEstructurado": {
+      "discardAfter": true,
       "effects": [
         {
           "condition": {
@@ -1388,6 +1400,7 @@
     "textoAmbientacion": "La gente está furiosa porque algunos miembros del consejo han abusado del poder que se les confirió. La estructura del Consejo Público solo recordó a la gente lo que estaba mal con el sistema anterior...",
     "efecto": "Si tienes Justicia activa: +1 Descontento. De lo contrario: +2 Descontento. Activa Justicia.",
     "efectoEstructurado": {
+      "discardAfter": true,
       "condition": {
         "type": "has_hope",
         "value": "justicia",
@@ -1423,6 +1436,7 @@
     "textoAmbientacion": "Nuestra gente está débil porque nuestras decisiones hacen que pasen hambre. Sus cuerpos son vulnerables al clima despiadado y muchos sucumben a la enfermedad.",
     "efecto": "Gana Ciudadanos enfermos dependiendo de la posición del marcador de Frío y el marcador de Calor, como en la Fase del Generador. No puedes alimentar el Generador de antemano.",
     "efectoEstructurado": {
+      "discardAfter": true,
       "type": "gain_sick",
       "description": "Gana Ciudadanos enfermos según marcadores de Frío/Calor (como en Fase de Generador). No puedes alimentar el Generador antes."
     }
@@ -1436,6 +1450,7 @@
     "textoAmbientacion": "La escasez de comida resultó en la formación de pandillas en la ciudad; los fuertes toman de los débiles. Nuestros ciudadanos han cedido a sus instintos primarios...",
     "efecto": "Coloca esta carta sobre la carta de Ley de Raciones de Inanición. Ignora la carta de Ley mientras esta carta la cubra. FASE DEL CLIMA: Por cada Codicia activa, aumenta el Hambre en 2. Coloca esta carta en la pila de descartes de Anochecer.",
     "efectoEstructurado": {
+      "removeAfter": true,
       "effects": [
         {
           "type": "custom",
@@ -1457,6 +1472,7 @@
     "textoAmbientacion": "Nuestra gente está tan agotada con los turnos extendidos que ya no pueden trabajar. Algunos se han desmayado; otros simplemente se niegan a levantarse de sus camas...",
     "efecto": "Si tienes Apatía activa: Coloca 2 fichas de Trabajador / Ingeniero Gastado en la reserva. De lo contrario: Coloca 1 ficha de Trabajador / Ingeniero Gastado en la reserva.",
     "efectoEstructurado": {
+      "discardAfter": true,
       "condition": {
         "type": "has_discontent",
         "value": "apatia",
@@ -1505,6 +1521,7 @@
     "textoAmbientacion": "El intercambio de conocimiento llevó a la aparición de equipos de trabajadores altamente especializados. A partir de ahora, pueden realizar trabajos antes disponibles solo para ingenieros altamente capacitados.",
     "efecto": "Coloca esta carta sobre la carta de Ley de Conocimiento Compartido. Ignora la carta de Ley de Conocimiento Compartido mientras esta carta la cubra. FASE DE ACCIÓN: Puedes usar Meeples de Trabajador para usar Edificios de Taller y el Edificio del Generador. Siempre que uses un Meeple de Ingeniero para realizar la acción de Construir, puedes usar 2 sub-acciones de Construir para mejorar un Edificio pagando su coste de mejora.",
     "efectoEstructurado": {
+      "removeAfter": true,
       "effects": [
         {
           "type": "custom",
@@ -1526,6 +1543,7 @@
     "textoAmbientacion": "Nuestra gente siente armonía en la forma en que funciona nuestra sociedad. Las divisiones sociales anteriormente presentes ahora están olvidadas, y nuestros esfuerzos conjuntos benefician a todos.",
     "efecto": "Elige uno: A) Mejora un Edificio Pequeño gratis, incluso si ese Edificio ha sido usado esta Ronda. B) Activa 1 Esperanza.",
     "efectoEstructurado": {
+      "discardAfter": true,
       "type": "choice",
       "description": "Elige uno:",
       "minChoices": 1,
@@ -1552,6 +1570,7 @@
     "textoAmbientacion": "Priorizar a los pacientes tiene un precio alto. Sin embargo, debemos continuar este trabajo espantoso ya que no hay otra manera de asegurar nuestra supervivencia.",
     "efecto": "Si hay 1 o más marcadores de Enfermedad en su lado de Calavera: Voltea 1 marcador de Enfermedad de su lado de Calavera a su lado de Jeringa. De lo contrario: Gana 3 Ciudadanos enfermos de cualquier tipo.",
     "efectoEstructurado": {
+      "discardAfter": true,
       "condition": {
         "type": "custom",
         "description": "Si hay 1 o más marcadores de Enfermedad en lado Calavera"
@@ -1576,6 +1595,7 @@
     "textoAmbientacion": "Tanta muerte. Tantas caras que nunca volverán a hablar. Los médicos son solo humanos, y sus límites han sido superados. Su dedicación y sacrificio ahora cobran un alto precio.",
     "efecto": "+1 Apatía. Gana 2 Ingenieros enfermos. Adicionalmente, si tienes Cuidado activo: Gana 2 Ingenieros enfermos. [Eliminar carta]",
     "efectoEstructurado": {
+      "discardAfter": true,
       "effects": [
         {
           "type": "gain_discontent",
