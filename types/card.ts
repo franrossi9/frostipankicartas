@@ -149,6 +149,9 @@ export type CardEffect =
 // Helper para identificar el tipo de efecto
 export function isBasicEffect(effect: CardEffect): effect is BasicEffect {
   return (
+    effect !== null &&
+    effect !== undefined &&
+    typeof effect === "object" &&
     "type" in effect &&
     Object.values(EffectType).includes((effect as BasicEffect).type)
   );
@@ -157,31 +160,57 @@ export function isBasicEffect(effect: CardEffect): effect is BasicEffect {
 export function isConditionalEffect(
   effect: CardEffect
 ): effect is ConditionalEffect {
-  return "condition" in effect && "ifTrue" in effect;
+  return (
+    effect !== null &&
+    effect !== undefined &&
+    typeof effect === "object" &&
+    "condition" in effect &&
+    "ifTrue" in effect
+  );
 }
 
 export function isMultiConditionalEffect(
   effect: CardEffect
 ): effect is MultiConditionalEffect {
   return (
+    effect !== null &&
+    effect !== undefined &&
+    typeof effect === "object" &&
     "branches" in effect &&
     Array.isArray((effect as MultiConditionalEffect).branches)
   );
 }
 
 export function isChoiceEffect(effect: CardEffect): effect is ChoiceEffect {
-  return "options" in effect && Array.isArray((effect as ChoiceEffect).options);
+  return (
+    effect !== null &&
+    effect !== undefined &&
+    typeof effect === "object" &&
+    "options" in effect &&
+    Array.isArray((effect as ChoiceEffect).options)
+  );
 }
 
 export function isForEachEffect(effect: CardEffect): effect is ForEachEffect {
-  return "target" in effect && "effect" in effect && "description" in effect;
+  return (
+    effect !== null &&
+    effect !== undefined &&
+    typeof effect === "object" &&
+    "target" in effect &&
+    "effect" in effect &&
+    "description" in effect
+  );
 }
 
 export function isCompositeEffect(
   effect: CardEffect
 ): effect is CompositeEffect {
   return (
-    "effects" in effect && Array.isArray((effect as CompositeEffect).effects)
+    effect !== null &&
+    effect !== undefined &&
+    typeof effect === "object" &&
+    "effects" in effect &&
+    Array.isArray((effect as CompositeEffect).effects)
   );
 }
 

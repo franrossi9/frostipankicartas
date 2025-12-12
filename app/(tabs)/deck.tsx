@@ -485,24 +485,67 @@ export default function DeckScreen() {
                 )}
 
                 {currentCard.type !== "disputa_social" && (
-                  <View style={styles.modalActions}>
-                    <TouchableOpacity
-                      style={[styles.modalButton, styles.modalDiscardButton]}
-                      onPress={handleMoveToDiscard}
-                    >
-                      <ThemedText style={styles.modalButtonText}>
-                        📋 Mover a Descarte
-                      </ThemedText>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                      style={[styles.modalButton, styles.modalRemoveButton]}
-                      onPress={handleRemoveCard}
-                    >
-                      <ThemedText style={styles.modalButtonText}>
-                        🗑️ Eliminar
-                      </ThemedText>
-                    </TouchableOpacity>
-                  </View>
+                  <>
+                    {(shouldDiscard || shouldRemove) && (
+                      <View style={styles.modalInfo}>
+                        <ThemedText style={styles.modalInfoText}>
+                          {shouldRemove
+                            ? "🗑️ Esta carta debe ser eliminada del juego"
+                            : "📤 Esta carta debe ser descartada"}
+                        </ThemedText>
+                      </View>
+                    )}
+
+                    <View style={styles.modalActions}>
+                      {(shouldDiscard || shouldRemove) && (
+                        <TouchableOpacity
+                          style={[styles.modalButton, styles.modalNextButton]}
+                          onPress={() => {
+                            if (shouldRemove) {
+                              removeCard(currentCard);
+                              setShowCardModal(false);
+                              setShouldDiscard(false);
+                              setShouldRemove(false);
+                              Alert.alert(
+                                "Carta eliminada",
+                                "La carta se eliminó del juego"
+                              );
+                            } else if (shouldDiscard) {
+                              moveToDiscard(currentCard);
+                              setShowCardModal(false);
+                              setShouldDiscard(false);
+                              setShouldRemove(false);
+                              Alert.alert(
+                                "Carta descartada",
+                                "La carta se movió al mazo de descarte"
+                              );
+                            }
+                          }}
+                        >
+                          <ThemedText style={styles.modalButtonText}>
+                            ➡️ Siguiente
+                          </ThemedText>
+                        </TouchableOpacity>
+                      )}
+
+                      <TouchableOpacity
+                        style={[styles.modalButton, styles.modalDiscardButton]}
+                        onPress={handleMoveToDiscard}
+                      >
+                        <ThemedText style={styles.modalButtonText}>
+                          📋 Mover a Descarte
+                        </ThemedText>
+                      </TouchableOpacity>
+                      <TouchableOpacity
+                        style={[styles.modalButton, styles.modalRemoveButton]}
+                        onPress={handleRemoveCard}
+                      >
+                        <ThemedText style={styles.modalButtonText}>
+                          🗑️ Eliminar
+                        </ThemedText>
+                      </TouchableOpacity>
+                    </View>
+                  </>
                 )}
                 {currentCard.type === "disputa_social" && (
                   <>
@@ -1045,6 +1088,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: "#1976D2",
     textAlign: "center",
+    marginBottom: 15,
   },
   modalSection: {
     marginBottom: 25,
@@ -1087,6 +1131,9 @@ const styles = StyleSheet.create({
   },
   modalConfirmButton: {
     backgroundColor: "#34C759",
+  },
+  modalNextButton: {
+    backgroundColor: "#007AFF",
   },
   modalButtonText: {
     color: "white",

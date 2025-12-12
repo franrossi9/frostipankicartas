@@ -324,7 +324,7 @@
     }
   },
   {
-    "id": "L05 B",
+    "id": "L05",
     "type": "consecuencia_ley",
     "variante": "B",
     "etiqueta": "ANOCHECER",
@@ -354,7 +354,7 @@
     }
   },
   {
-    "id": "L06 A",
+    "id": "L06",
     "type": "consecuencia_ley",
     "variante": "A",
     "etiqueta": "ANOCHECER",
@@ -424,7 +424,7 @@
     }
   },
   {
-    "id": "L07 A",
+    "id": "L07",
     "type": "consecuencia_ley",
     "variante": "A",
     "etiqueta": "ANOCHECER",
@@ -558,7 +558,7 @@
     }
   },
   {
-    "id": "L07 B",
+    "id": "L07",
     "type": "consecuencia_ley",
     "variante": "B",
     "etiqueta": "ANOCHECER",
@@ -696,7 +696,7 @@
     }
   },
   {
-    "id": "L08 A",
+    "id": "L08",
     "type": "consecuencia_ley",
     "variante": "A",
     "etiqueta": "ANOCHECER",
@@ -799,7 +799,7 @@
     }
   },
   {
-    "id": "L08 B",
+    "id": "L08",
     "type": "consecuencia_ley",
     "variante": "B",
     "etiqueta": "ANOCHECER",
@@ -884,7 +884,7 @@
     }
   },
   {
-    "id": "L09 A",
+    "id": "L09",
     "type": "consecuencia_ley",
     "variante": "A",
     "etiqueta": "ANOCHECER",
@@ -928,7 +928,7 @@
     }
   },
   {
-    "id": "L09 B",
+    "id": "L09",
     "type": "consecuencia_ley",
     "variante": "B",
     "etiqueta": "ANOCHECER",
@@ -961,7 +961,7 @@
     }
   },
   {
-    "id": "L10 A",
+    "id": "L10",
     "type": "consecuencia_ley",
     "variante": "A",
     "etiqueta": "ANOCHECER",
@@ -1006,7 +1006,7 @@
     }
   },
   {
-    "id": "L10 B",
+    "id": "L10",
     "type": "consecuencia_ley",
     "variante": "B",
     "etiqueta": "ANOCHECER",
@@ -1059,7 +1059,7 @@
     }
   },
   {
-    "id": "L11A",
+    "id": "L11",
     "type": "consecuencia_ley",
     "variante": "A",
     "etiqueta": "ANOCHECER",
@@ -1126,7 +1126,7 @@
     }
   },
   {
-    "id": "L11B",
+    "id": "L11",
     "type": "consecuencia_ley",
     "variante": "B",
     "etiqueta": "ANOCHECER",
@@ -1174,7 +1174,7 @@
     }
   },
   {
-    "id": "L12A",
+    "id": "L12",
     "type": "consecuencia_ley",
     "variante": "A",
     "etiqueta": "ANOCHECER",
@@ -1198,7 +1198,7 @@
     }
   },
   {
-    "id": "L12B",
+    "id": "L12",
     "type": "consecuencia_ley",
     "variante": "B",
     "etiqueta": "ANOCHECER",
@@ -1221,7 +1221,7 @@
     }
   },
   {
-    "id": "L13A",
+    "id": "L13",
     "type": "consecuencia_ley",
     "variante": "A",
     "etiqueta": "ANOCHECER",
@@ -1248,7 +1248,7 @@
     }
   },
   {
-    "id": "L13B",
+    "id": "L13",
     "type": "consecuencia_ley",
     "variante": "B",
     "etiqueta": "ANOCHECER",
@@ -1283,7 +1283,7 @@
     }
   },
   {
-    "id": "L14A",
+    "id": "L14",
     "type": "consecuencia_ley",
     "variante": "A",
     "etiqueta": "ANOCHECER",
@@ -1307,7 +1307,7 @@
     }
   },
   {
-    "id": "L14B",
+    "id": "L14",
     "type": "consecuencia_ley",
     "variante": "B",
     "etiqueta": "ANOCHECER",
@@ -1350,7 +1350,7 @@
     }
   },
   {
-    "id": "L15A",
+    "id": "L15",
     "type": "consecuencia_ley",
     "variante": "A",
     "etiqueta": "ANOCHECER",
@@ -1392,7 +1392,7 @@
     }
   },
   {
-    "id": "L15B",
+    "id": "L15",
     "type": "consecuencia_ley",
     "variante": "B",
     "etiqueta": "ANOCHECER",
@@ -1428,7 +1428,7 @@
     }
   },
   {
-    "id": "L16A",
+    "id": "L16",
     "type": "consecuencia_ley",
     "variante": "A",
     "etiqueta": "ANOCHECER",
@@ -1442,7 +1442,7 @@
     }
   },
   {
-    "id": "L16B",
+    "id": "L16",
     "type": "consecuencia_ley",
     "variante": "B",
     "etiqueta": "ANOCHECER",
@@ -1464,7 +1464,7 @@
     }
   },
   {
-    "id": "L17A",
+    "id": "L17",
     "type": "consecuencia_ley",
     "variante": "A",
     "etiqueta": "ANOCHECER",
@@ -1489,7 +1489,7 @@
     }
   },
   {
-    "id": "L17B",
+    "id": "L17",
     "type": "consecuencia_ley",
     "variante": "B",
     "etiqueta": "ANOCHECER",
@@ -1513,7 +1513,7 @@
     }
   },
   {
-    "id": "L18A",
+    "id": "L18",
     "type": "consecuencia_ley",
     "variante": "A",
     "etiqueta": "ANOCHECER",
@@ -1535,7 +1535,7 @@
     }
   },
   {
-    "id": "L18B",
+    "id": "L18",
     "type": "consecuencia_ley",
     "variante": "B",
     "etiqueta": "ANOCHECER",
@@ -1562,7 +1562,7 @@
     }
   },
   {
-    "id": "L19A",
+    "id": "L19",
     "type": "consecuencia_ley",
     "variante": "A",
     "etiqueta": "ANOCHECER",
@@ -1587,7 +1587,7 @@
     }
   },
   {
-    "id": "L19B",
+    "id": "L19",
     "type": "consecuencia_ley",
     "variante": "B",
     "etiqueta": "ANOCHECER",
@@ -1624,7 +1624,7 @@
     }
   },
   {
-    "id": "L20A",
+    "id": "L20",
     "type": "consecuencia_ley",
     "variante": "A",
     "etiqueta": "ANOCHECER",
@@ -1669,7 +1669,7 @@
     }
   },
   {
-    "id": "L20B",
+    "id": "L20",
     "type": "consecuencia_ley",
     "variante": "B",
     "etiqueta": "ANOCHECER",
